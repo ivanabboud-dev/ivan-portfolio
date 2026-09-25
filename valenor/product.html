@@ -2,30 +2,26 @@
 <html lang="en">
 <head>
 <title>VALENOR</title>
-<meta name="description" content="VALENOR storefront demo: product page.">
+<meta name="description" content="VALENOR demo: product page with your size picked for you.">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0e0d0b">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 fill=%22%230e0d0b%22/%3E%3Ctext x=%2232%22 y=%2244%22 text-anchor=%22middle%22 font-family=%22Georgia,serif%22 font-size=%2236%22 fill=%22%23c2a878%22%3EV%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0b0b0a">
+<link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css?v=202609252105">
 </head>
 <body data-page="product">
 <main>
-  <div class="wrap">
-    <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
-    <section class="pdp" id="pdp"></section>
-  </div>
-  <section class="section" style="background:var(--bone-2)">
-    <div class="wrap">
-      <div class="section-head"><div><p class="eyebrow">Complete the look</p><h2 class="h2">Wears <em>well with</em></h2></div></div>
-      <div class="grid" id="related"></div>
-    </div>
+  <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+  <section class="pdp" id="pdp"></section>
+  <section class="related" aria-labelledby="rel-title">
+    <div class="sec-head"><h2 class="h-3" id="rel-title">Completes the look</h2><a class="view-all" href="shop.html?fit=1">Everything that fits →</a></div>
+    <div class="grid" id="related"></div>
   </section>
 </main>
-<script src="assets/data.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/data.js?v=202609252105"></script>
+<script src="assets/app.js?v=202609252105"></script>
 </body>
 </html>

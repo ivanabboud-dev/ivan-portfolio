@@ -293,6 +293,7 @@ a.slot:hover { border-color: rgba(214, 197, 168, .35); }
 
 /* ---------- footer ---------- */
 .foot { border-top: 1px solid var(--line); background: var(--bg-2); padding: 56px 0 28px; font-size: 12.5px; color: var(--m50); }
+.foot .wrap { max-width: 1400px; padding: 0 44px; }
 .foot__grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 32px; }
 .foot .logo { display: inline-block; margin-bottom: 14px; font-size: 20px; }
 .foot p { margin: 0; max-width: 32ch; }
@@ -572,6 +573,7 @@ a.slot:hover { border-color: rgba(214, 197, 168, .35); }
   .capsule__name b { font-size: 24px; }
   .capsule__cta { width: 100%; flex-direction: column-reverse; align-items: stretch; gap: 10px; text-align: center; }
   .capsule__cta .btn { width: 100%; padding: 17px; letter-spacing: .2em; }
+  .foot .wrap { padding: 0 20px; }
   .foot__grid { grid-template-columns: 1fr 1fr; }
   .foot__grid > div:first-child { grid-column: 1 / -1; }
   .shop-head { padding-top: 32px; }

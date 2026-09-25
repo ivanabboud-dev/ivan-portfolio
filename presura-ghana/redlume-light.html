@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#FBF9F6">
+<title>RedLume — Red Light LED Face Mask · Presura</title>
+<meta name="description" content="Ten minutes a night. The 633nm red light clinics use for firmness and tone, cordless and hands-free at home. Delivered across Ghana, MoMo accepted.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF9F6; --surface:#FFFFFF; --raise:#F1EDE7; --ink:#14171A;
+  --mut:#6B7075; --line:#E7E2DA; --acc:#0C6B57; --acc-soft:#E8F2EE;
+  --sand:#F0E9DE; --sand-ink:#7A5C34;
+  --serif:'Instrument Serif',Georgia,serif;
+  --pad:18px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:96px}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--acc);text-decoration:none}
+a:hover{color:var(--ink)}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:60;background:var(--acc);color:#fff;padding:10px 14px;border-radius:8px}
+.wrap{max-width:640px;margin:0 auto}
+.pad{padding-left:var(--pad);padding-right:var(--pad)}
+.serif{font-family:var(--serif);font-weight:400}
+.mut{color:var(--mut)}
+
+/* header */
+header.site{position:sticky;top:0;z-index:40;background:rgba(251,249,246,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px var(--pad);max-width:1080px;margin:0 auto}
+.iconbtn{background:none;border:0;color:var(--ink);min-width:44px;min-height:44px;padding:8px;font-size:11px;font-weight:500;cursor:pointer}
+.logo{display:inline-flex;align-items:baseline;gap:7px;font-family:var(--serif);font-size:19px;letter-spacing:.16em;color:var(--ink)}
+.logo i{width:11px;height:11px;border-radius:50%;background:var(--acc);flex:none}
+.cartlink{font-size:11px;font-weight:500;color:var(--ink);min-height:44px;display:flex;align-items:center}
+nav.menu{display:none;background:var(--surface);border-top:1px solid var(--line)}
+nav.menu.open{display:block}
+nav.menu a{display:flex;justify-content:space-between;padding:15px var(--pad);border-bottom:1px solid var(--line);font-size:15px;font-weight:500;color:var(--ink)}
+nav.menu a span{color:var(--mut);font-weight:400;font-size:13px}
+.ribbon{background:var(--acc-soft);border-bottom:1px solid #D7E5E0;padding:8px var(--pad);text-align:center;font-size:10.5px;font-weight:500;letter-spacing:.02em;color:var(--acc)}
+
+/* gallery */
+.gal{padding:16px var(--pad) 0}
+.galcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px}
+.shot{position:relative;width:100%;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--raise);display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.12em;color:#A4A9AE}
+.thumbs{display:flex;gap:8px;margin-top:10px}
+.thumb{flex:1;aspect-ratio:1;border-radius:8px;background:var(--raise);border:1px solid var(--line);display:flex;align-items:flex-end;padding:7px;font-size:9.5px;font-weight:500;color:var(--mut);cursor:pointer}
+.thumb[aria-current="true"]{border:1.5px solid var(--acc)}
+
+/* intro */
+.eyebrow{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:10px}
+h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(29px,8.6vw,36px);line-height:1.12;text-wrap:pretty}
+.lede{margin:12px 0 0;font-size:14.5px;line-height:1.6;color:var(--mut);text-wrap:pretty}
+.priced{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:20px}
+.price{font-size:30px;font-weight:600;line-height:1}
+.was{font-size:14px;color:var(--mut);text-decoration:line-through}
+.save{padding:4px 8px;border-radius:6px;background:var(--sand);color:var(--sand-ink);font-size:10px;font-weight:600}
+.fine{font-size:11.5px;color:var(--mut);margin-top:7px}
+
+/* variants */
+.varhd{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:18px 0 8px}
+.vars{display:flex;flex-direction:column;gap:8px}
+.var{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--ink);cursor:pointer}
+.var[aria-checked="true"]{border:1.5px solid var(--acc)}
+.dot{flex:none;width:16px;height:16px;border-radius:50%;border:1.5px solid #C9CDD1;background:var(--surface)}
+.var[aria-checked="true"] .dot{border:5px solid var(--acc)}
+.var b{display:block;font-size:13.5px;font-weight:600;line-height:1.2}
+.var em{display:block;font-size:11px;font-style:normal;color:var(--mut);margin-top:3px}
+.var i{margin-left:auto;font-style:normal;font-size:13.5px;font-weight:600}
+
+/* cards */
+.card{margin-top:22px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.cardhd{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.cardhd h2{margin:0;font-size:13px;font-weight:600}
+.cardhd span{font-size:10px;font-weight:500;letter-spacing:.1em;color:var(--acc)}
+.track{display:flex;align-items:center;margin-bottom:12px}
+.track b{flex:none;width:9px;height:9px;border-radius:50%;background:#D7E5E0}
+.track b:first-child{background:var(--acc)}
+.track i{flex:1;height:2px;background:#D7E5E0}
+.tracklabels{display:flex;gap:8px;font-size:10.5px;line-height:1.4;color:var(--mut)}
+.tracklabels div{flex:1}
+.tracklabels div:nth-child(2){text-align:center}
+.tracklabels div:last-child{text-align:right}
+.tracklabels strong{display:block;color:var(--ink);font-weight:600}
+.cardnote{margin:12px 0 0;padding-top:12px;border-top:1px solid var(--bg);font-size:12px;line-height:1.55;color:var(--mut)}
+
+.sechd{margin:26px 0 14px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.bens{display:flex;flex-direction:column;gap:14px}
+.ben{display:flex;gap:13px}
+.ben span{flex:none;width:34px;height:34px;border-radius:10px;background:var(--acc-soft);color:var(--acc);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600}
+.ben b{display:block;font-size:13.5px;font-weight:600;line-height:1.3}
+.ben p{margin:2px 0 0;font-size:12.5px;line-height:1.5;color:var(--mut)}
+
+.results{margin:26px 0 0;padding:24px var(--pad);background:var(--sand)}
+.results h2{margin:0 0 16px;font-family:var(--serif);font-weight:400;font-size:23px;line-height:1.25}
+.results-row{display:flex;gap:10px;max-width:640px;margin:0 auto}
+.results-row > div{flex:1}
+.results-inner{max-width:640px;margin:0 auto}
+.rshot{width:100%;aspect-ratio:3/4;border-radius:10px;background:#E6DCCB;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.1em;color:var(--sand-ink)}
+.rcap{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--sand-ink);margin-top:7px}
+.results p{margin:14px 0 0;font-size:12px;line-height:1.55;color:var(--sand-ink)}
+
+.empty{border:1px dashed #D8D2C8;border-radius:14px;padding:18px;text-align:center;background:var(--surface)}
+.empty h3{margin:0 0 8px;font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.3}
+.empty p{margin:0 0 14px;font-size:12.5px;line-height:1.6;color:var(--mut)}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.btn{flex:1 1 auto;padding:12px;min-height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:10px;background:var(--acc);color:#fff;font-size:12px;font-weight:600;cursor:pointer}
+.btn--ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+
+details.faq{border-top:1px solid var(--line)}
+details.faq:last-of-type{border-bottom:1px solid var(--line)}
+details.faq summary{display:flex;justify-content:space-between;gap:12px;padding:14px 0;font-size:13px;font-weight:600;line-height:1.35;cursor:pointer;list-style:none}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq summary::after{content:"+";color:var(--acc);font-weight:400;font-size:15px}
+details.faq[open] summary::after{content:"–"}
+details.faq div{padding:0 0 14px;font-size:12.5px;line-height:1.6;color:var(--mut)}
+
+.contact{margin:24px var(--pad) 0;padding:16px;border-radius:14px;background:var(--ink)}
+.contact h2{margin:0 0 6px;font-family:var(--serif);font-weight:400;font-size:19px;line-height:1.3;color:var(--bg)}
+.contact p{margin:0 0 12px;font-size:12px;line-height:1.6;color:#B4B9BE}
+.contact a{display:flex;align-items:center;padding:0 13px;min-height:44px;border-radius:8px;font-size:11.5px;font-weight:600}
+
+footer.site{padding:26px var(--pad) 30px;text-align:center;font-size:11px;line-height:1.7;color:var(--mut)}
+.pays{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:14px}
+.pays span{padding:6px 10px;background:var(--raise);border-radius:8px;font-size:10px;font-weight:600;color:var(--mut)}
+
+.stickybar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;align-items:center;gap:12px;padding:12px var(--pad) calc(14px + env(safe-area-inset-bottom));background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(20,23,26,.07);transform:translateY(120%);transition:transform .22s ease}
+.stickybar.in{transform:none}
+.stickybar small{display:block;font-size:10px;color:var(--mut);margin-bottom:4px}
+.stickybar b{font-size:17px;font-weight:600}
+.atc{flex:1;min-height:48px;padding:14px;border:0;border-radius:12px;background:var(--acc);color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+
+@media (min-width:750px){
+  body{padding-bottom:0}
+  .split{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start;padding:14px 24px 0}
+  .gal{padding:0;position:sticky;top:86px}
+  .intro{padding:0}
+  h1{font-size:40px}
+  .results,.contact{border-radius:16px;margin-left:24px;margin-right:24px}
+  .stickybar{position:static;transform:none;box-shadow:none;border:1px solid var(--line);border-radius:14px;max-width:1080px;margin:22px auto 30px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="bar">
+    <button class="iconbtn" type="button" id="menubtn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <a class="logo" href="#"><i></i>PRESURA</a>
+    <a class="cartlink" href="#">Cart (0)</a>
+  </div>
+  <nav class="menu" id="menu">
+    <a href="#">Skin &amp; Light Therapy <span>9</span></a>
+    <a href="#">Hair Removal <span>6</span></a>
+    <a href="#">Fans &amp; Cooling <span>8</span></a>
+    <a href="#">Hair &amp; Styling <span>11</span></a>
+    <a href="#">Body &amp; Massage <span>7</span></a>
+    <a href="#">Lips &amp; Beauty <span>9</span></a>
+    <a href="#">Home, Pet &amp; Bath <span>7</span></a>
+  </nav>
+  <div class="ribbon">Accra-based support · MoMo &amp; card · Tracked delivery</div>
+</header>
+
+<main id="main">
+  <div class="split">
+    <div class="gal">
+      <div class="galcard">
+        <div class="shot" id="mainshot">PRODUCT PHOTO</div>
+        <div class="thumbs">
+          <button class="thumb" type="button" aria-current="true" data-shot="PRODUCT PHOTO">Pack</button>
+          <button class="thumb" type="button" aria-current="false" data-shot="IN USE">In use</button>
+          <button class="thumb" type="button" aria-current="false" data-shot="DETAIL">Detail</button>
+          <button class="thumb" type="button" aria-current="false" data-shot="+4 PHOTOS">+4</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="intro pad">
+      <div class="eyebrow">Skin &amp; Light Therapy</div>
+      <h1>Ten minutes a night.<br>Calmer, brighter skin.</h1>
+      <p class="lede">RedLume — Red Light LED Face Mask. The 633nm red light clinics use for firmness and tone, cordless and hands-free at home.</p>
+
+      <div class="priced">
+        <span class="price" id="price">₵1,319</span>
+        <s class="was" id="was">₵1,649</s>
+        <span class="save" id="savechip">Save ₵330</span>
+      </div>
+      <div class="fine">Delivery calculated at checkout · No hidden fees</div>
+
+      <div class="varhd">Choose yours</div>
+      <div class="vars" role="radiogroup" aria-label="Choose yours">
+        <button class="var" type="button" role="radio" aria-checked="true" data-title="Mask only" data-price="₵1,319" data-was="₵1,649" data-save="Save ₵330">
+          <span class="dot"></span>
+          <span><b>Mask only</b><em>Face · 7 light modes</em></span>
+          <i>₵1,319</i>
+        </button>
+        <button class="var" type="button" role="radio" aria-checked="false" data-title="Mask + neck panel" data-price="₵2,899" data-was="₵3,499" data-save="Save ₵600">
+          <span class="dot"></span>
+          <span><b>Mask + neck panel</b><em>Face, neck &amp; décolletage</em></span>
+          <i>₵2,899</i>
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="cardhd"><h2>When it arrives</h2><span>TRACKED</span></div>
+        <div class="track" aria-hidden="true"><b></b><i></i><b></b><i></i><b></b></div>
+        <div class="tracklabels">
+          <div>Leaves warehouse<strong>1–2 days</strong></div>
+          <div>In transit<strong>tracking link</strong></div>
+          <div>At your door<strong>7–12 days</strong></div>
+        </div>
+        <p class="cardnote">Accra &amp; Tema 7–12 days, rest of Ghana 9–16. We'd rather quote two weeks and beat it than promise tomorrow.</p>
+      </div>
+
+      <div class="sechd">What it actually does</div>
+      <div class="bens">
+        <div class="ben"><span>633</span><div><b>Clinic wavelength, not a novelty light</b><p>633nm red for firmness and even tone; 6 more modes for redness and blemishes.</p></div></div>
+        <div class="ben"><span>USB</span><div><b>Cordless — wear it while you do anything</b><p>Charges by USB-C. Light enough to cook, scroll or fold clothes in.</p></div></div>
+        <div class="ben"><span>10′</span><div><b>Ten minutes, four nights a week</b><p>Auto shut-off. Most people notice tone at week 4, firmness around week 8.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="results">
+    <div class="results-inner">
+      <h2>Your first weeks, honestly</h2>
+      <div class="results-row">
+        <div><div class="rshot">DAY 1</div><div class="rcap">DAY 1</div></div>
+        <div><div class="rshot">WEEK 4</div><div class="rcap">WEEK 4</div></div>
+      </div>
+      <p>Real customer photos only. This panel stays empty until we have them — we'll ask, we won't invent.</p>
+    </div>
+  </section>
+
+  <div class="wrap pad">
+    <div class="sechd">Reviews</div>
+    <div class="empty">
+      <h3>Nobody has reviewed this yet</h3>
+      <p>We opened in August 2026. We don't write our own reviews and we don't buy them, so this page stays honest until a real customer fills it.</p>
+      <div class="btnrow">
+        <a class="btn" href="#">Chat on WhatsApp</a>
+        <a class="btn btn--ghost" href="#">Our promise</a>
+      </div>
+    </div>
+
+    <div class="sechd">Straight answers</div>
+    <details class="faq" open>
+      <summary>Why does delivery take one to two weeks?</summary>
+      <div>It ships from our fulfilment partner's warehouse, not a shop in Accra — that's how the price stays where it is. You get a tracking link the day it leaves, and our line is open the whole way.</div>
+    </details>
+    <details class="faq">
+      <summary>Is it safe for dark skin?</summary>
+      <div>Yes. Red light isn't a laser and doesn't target pigment, so it's safe across skin tones. Different story for our IPL handset — that page tells you exactly which tones it suits.</div>
+    </details>
+    <details class="faq">
+      <summary>How do I pay?</summary>
+      <div>MTN MoMo, Telecel Cash, AirtelTigo Money or any card. Nothing is stored on our side.</div>
+    </details>
+    <details class="faq">
+      <summary>What if it arrives faulty?</summary>
+      <div>Message us within 7 days of delivery with a photo and we replace it or refund you. One message, no forms.</div>
+    </details>
+  </div>
+
+  <div class="contact">
+    <h2>Talk to a person</h2>
+    <p>Accra time, 9am–7pm. Same-day replies, usually within the hour.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a href="#" style="background:var(--acc);color:#fff">Chat on WhatsApp</a>
+      <a href="mailto:presurashop@gmail.com" style="border:1px solid #3A3E43;color:var(--bg)">presurashop@gmail.com</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="pays"><span>MTN MoMo</span><span>Telecel Cash</span><span>AirtelTigo Money</span><span>Visa</span><span>Mastercard</span></div>
+  Presura · Ghana · GHS ₵<br>
+  Skin &amp; Light Therapy · Hair Removal · Fans &amp; Cooling · Hair &amp; Styling · Body &amp; Massage · Lips &amp; Beauty · Home, Pet &amp; Bath
+</footer>
+
+<div class="stickybar" id="stickybar">
+  <div>
+    <small id="bartitle">Mask only</small>
+    <b id="barprice">₵1,319</b>
+  </div>
+  <button class="atc" type="button" id="atc">Add to cart</button>
+</div>
+
+<script>
+(function(){
+  var mb = document.getElementById('menubtn'), menu = document.getElementById('menu');
+  mb.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    mb.setAttribute('aria-expanded', String(open));
+  });
+
+  var shot = document.getElementById('mainshot');
+  document.querySelectorAll('.thumb').forEach(function(t){
+    t.addEventListener('click', function(){
+      shot.textContent = t.dataset.shot;
+      document.querySelectorAll('.thumb').forEach(function(o){ o.setAttribute('aria-current','false'); });
+      t.setAttribute('aria-current','true');
+    });
+  });
+
+  var price = document.getElementById('price'), was = document.getElementById('was'),
+      savechip = document.getElementById('savechip'), barprice = document.getElementById('barprice'),
+      bartitle = document.getElementById('bartitle');
+  document.querySelectorAll('.var').forEach(function(v){
+    v.addEventListener('click', function(){
+      document.querySelectorAll('.var').forEach(function(o){ o.setAttribute('aria-checked','false'); });
+      v.setAttribute('aria-checked','true');
+      price.textContent = v.dataset.price;
+      was.textContent = v.dataset.was;
+      savechip.textContent = v.dataset.save;
+      barprice.textContent = v.dataset.price;
+      bartitle.textContent = v.dataset.title;
+    });
+  });
+
+  var cart = 0, atc = document.getElementById('atc'), cartlink = document.querySelector('.cartlink');
+  atc.addEventListener('click', function(){
+    cart++;
+    cartlink.textContent = 'Cart (' + cart + ')';
+    atc.textContent = 'Added — view cart';
+    setTimeout(function(){ atc.textContent = 'Add to cart'; }, 1800);
+  });
+
+  var bar = document.getElementById('stickybar'), anchor = document.querySelector('.priced');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){
+      bar.classList.toggle('in', !e[0].isIntersecting || e[0].boundingClientRect.top < 0);
+    }, {rootMargin:'-72px 0px 0px 0px'}).observe(anchor);
+  } else { bar.classList.add('in'); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ivan Abboud — Shopify Developer Portfolio</title>
+<meta name="description" content="Shopify theme builds, checkout diagnostics, and store builds for Paystack and Mobile Money markets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E0F11; --surface:#17181B; --line:#26282C; --ink:#F3F1EC; --mut:#9A9CA2; --acc:#C99A6B;
+    --serif:'Instrument Serif',Georgia,serif; --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  header{padding:90px 0 56px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin:0 0 14px}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,6vw,54px);line-height:1.1;margin:0 0 18px;letter-spacing:-.01em}
+  .lede{font-size:17px;line-height:1.65;color:var(--mut);max-width:58ch;margin:0}
+  .meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;font-size:13.5px;color:var(--mut)}
+  .meta a{color:var(--ink);border-bottom:1px solid var(--line)}
+  .meta a:hover{border-color:var(--acc);color:var(--acc)}
+  main{padding:56px 0 90px}
+  .sect-label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 24px}
+  .cards{display:flex;flex-direction:column;gap:16px}
+  .card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px 30px;transition:border-color 160ms ease,transform 160ms ease}
+  .card:hover{border-color:var(--acc);transform:translateY(-2px)}
+  .card__tag{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:0 0 10px}
+  .card h2{font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 10px;color:var(--ink)}
+  .card p{margin:0;font-size:14.5px;line-height:1.65;color:var(--mut);max-width:64ch}
+  .card__cta{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;font-weight:600;color:var(--ink)}
+  .card:hover .card__cta{color:var(--acc)}
+  footer{border-top:1px solid var(--line);padding:34px 0 60px;font-size:13px;color:var(--mut)}
+  footer a{border-bottom:1px solid var(--line)}
+  footer a:hover{border-color:var(--acc);color:var(--acc)}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <p class="eyebrow">Shopify Developer</p>
+  <h1>Theme builds, checkout fixes,<br>Paystack &amp; Mobile Money.</h1>
+  <p class="lede">I build, fix, and run Shopify stores end to end — custom theme development, checkout diagnostics, catalog and pricing systems, and store builds for emerging-market payment environments most developers never touch.</p>
+  <div class="meta">
+    <span>Based in Accra, Ghana</span>
+    <a href="mailto:ivanabboudios@gmail.com">ivanabboudios@gmail.com</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="sect-label">Case studies</p>
+  <div class="cards">
+    <a class="card" href="./presura-ghana/audit/">
+      <p class="card__tag">Store Audit · 20-Point Check</p>
+      <h2>Presura Ghana — "Why no sales?" audit</h2>
+      <p>A 20-point audit of a live Shopify store, run against real store data: the funnel from 3,651 sessions to checkout, a real cart and payment test, variant availability, Markets vs shipping zones, policy vs checkout, and pricing. Every number comes from the store's own data, and nothing is rounded up.</p>
+      <span class="card__cta">Read the audit →</span>
+    </a>
+
+    <a class="card" href="./valenor/">
+      <p class="card__tag">Menswear · Storefront Build · Live Demo</p>
+      <h2>VALENOR</h2>
+      <p>Built two full theme lineages for a menswear dropshipping brand — a custom Dawn-based dual-tone design, then a fully bespoke non-Dawn theme wired to a 200+ product catalog. Diagnosed a live-but-zero-conversion store down to root cause, executed a full multi-currency variant conversion with zero pricing errors, and rebuilt the review system after confirming the supplier had none. The demo store lets you try it: a fit quiz that picks your size, live stock by size and colour, and a working bag.</p>
+      <span class="card__cta">Open the demo store →</span>
+    </a>
+
+    <a class="card" href="./presura/">
+      <p class="card__tag">Beauty &amp; Home Devices · Catalog &amp; Ads</p>
+      <h2>Presura</h2>
+      <p>Managed a beauty/home-device dropshipping store through a full product pivot, repricing an entire catalog after finding the platform's own stored cost field wrong by up to 350× on some items. Ran Meta ad campaigns across multiple product lines and diagnosed a checkout-layer payment failure invisible to every standard analytics check.</p>
+      <span class="card__cta">View case study →</span>
+    </a>
+
+    <a class="card" href="./presura-ghana/">
+      <p class="card__tag">Ghana Market · Paystack &amp; Mobile Money</p>
+      <h2>Presura Ghana</h2>
+      <p>Built a Ghana-market Shopify store from zero after confirming the sister USD store had a hard platform block on GHS pricing. Fixed a same-day checkout outage hours before ad spend, launched a Meta campaign, and traced a near-zero conversion rate to a single storefront contradiction — fixing it was followed by the store's first real customer order.</p>
+      <span class="card__cta">View case study →</span>
+    </a>
+  </div>
+</main>
+
+<footer class="wrap">
+  Built and hosted on GitHub Pages · <a href="mailto:ivanabboudios@gmail.com">Get in touch</a>
+</footer>
+</body>
+</html>

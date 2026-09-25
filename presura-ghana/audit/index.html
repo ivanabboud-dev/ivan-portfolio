@@ -1,0 +1,177 @@
+<title>Presura Ghana Store Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F4F5F1; --surface:#FFFFFF; --ink:#18202B; --muted:#586271; --line:#DADFD6;
+  --accent:#0E6E55; --accent-soft:#E0EFE8; --warn:#9A5D0C; --warn-soft:#FBEFD9;
+  --bad:#A63A2A; --bad-soft:#F8E3DE; --good:#1E7438; --good-soft:#E2F1E5; --code:#ECEFE9; --na:#6B7280; --na-soft:#ECEDEF;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11161C; --surface:#19202A; --ink:#E5E9EE; --muted:#9BA5B3; --line:#2B343F;
+  --accent:#57C39C; --accent-soft:#15332A; --warn:#E3A84E; --warn-soft:#342810;
+  --bad:#EC8573; --bad-soft:#3B1F1A; --good:#71CE8B; --good-soft:#17311F; --code:#212932; --na:#A3AAB5; --na-soft:#262C35; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#11161C; --surface:#19202A; --ink:#E5E9EE; --muted:#9BA5B3; --line:#2B343F;
+  --accent:#57C39C; --accent-soft:#15332A; --warn:#E3A84E; --warn-soft:#342810;
+  --bad:#EC8573; --bad-soft:#3B1F1A; --good:#71CE8B; --good-soft:#17311F; --code:#212932; --na:#A3AAB5; --na-soft:#262C35; color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:15.5px/1.6 var(--body);padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:880px;margin:0 auto;display:grid;gap:40px}
+h1,h2,h3{font-family:var(--display);font-stretch:88%;line-height:1.12;text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,6vw,50px);font-weight:800;letter-spacing:-.015em}
+h2{font-size:25px;font-weight:750}
+h3{font-size:18px;font-weight:700}
+p{margin:0}
+.prose{max-width:66ch}
+.muted{color:var(--muted)}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+header{padding-top:44px;display:grid;gap:16px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font:13px/1.4 var(--mono);color:var(--muted)}
+section{display:grid;gap:16px}
+.funnel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;display:grid;gap:14px}
+.step{display:grid;grid-template-columns:minmax(120px,190px) 1fr auto;align-items:center;gap:12px}
+.step .lbl{font-size:14px}
+.step .val{font:600 15px/1 var(--mono);font-variant-numeric:tabular-nums;text-align:right;min-width:64px}
+.track{height:14px;background:var(--code);border-radius:3px;overflow:hidden}
+.track i{display:block;height:100%;background:var(--accent);border-radius:3px;min-width:3px}
+@media (max-width:560px){.step{grid-template-columns:1fr auto}.step .track{grid-column:1/-1;order:3}}
+.note{font-size:13.5px;color:var(--muted)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font:600 12px/1.3 var(--body);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;background:var(--code)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);color:var(--muted);width:36px}
+.st{display:inline-block;font:600 11.5px/1 var(--body);padding:5px 8px;border-radius:999px;white-space:nowrap}
+.pass{background:var(--good-soft);color:var(--good)}
+.fail{background:var(--bad-soft);color:var(--bad)}
+.warn{background:var(--warn-soft);color:var(--warn)}
+.na{background:var(--na-soft);color:var(--na)}
+.tally{display:flex;flex-wrap:wrap;gap:8px}
+.finding{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:grid;gap:8px}
+.finding.sev{border-left:4px solid var(--bad)}
+.finding.mid{border-left:4px solid var(--warn)}
+.finding .fix{font-size:14px}
+.finding .fix b{color:var(--accent)}
+ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.callout{border-left:3px solid var(--accent);background:var(--accent-soft);padding:14px 18px;border-radius:0 8px 8px 0}
+code{font:13px var(--mono);background:var(--code);padding:1px 5px;border-radius:4px}
+footer{padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:6px}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Case study · Shopify "why no sales?" audit</div>
+  <h1>Presura Ghana Store Audit</h1>
+  <p class="prose">A 20-point audit of a real, live Shopify store: the auditor's own. It's a GHS-priced store selling beauty and home devices, dropshipped from overseas, with a Paystack checkout that takes MTN MoMo and cards. Every number below comes from the store's live data on the day of the audit. Nothing is rounded up.</p>
+  <div class="meta"><span>Audit date: 22 Sep 2026</span><span>Data window: last 30 days</span><span>Store: presuraaf.shop</span><span>Auditor: Ivan Abboud, Accra</span></div>
+</header>
+
+<section>
+  <h2>The funnel, as it was</h2>
+  <div class="funnel" role="img" aria-label="Funnel: 3,651 sessions, 40 add to cart, 23 reached checkout, 2 completed checkouts, of which 1 real order">
+    <div class="step"><span class="lbl">Sessions</span><div class="track"><i style="width:100%"></i></div><span class="val">3,651</span></div>
+    <div class="step"><span class="lbl">Added to cart</span><div class="track"><i style="width:1.1%"></i></div><span class="val">40</span></div>
+    <div class="step"><span class="lbl">Reached checkout</span><div class="track"><i style="width:.63%"></i></div><span class="val">23</span></div>
+    <div class="step"><span class="lbl">Completed checkout</span><div class="track"><i style="width:.055%"></i></div><span class="val">2</span></div>
+    <p class="note">Of the 2 completed checkouts, one was a real customer order (GH₵439, 28 Aug 2026). The other was the owner's own GH₵11.25 payment test (19 Sep 2026). Real conversion in the window: 1 order from 3,651 sessions. 77% of sessions were on mobile.</p>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Traffic source</th><th>Sessions</th><th>Added to cart</th><th>Cart rate</th><th>Reached checkout</th></tr></thead>
+    <tbody>
+      <tr><td>Social (TikTok, Instagram, Facebook)</td><td>2,486</td><td>17</td><td>0.7%</td><td>8</td></tr>
+      <tr><td>Direct</td><td>1,079</td><td>13</td><td>1.2%</td><td>6</td></tr>
+      <tr><td>Search</td><td>84</td><td>10</td><td><b>11.9%</b></td><td>9</td></tr>
+    </tbody></table></div>
+  <p class="prose muted">By country: Ghana 2,733 sessions and all 40 cart adds; the United States 848 sessions and 0 cart adds. The US traffic isn't buying anything on a store priced only in cedis, and it drags the store-wide conversion rate down. Ghana-only cart rate: 1.5%.</p>
+</section>
+
+<section>
+  <h2>20 checks, 20 results</h2>
+  <div class="tally"><span class="st pass">9 pass</span><span class="st fail">2 fail</span><span class="st warn">7 warning</span><span class="st na">1 info · 1 not checked</span></div>
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Check</th><th>Result</th><th>What we found</th></tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td>Store reachable, no password wall</td><td><span class="st pass">Pass</span></td><td>Home page loads (HTTP 200) on a mobile browser.</td></tr>
+      <tr><td class="num">2</td><td>Store currency matches the payment gateway</td><td><span class="st pass">Pass</span></td><td>GHS store, GHS-only pricing, Paystack settles in GHS.</td></tr>
+      <tr><td class="num">3</td><td>A real payment completed recently</td><td><span class="st pass">Pass</span></td><td>A real paid test order went through on 19 Sep 2026. This check comes first because a gateway can fail silently for months.</td></tr>
+      <tr><td class="num">4</td><td>Add to cart → checkout loads</td><td><span class="st pass">Pass</span></td><td>Test cart created, checkout page opened in the Ghana locale, cart cleared afterwards.</td></tr>
+      <tr><td class="num">5</td><td>Every product has buyable variants</td><td><span class="st fail">Fail</span></td><td>503 of 527 variants are buyable. One product has 24 of its 26 variants unbuyable.</td></tr>
+      <tr><td class="num">6</td><td>Product copy matches what can be bought</td><td><span class="st fail">Fail</span></td><td>The same product tells Ghana buyers to choose the UK plug, and none of its UK-plug variants can be bought.</td></tr>
+      <tr><td class="num">7</td><td>Shipping zones cover every active market</td><td><span class="st pass">Pass</span></td><td>4 active markets (Ghana, EU, UK, Rest of World), each with a shipping rate.</td></tr>
+      <tr><td class="num">8</td><td>Shipping policy matches checkout</td><td><span class="st pass">Pass</span></td><td>Policy says free shipping, and checkout shows GH₵0.00. No contradiction.</td></tr>
+      <tr><td class="num">9</td><td>Delivery promise a local buyer will accept</td><td><span class="st warn">Warning</span></td><td>"10–50 days within Ghana", plus import duties paid by the recipient, stated on 22 product pages and the policy. It's honest, but it's the likeliest trust barrier. This is a hypothesis we haven't tested.</td></tr>
+      <tr><td class="num">10</td><td>Advertised discounts actually exist</td><td><span class="st pass">Pass</span></td><td>1 active automatic discount (free gift over GH₵250), and the live theme has the script that adds the gift.</td></tr>
+      <tr><td class="num">11</td><td>Advertised payment methods are real</td><td><span class="st pass">Pass</span></td><td>The banner claims MTN MoMo, Visa and Mastercard only. No Apple Pay, Shop Pay or PayPal badges that the store can't honour.</td></tr>
+      <tr><td class="num">12</td><td>Prices look deliberate</td><td><span class="st warn">Warning</span></td><td>186 of 527 variants (24 products) end in odd pesewas, e.g. GH₵358.64 and GH₵578.21, while the rest are round prices like GH₵199.</td></tr>
+      <tr><td class="num">13</td><td>Variant names are clean</td><td><span class="st warn">Warning</span></td><td>Supplier typos are visible to buyers, e.g. "With 2brush heads1".</td></tr>
+      <tr><td class="num">14</td><td>No duplicate listings</td><td><span class="st warn">Warning</span></td><td>Two near-identical crystal hair eraser products; one still carries raw supplier copy.</td></tr>
+      <tr><td class="num">15</td><td>Image alt text</td><td><span class="st warn">Warning</span></td><td>70 product images use hashed file names as alt text (e.g. "920fc9bb…"); 19 product videos have none.</td></tr>
+      <tr><td class="num">16</td><td>SEO titles and meta descriptions</td><td><span class="st warn">Warning</span></td><td>16 of 66 products fall back to Shopify's defaults.</td></tr>
+      <tr><td class="num">17</td><td>Categories and collections</td><td><span class="st pass">Pass</span></td><td>All 66 active products have a Shopify category and at least one collection.</td></tr>
+      <tr><td class="num">18</td><td>Traffic quality</td><td><span class="st warn">Warning</span></td><td>23% of sessions came from the US with zero cart adds.</td></tr>
+      <tr><td class="num">19</td><td>Funnel by source</td><td><span class="st na">Info</span></td><td>Search visitors add to cart at 11.9%, social visitors at 0.7%. It's a small sample (84 search sessions), but the gap is large.</td></tr>
+      <tr><td class="num">20</td><td>Pixel and dataset event health</td><td><span class="st na">Not checked</span></td><td>Meta ads have been paused since 28 Aug 2026, so there was no live spend to verify against.</td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <h2>The findings that matter, in order</h2>
+  <div class="finding sev">
+    <h3>1 · A product that Ghana buyers are told to buy in a version that can't be bought</h3>
+    <p>The flame-and-jellyfish aroma diffuser says, in its own description: <i>"For Ghanaian wall sockets, choose the UK plug variant."</i> Every UK-plug variant is unavailable. Only 2 of its 26 variants can be bought, both with EU plugs, at GH₵2,145 and above. A buyer who follows the instructions hits a dead end.</p>
+    <p class="fix"><b>Fix:</b> check supplier stock for the UK-plug SKUs. If they're gone, hide the product or rewrite the note to say an EU-to-UK adapter is needed. Then run a real cart test.</p>
+  </div>
+  <div class="finding mid">
+    <h3>2 · A delivery promise that asks a lot of a local buyer</h3>
+    <p>"10–50 days within Ghana", with duties payable on arrival, appears on 22 product pages and in the policy. It's the honest carrier range, and the store should keep being honest about it. But 23 people reached checkout and one paid. This is the most likely reason, and no theme change can fix it.</p>
+    <p class="fix"><b>Fix:</b> this is a fulfilment decision, not a design one. Options: stock the top 3 sellers locally, test a faster shipping line on those 3, or show a realistic typical range next to the maximum. Measure checkout completion before and after.</p>
+  </div>
+  <div class="finding mid">
+    <h3>3 · Prices and names that look unfinished</h3>
+    <p>186 variants end in odd pesewas like GH₵358.64, supplier typos show in variant names, and the catalog has one near-duplicate product. None of these blocks a purchase. Together they make a store look less cared for at the moment someone decides whether to trust it with their MoMo.</p>
+    <p class="fix"><b>Fix:</b> round prices to the store's own pattern (a margin check on each), clean the variant names, and merge or remove the duplicate.</p>
+  </div>
+  <div class="finding mid">
+    <h3>4 · Search is small but converts; social is big but doesn't</h3>
+    <p>84 search sessions produced 10 cart adds. 2,486 social sessions produced 17. The 70 hashed alt texts and 16 default SEO titles are cheap to fix, and they sit on the only channel that's already converting.</p>
+    <p class="fix"><b>Fix:</b> descriptive alt text and custom SEO titles on all 66 products. Then track search sessions monthly, without expecting overnight results.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What the audit ruled out</h2>
+  <p class="prose">Just as useful: nine common "zero sales" causes were checked and cleared, so no time goes into fixing things that aren't broken. The storefront is open. Currency and gateway match. A real payment went through this week. Cart and checkout load. Every market has a shipping rate. The policy matches checkout. The discount it advertises is real. The payment badges are honest. Every product is categorised.</p>
+</section>
+
+<section>
+  <div class="callout">
+    <h3>What this case study doesn't claim</h3>
+    <ul>
+      <li>No fixes had been applied when this audit was written (22 Sep 2026). There's no before/after result yet. If one comes, it will be added with its date, including if nothing changes.</li>
+      <li>No promise that fixing these raises sales. The audit finds what's blocking buyers; buyers still have to want the product.</li>
+      <li>The delivery-time finding is a hypothesis based on the funnel, not a tested result.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>How the audit was done</h2>
+  <ul class="prose">
+    <li><b>Live data, not settings screens:</b> Shopify analytics for the funnel, the Admin API for products, Markets, shipping zones and discounts, and the public storefront for what a shopper actually sees.</li>
+    <li><b>A real test cart</b> on a mobile browser, through to the checkout page, then cleared.</li>
+    <li><b>A full variant sweep</b> of all 527 variants, because one unbuyable default can hide behind a clean-looking product page.</li>
+    <li><b>Every finding checked twice:</b> the data was pulled from several sources and cross-checked, and each finding was confirmed by hand on the live store before it went in.</li>
+  </ul>
+</section>
+
+<footer>
+  <span>Ivan Abboud · Shopify audits and fixes · Accra, Ghana (GMT)</span>
+  <span>No passwords needed: audits run on public store data plus Shopify collaborator access that you control.</span>
+</footer>
+</div>

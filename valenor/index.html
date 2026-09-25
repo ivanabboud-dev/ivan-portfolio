@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>VALENOR — Menswear, fit first</title>
+<meta name="description" content="VALENOR storefront demo: a fit-first menswear store designed and built by Ivan Abboud.">
+<meta property="og:title" content="VALENOR — storefront demo">
+<meta property="og:image" content="images/hero.jpg">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0e0d0b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 fill=%22%230e0d0b%22/%3E%3Ctext x=%2232%22 y=%2244%22 text-anchor=%22middle%22 font-family=%22Georgia,serif%22 font-size=%2236%22 fill=%22%23c2a878%22%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="home">
+<main>
+  <section class="hero dark" aria-label="Find your fit">
+    <div class="hero__media"><img src="images/hero.jpg" alt="Model in a black ribbed half-zip knit and wide black trousers" fetchpriority="high"><span class="hero__tag">Harlow Half-Zip · Calder Trouser</span></div>
+    <div class="hero__body">
+      <span class="eyebrow">Autumn 26 · Fit-first store</span>
+      <h1 class="display">Stop guessing<br><em>your size.</em></h1>
+      <p class="lede">Answer three questions. From then on every piece shows the size that fits your body, and whether it is in stock.</p>
+      <div class="fitgate" id="fitgate"></div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker__track">
+    <span>Knit polos</span><span>Pleated trousers</span><span>Quilted outerwear</span><span>Washed linen</span><span>Ribbed half-zips</span><span>Defined by character</span>
+    <span>Knit polos</span><span>Pleated trousers</span><span>Quilted outerwear</span><span>Washed linen</span><span>Ribbed half-zips</span><span>Defined by character</span>
+  </div></div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal"><div><p class="eyebrow">The edit</p><h2 class="h2">Shirts &amp; <em>polos</em></h2></div><a class="link-arrow" href="shop.html?c=shirts">View all</a></div>
+      <div class="grid" id="edit-grid"></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal"><div><p class="eyebrow">Shop by category</p><h2 class="h2">The <em>wardrobe</em></h2></div></div>
+      <div class="cat-index" id="cat-index"></div>
+    </div>
+  </section>
+
+  <section class="editorial dark">
+    <div class="editorial__media"><img src="images/fabric.jpg" alt="Black ribbed half-zip knit laid flat" loading="lazy"></div>
+    <div class="editorial__body reveal">
+      <span class="eyebrow">The VALENOR standard</span>
+      <h2 class="h2">Defined by <em>character.</em></h2>
+      <p class="lede">Fewer pieces, chosen with care. Quiet colours that work together, fabrics with weight, and cuts you can predict before you buy.</p>
+      <div class="pillars">
+        <div><b>Considered fabric</b><p>Rib knits, washed linen and brushed twill that wear in, not out.</p></div>
+        <div><b>Honest sizing</b><p>Every product is tagged slim, regular or relaxed, so your size is picked for you.</p></div>
+        <div><b>Made to repeat</b><p>A tight palette of onyx, stone and olive. Everything goes with everything.</p></div>
+      </div>
+      <div style="margin-top:34px"><a class="btn btn--ghost" href="shop.html">Shop the collection</a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal"><div><p class="eyebrow">Most worn</p><h2 class="h2">Best <em>sellers</em></h2></div><a class="link-arrow" href="shop.html">Shop all</a></div>
+      <div class="grid" id="best-grid"></div>
+    </div>
+  </section>
+
+  <section class="section dark newsletter">
+    <div class="wrap reveal">
+      <span class="eyebrow">The list</span>
+      <h2 class="h2">New drops, <em>first.</em></h2>
+      <p class="lede" style="margin:0 auto">One email a month. New pieces, restocks in your size, nothing else.</p>
+      <form id="news"><label for="email" class="sr-only">Email address</label><input id="email" type="email" required placeholder="Email address"><button type="submit">Join</button></form>
+      <p class="newsletter__msg" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Presura — at-home devices, honestly specified</title>
+<meta name="description" content="Red-light masks, spray brushes and fabric shavers. Numbers on the label, honest delivery windows, 60-night trial.">
+<meta name="theme-color" content="#FBF8F4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Presura — v1 design system. Tokens mirror the system sheet exactly. */
+:root{
+  /* base */
+  --bg:#FBF8F4; --surface:#F5EFE7; --surface-2:#EFE7DC; --line:#E0D5C6; --line-soft:#EDE5D9;
+  /* accent — rose clay */
+  --accent:#8E4636; --accent-press:#77382B; --accent-soft:#B9705A; --accent-tint:#F2E2DC;
+  /* ink */
+  --ink:#1C1917; --ink-70:#443E38; --ink-50:#6B635A; --ink-40:#8A8075; --on-dark:#C9C1B8; --on-dark-dim:#A9A096;
+  /* semantic */
+  --sale:#A3243B; --warn:#7A5316; --warn-tint:#F7EDD9; --warn-ink:#6B4A13; --ok:#3F6B52; --ok-tint:#E5EEE6; --ok-ink:#2F5340;
+  /* type */
+  --serif:'Instrument Serif',Georgia,serif; --sans:'Hanken Grotesk',system-ui,-apple-system,sans-serif;
+  /* space */
+  --gutter:22px; --section:32px; --radius:8px; --radius-media:4px; --radius-panel:10px;
+  /* motion */
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --shadow-card:0 1px 3px rgba(48,34,22,.06);
+  --shadow-float:0 2px 10px rgba(48,34,22,.14);
+  --shadow-sticky:0 -6px 20px rgba(48,34,22,.07);
+  --shadow-drawer:-14px 0 34px rgba(48,34,22,.16);
+}
+@media(min-width:990px){:root{--gutter:100px;--section:70px}}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink-70);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg,video{display:block;max-width:100%}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-press)}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.skip-link{position:absolute;left:-9999px}
+.skip-link:focus{left:12px;top:12px;z-index:99;background:var(--bg);color:var(--ink);padding:12px 16px;border-radius:var(--radius)}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+
+/* ---- layout ---- */
+.wrap{padding-left:var(--gutter);padding-right:var(--gutter)}
+@media(min-width:990px){.wrap{max-width:1440px;margin:0 auto}}
+.sect{padding-top:var(--section);padding-bottom:var(--section)}
+.sect--surface{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sect--ink{background:var(--ink)}
+
+/* ---- type ---- */
+.d-xl,.d-l,.d-m,.d-s{font-family:var(--serif);font-weight:400;color:var(--ink);margin:0;text-wrap:pretty}
+.d-xl{font-size:42px;line-height:1.02;letter-spacing:-.018em}
+.d-l{font-size:34px;line-height:1.08;letter-spacing:-.015em}
+.d-m{font-size:27px;line-height:1.12}
+.d-s{font-size:21px;line-height:1.1}
+@media(min-width:990px){.d-xl{font-size:82px;line-height:.98;letter-spacing:-.022em}.d-l{font-size:56px;line-height:1.02}.d-m{font-size:40px;line-height:1.08}.d-s{font-size:28px}}
+.d-xl em,.d-m em,.d-l em{font-style:italic;color:var(--accent)}
+.eyebrow{display:flex;align-items:center;gap:9px;font-size:10.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.eyebrow .rule{width:16px;height:1px;background:var(--accent-soft);flex:none}
+@media(min-width:990px){.eyebrow{font-size:11px}.eyebrow .rule{width:26px}}
+.lede{font-size:15px;line-height:1.6;color:var(--ink-70);max-width:32ch;margin:14px 0 0}
+@media(min-width:990px){.lede{font-size:18px;line-height:1.55;max-width:44ch}}
+.body-s{font-size:13.5px;line-height:1.55;color:var(--ink-70)}
+.caption{font-size:12px;line-height:1.5;color:var(--ink-50)}
+.stat{font-family:var(--serif);font-size:22px;line-height:1;color:var(--ink)}
+.stat small{font-size:13px}
+@media(min-width:990px){.stat{font-size:32px}.stat small{font-size:17px}}
+
+/* ---- buttons: 52px primary/secondary, 44px minimum everywhere ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:var(--radius);border:0;font-size:15px;font-weight:600;cursor:pointer;text-align:center;transition:background 180ms var(--ease),color 180ms var(--ease),border-color 150ms var(--ease)}
+.btn--full{width:100%}
+.btn--primary{background:var(--accent);color:#fff}
+.btn--primary:hover{background:var(--accent-press);color:#fff}
+.btn--secondary{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.btn--secondary:hover{background:var(--ink);color:var(--bg)}
+.btn--tertiary{min-height:44px;background:var(--bg);color:var(--ink-70);border:1px solid #D5C8B7;font-size:13.5px}
+.btn--tertiary:hover{border-color:var(--accent)}
+.btn--ghost{min-height:44px;background:transparent;color:var(--accent);font-size:14px}
+.btn--ghost:hover{background:var(--accent-tint)}
+.btn[disabled],.btn[aria-disabled=true]{background:#F0EAE1;color:var(--ink-40);border:1px solid var(--line);cursor:not-allowed}
+.btn--sm{min-height:44px;padding:0 16px;font-size:13px}
+.link-u{display:inline-flex;align-items:center;min-height:44px;font-size:14px;font-weight:600;color:var(--ink-70)}
+.link-u span{border-bottom:1px solid #D5C8B7;padding-bottom:2px}
+.icon-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:none;border:0;padding:0;cursor:pointer;color:var(--ink);position:relative}
+
+/* ---- badges ---- */
+.badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+.badge--best{background:var(--ink);color:var(--bg)}
+.badge--sale{background:var(--sale);color:#fff}
+.badge--warn{background:var(--warn-tint);color:var(--warn)}
+.badge--ok{background:var(--ok-tint);color:var(--ok)}
+.badge--soon{background:var(--bg);color:var(--ink-70);border:1px solid var(--line)}
+.badge--kit{background:var(--accent-tint);color:var(--accent)}
+
+/* ---- stars ---- */
+.stars{position:relative;display:inline-flex;height:12px;flex:none}
+.stars svg{height:100%;width:auto;fill:#DBD0C1}
+.stars__on{position:absolute;top:0;left:0;height:100%;overflow:hidden}
+.stars__on svg{fill:var(--accent)}
+.stars--md{height:14px}.stars--lg{height:19px}
+.rating{display:flex;align-items:center;gap:6px;min-height:44px}
+.rating__count{font-size:11px;color:var(--ink-50)}
+
+/* ---- price ---- */
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price__now{font-size:15px;font-weight:600;color:var(--ink)}
+.price__was{font-size:12.5px;color:var(--ink-50);text-decoration:line-through}
+.price--pdp .price__now{font-size:26px;letter-spacing:-.01em}
+.price--pdp .price__was{font-size:15px}
+@media(min-width:990px){.price--pdp .price__now{font-size:32px}.price--pdp .price__was{font-size:17px}}
+
+/* ---- product card ---- */
+.grid{display:grid;gap:26px 14px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:990px){.grid{gap:40px 28px;grid-template-columns:repeat(3,minmax(0,1fr))}.grid--4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{display:flex;flex-direction:column;gap:9px}
+.card__media{position:relative;aspect-ratio:4/5;background:var(--surface-2);border-radius:var(--radius-media);overflow:hidden}
+.card__media img{width:100%;height:100%;object-fit:cover}
+.card__badge{position:absolute;top:8px;left:8px}
+.card__title{margin:0;font-size:13.5px;font-weight:600;line-height:1.3;color:var(--ink)}
+@media(min-width:990px){.card__title{font-size:16px}}
+.card--soldout .card__media{opacity:.7}
+.card--soldout .card__title{color:var(--ink-50)}
+.quick-add{position:absolute;bottom:8px;right:8px;width:44px;height:44px;border-radius:999px;border:0;background:rgba(251,248,244,.94);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--shadow-float)}
+@media(min-width:990px){.quick-add{left:12px;right:12px;bottom:12px;width:auto;height:44px;border-radius:var(--radius);font-size:13.5px;font-weight:600;color:var(--ink);opacity:0;transition:opacity 180ms var(--ease)}.card:hover .quick-add,.quick-add:focus-visible{opacity:1}}
+
+/* ---- swatches: 44px target, 30px dot ---- */
+.swatches{display:flex;gap:6px;flex-wrap:wrap}
+.swatch{width:44px;height:44px;padding:0;border:0;background:none;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative}
+.swatch i{width:30px;height:30px;border-radius:999px;display:block;box-shadow:inset 0 0 0 1px rgba(28,25,23,.12)}
+.swatch[aria-pressed=true]{border:1.5px solid var(--ink)}
+.swatch[aria-pressed=true] i{width:28px;height:28px}
+.swatch--out{opacity:.55}
+.swatch--out::after{content:"";position:absolute;left:7px;right:7px;height:1px;background:var(--ink-70);transform:rotate(-45deg)}
+.swatch-mini{display:flex;gap:5px;align-items:center;margin-top:7px}
+.swatch-mini i{width:15px;height:15px;border-radius:999px;display:block;box-shadow:inset 0 0 0 1px rgba(28,25,23,.12)}
+.swatch-mini span{font-size:10px;font-weight:600;color:var(--ink-50)}
+
+/* ---- forms ---- */
+.field{display:flex;flex-direction:column;gap:6px}
+.field>span{font-size:12px;font-weight:600;color:var(--ink-70)}
+.input{height:52px;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:0 14px;font-family:inherit;font-size:15px;width:100%}
+.input:focus{outline:0;border:1.5px solid var(--accent);box-shadow:0 0 0 3px rgba(142,70,54,.12)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius);height:52px;background:var(--bg)}
+.qty button{width:44px;height:100%;background:none;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-70)}
+.qty input{width:30px;border:0;background:none;text-align:center;font-family:inherit;font-size:15px;font-weight:600;color:var(--ink);-moz-appearance:textfield}
+.qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.qty--sm{height:36px}.qty--sm button{width:36px}.qty--sm input{width:24px;font-size:13.5px}
+.check{display:flex;align-items:center;gap:9px;min-height:44px;cursor:pointer;font-size:13px;color:var(--ink-70)}
+.check input{width:18px;height:18px;accent-color:var(--accent);flex:none}
+.tier{display:flex;align-items:center;gap:13px;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px;cursor:pointer;position:relative}
+.tier--on{border:1.5px solid var(--accent)}
+.tier__dot{width:19px;height:19px;border-radius:999px;border:1.5px solid #C7B9A6;flex:none;display:flex;align-items:center;justify-content:center}
+.tier--on .tier__dot{border-color:var(--accent)}
+.tier--on .tier__dot::after{content:"";width:9px;height:9px;border-radius:999px;background:var(--accent)}
+.tier__flag{position:absolute;top:-9px;left:14px;background:var(--accent);color:#fff;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:2px 8px;border-radius:999px}
+.tier__body{flex:1}
+.tier__body b{display:block;font-size:14px;font-weight:600;color:var(--ink)}
+.tier__body small{display:block;font-size:12px;color:var(--ink-50);margin-top:1px}
+
+/* ---- trust ---- */
+.trust{display:flex;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.trust__item{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 4px;text-align:center;border-right:1px solid var(--line-soft)}
+.trust__item:last-child{border-right:0}
+.trust__item span{font-size:10px;font-weight:600;color:var(--ink);line-height:1.25}
+.trust__item svg{stroke:var(--accent);fill:none}
+.assure{border:1px solid var(--line);border-radius:var(--radius-panel);overflow:hidden;margin-top:18px}
+.assure__row{display:flex;align-items:flex-start;gap:11px;padding:14px;border-bottom:1px solid var(--line-soft)}
+.assure__row:last-child{border-bottom:0}
+.assure__row svg{flex:none;margin-top:1px;stroke:var(--accent);fill:none}
+.assure__row b{display:block;font-size:13px;font-weight:600;color:var(--ink)}
+.assure__row p{margin:2px 0 0;font-size:12px;line-height:1.5;color:var(--ink-70)}
+.note{display:flex;gap:10px;background:var(--warn-tint);border-radius:var(--radius);padding:13px 14px;margin-top:18px}
+.note svg{flex:none;margin-top:1px;stroke:var(--warn);fill:none}
+.note p{margin:0;font-size:12px;line-height:1.55;color:var(--warn-ink)}
+.note--ok{background:var(--ok-tint)}
+.note--ok svg{stroke:var(--ok)}
+.note--ok p{color:var(--ok-ink);font-weight:500}
+
+/* ---- accordion ---- */
+.acc{border-top:1px solid var(--line)}
+.acc:last-of-type{border-bottom:1px solid var(--line)}
+.acc summary{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;min-height:52px;padding:13px 0;font-size:13.5px;font-weight:600;color:var(--ink);line-height:1.4;list-style:none;cursor:pointer}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary svg{flex:none;margin-top:3px;stroke:var(--accent);fill:none}
+.acc[open] summary .plus{display:none}
+.acc:not([open]) summary .minus{display:none}
+.acc__body{padding:0 0 18px;font-size:13px;line-height:1.6;color:var(--ink-70)}
+.spec{display:flex;justify-content:space-between;gap:16px;font-size:12.5px;padding:4px 0}
+.spec dt{color:var(--ink-50);margin:0}
+.spec dd{margin:0;font-weight:500;color:var(--ink);text-align:right}
+
+/* ---- header / announcement ---- */
+.ann{text-align:center;padding:9px 16px;font-size:10.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;background:var(--accent-tint);color:var(--accent)}
+.ann--warn{background:var(--warn-tint);color:var(--warn)}
+.ann--ink{background:var(--ink);color:var(--bg)}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:5px 10px;border-bottom:1px solid var(--line-soft);background:var(--bg)}
+.hdr__logo{font-family:var(--serif);font-size:22px;letter-spacing:.26em;color:var(--ink);padding-left:.26em}
+.hdr__nav{display:none}
+.hdr__cnt[hidden]{display:none}
+.hdr__cnt{position:absolute;top:6px;right:5px;min-width:15px;height:15px;border-radius:999px;background:var(--accent);color:#fff;font-size:9.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+@media(min-width:990px){
+  .hdr{height:76px;padding:0 var(--gutter)}
+  .hdr__burger{display:none}
+  .hdr__nav{display:flex;gap:28px;flex:1}
+  .hdr__nav a{display:flex;align-items:center;height:44px;font-size:13.5px;font-weight:600;color:var(--ink)}
+  .hdr__nav a.is-promo{color:var(--accent)}
+  .hdr__logo{font-size:26px;letter-spacing:.3em;padding-left:.3em}
+  .hdr__icons{flex:1;display:flex;justify-content:flex-end}
+}
+.mob-nav{display:none;padding:8px var(--gutter) 16px;border-bottom:1px solid var(--line-soft);background:var(--bg)}
+.mob-nav.is-open{display:block}
+.mob-nav a{display:flex;align-items:center;min-height:44px;font-size:15px;font-weight:600;color:var(--ink)}
+
+/* ---- hero ---- */
+.hero__media{position:relative;height:400px;background:var(--surface-2)}
+.hero__media img{width:100%;height:100%;object-fit:cover}
+.hero__body{position:relative;margin-top:-38px;background:var(--bg);border-radius:20px 20px 0 0;padding:24px var(--gutter) 26px}
+@media(min-width:990px){
+  .hero{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+  .hero__media{height:auto;min-height:600px}
+  .hero__body{margin:0;border-radius:0;padding:96px 80px 96px var(--gutter);display:flex;flex-direction:column;justify-content:center}
+}
+.hero__cta{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+@media(min-width:990px){.hero__cta{flex-direction:row;align-items:center;gap:16px;margin-top:34px}}
+
+/* ---- proof strip ---- */
+.proof{display:flex;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.proof__i{flex:1;padding:15px 6px;text-align:center;border-right:1px solid #E7DCCD}
+.proof__i:last-child{border-right:0}
+.proof__i small{display:block;font-size:10.5px;font-weight:600;color:var(--ink-50);margin-top:3px}
+
+/* ---- category tiles ---- */
+.cats{display:flex;flex-direction:column;gap:10px}
+.cat{display:flex;background:var(--surface);border-radius:var(--radius);overflow:hidden;min-height:96px;transition:background 180ms var(--ease)}
+.cat:hover{background:var(--surface-2)}
+.cat__media{position:relative;width:110px;flex:none;background:var(--surface-2)}
+.cat__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cat__body{flex:1;padding:16px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.cat__body b{font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.1;color:var(--ink)}
+.cat__body small{font-size:12.5px;color:var(--ink-50)}
+.cat__body em{font-style:normal;font-size:11.5px;font-weight:600;color:var(--accent);margin-top:2px}
+@media(min-width:990px){
+  .cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .cat{flex-direction:column;min-height:0}
+  .cat__media{width:auto;height:320px}
+  .cat__body{padding:22px 24px 26px}
+  .cat__body b{font-size:28px}
+  .cat__body small{font-size:14px;margin-top:2px}
+  .cat__body em{font-size:13px;margin-top:8px}
+}
+
+/* ---- rail ---- */
+.rail{display:flex;gap:12px;overflow-x:auto;padding:18px var(--gutter) 6px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.rail>*{width:152px;flex:none}
+.rail .card__media{aspect-ratio:4/5}
+@media(min-width:990px){.rail{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;overflow:visible;padding:0}.rail>*{width:auto}}
+
+/* ---- timeline ---- */
+.tl__row{display:flex;gap:14px}
+.tl__spine{display:flex;flex-direction:column;align-items:center;flex:none;width:20px}
+.tl__dot{width:10px;height:10px;border-radius:999px;margin-top:5px;background:var(--accent)}
+.tl__row:nth-child(2) .tl__dot{background:var(--accent-soft)}
+.tl__row:last-child .tl__dot{background:var(--ok)}
+.tl__line{flex:1;width:1px;background:#D5C8B7}
+.tl__body{padding-bottom:18px}
+.tl__body b{display:block;font-size:13.5px;font-weight:600;color:var(--ink)}
+.tl__body p{margin:2px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink-70)}
+
+/* ---- stat grid ---- */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E7DCCD;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats>div{background:var(--surface);padding:16px 14px}
+.stats small{display:block;font-size:11.5px;color:var(--ink-70);margin-top:3px}
+@media(min-width:990px){.stats{grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}.stats>div{padding:24px 20px}.stats small{font-size:13px;margin-top:6px}}
+
+/* ---- steps ---- */
+.steps{display:flex;flex-direction:column;gap:16px}
+.step{display:flex;gap:13px}
+.step__n{width:26px;height:26px;border-radius:999px;background:var(--accent-tint);color:var(--accent);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.step b{display:block;font-size:13.5px;font-weight:600;color:var(--ink)}
+.step p{margin:2px 0 0;font-size:13px;line-height:1.55;color:var(--ink-70)}
+@media(min-width:990px){.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}.step{flex-direction:column;gap:0}.step__n{width:30px;height:30px;font-size:13px}.step b{font-size:16px;margin-top:14px}.step p{font-size:14px;line-height:1.6;margin-top:6px}}
+
+/* ---- reviews ---- */
+.rev{background:var(--surface);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:11px}
+.rev p{margin:0;font-size:13.5px;line-height:1.6;color:var(--ink)}
+.rev__who{display:flex;align-items:center;gap:9px;margin-top:auto;font-size:11.5px;line-height:1.35;color:var(--ink-50)}
+.rev__who b{display:block;font-weight:600;color:var(--ink)}
+.rev__ok{display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;color:var(--ok)}
+
+/* ---- newsletter ---- */
+.nl{padding:30px var(--gutter) 34px;background:var(--ink)}
+.nl .eyebrow{color:#C99A88}
+.nl h2{font-family:var(--serif);font-weight:400;font-size:27px;line-height:1.15;color:var(--bg);margin:6px 0 8px}
+.nl p{margin:0 0 16px;font-size:13.5px;line-height:1.55;color:var(--on-dark)}
+.nl form{display:flex;flex-direction:column;gap:9px}
+.nl .input{border-color:#4A433C;background:#282320;color:var(--bg)}
+.nl .btn--primary{background:var(--bg);color:var(--ink)}
+.nl .btn--primary:hover{background:var(--accent-tint);color:var(--ink)}
+.nl .check{color:var(--on-dark-dim);font-size:12.5px;align-items:flex-start;padding-top:4px}
+@media(min-width:990px){.nl{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:64px var(--gutter)}.nl h2{font-size:40px;line-height:1.1}.nl form{flex-direction:row}.nl .input{flex:1}.nl .btn{white-space:nowrap}}
+
+/* ---- footer ---- */
+.ftr{padding:30px var(--gutter) 34px;background:#282320}
+.ftr__cols{display:flex;flex-direction:column;gap:22px}
+.ftr h3{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-dim);margin:0 0 9px}
+.ftr a{display:flex;align-items:center;min-height:44px;font-size:13.5px;color:#E4DDD4}
+.ftr a:hover{color:#fff}
+.ftr__base{margin-top:26px;padding-top:20px;border-top:1px solid #3D3733}
+.ftr__logo{font-family:var(--serif);font-size:17px;letter-spacing:.26em;color:var(--bg);padding-left:.26em;display:block}
+.ftr__base p,.ftr__base span{font-size:11px;line-height:1.6;color:var(--on-dark-dim)}
+@media(min-width:990px){.ftr{padding:56px var(--gutter) 40px}.ftr__cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}.ftr__base{display:flex;justify-content:space-between;gap:40px;align-items:flex-start;margin-top:40px}.ftr__logo{font-size:22px}}
+
+/* ---- collection ---- */
+.filters{position:sticky;top:0;z-index:5;background:rgba(251,248,244,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line);padding:9px var(--gutter);display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.chip{min-height:44px;flex:none;display:flex;align-items:center;gap:7px;padding:0 15px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);color:var(--ink-70);font-size:13px;font-weight:600;cursor:pointer}
+.chip--on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip--active{background:var(--accent-tint);color:var(--accent);border-color:#E5CFC6}
+.chip__n{width:17px;height:17px;border-radius:999px;background:var(--accent-soft);color:var(--ink);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sheet{position:fixed;inset:0;z-index:40;display:none}
+.sheet.is-open{display:block}
+.sheet__scrim{position:absolute;inset:0;background:rgba(28,25,23,.44)}
+.sheet__panel{position:absolute;left:0;right:0;bottom:0;max-height:88vh;overflow-y:auto;background:var(--bg);border-radius:20px 20px 0 0;padding-bottom:22px}
+.sheet__grip{width:40px;height:4px;border-radius:999px;background:#DBD0C1;margin:10px auto 4px}
+.sheet__hd{display:flex;align-items:center;justify-content:space-between;padding:6px var(--gutter) 14px;border-bottom:1px solid var(--line-soft)}
+.facet{padding:20px var(--gutter) 0}
+.facet>h3{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);margin:0 0 11px}
+.side{display:none}
+@media(min-width:990px){
+  .filters{display:none}
+  .coll{display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px;padding:22px var(--gutter) 80px}
+  .side{display:flex;flex-direction:column;gap:26px}
+  .side__grp{border-top:1px solid var(--line-soft);padding-top:20px}
+  .side__grp:first-child{border-top:0;padding-top:0}
+}
+.empty{text-align:center;padding:48px 20px;max-width:44ch;margin:0 auto}
+.skel{width:100%;aspect-ratio:4/5;background:var(--surface-2);border-radius:var(--radius-media)}
+
+/* ---- pdp ---- */
+.pdp{padding:0 0 90px}
+.pdp__gal{position:relative}
+.pdp__main{position:relative;height:440px;background:var(--surface-2)}
+.pdp__main img{width:100%;height:100%;object-fit:cover}
+.pdp__thumbs{display:flex;gap:7px;padding:10px var(--gutter) 0;overflow-x:auto;scrollbar-width:none}
+.pdp__thumbs::-webkit-scrollbar{display:none}
+.pdp__thumbs button{width:52px;height:62px;flex:none;border-radius:var(--radius-media);overflow:hidden;border:0;padding:0;background:var(--surface-2);cursor:pointer}
+.pdp__thumbs button[aria-current=true]{outline:1.5px solid var(--ink);outline-offset:-1.5px}
+.pdp__thumbs img{width:100%;height:100%;object-fit:cover}
+.pdp__info{padding:20px var(--gutter) 0}
+.pdp__panel{margin:22px var(--gutter) 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-panel);padding:16px}
+.pdp__buy{padding:18px var(--gutter) 0;display:flex;gap:12px}
+.pdp__buy .btn{flex:1}
+@media(min-width:990px){
+  .pdp{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:64px;padding:36px var(--gutter) 80px}
+  .pdp__main{aspect-ratio:4/5;height:auto;border-radius:var(--radius-media);overflow:hidden}
+  .pdp__thumbs{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 0 0}
+  .pdp__thumbs button{width:auto;height:auto;aspect-ratio:1}
+  .pdp__aside{position:sticky;top:24px;align-self:start}
+  .pdp__info,.pdp__buy{padding:0}
+  .pdp__panel{margin:24px 0 0;padding:18px}
+  .pdp__buy{margin-top:20px}
+}
+.sticky-atc{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(251,248,244,.97);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:11px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-sticky);transform:translateY(110%);transition:transform 220ms var(--ease)}
+.sticky-atc.is-on{transform:none}
+.sticky-atc img{width:46px;height:46px;border-radius:6px;object-fit:cover;flex:none;background:var(--surface-2)}
+.sticky-atc .btn{flex:1;min-height:48px}
+.sticky-atc__meta{flex:none}
+.sticky-atc__meta small{display:block;font-size:11.5px;color:var(--ink-50);line-height:1.2}
+.sticky-atc__meta b{display:block;font-size:15px;font-weight:600;color:var(--ink)}
+@media(min-width:990px){.sticky-atc{display:none}}
+.fbt{display:flex;align-items:center;gap:12px;background:var(--surface);border-radius:var(--radius);padding:11px}
+.fbt img{width:60px;height:60px;border-radius:var(--radius-media);object-fit:cover;flex:none;background:var(--surface-2)}
+.fbt b{display:block;font-size:13px;font-weight:600;color:var(--ink)}
+.fbt small{display:block;font-size:11.5px;color:var(--ink-50);margin-top:2px}
+
+/* ---- cart drawer ---- */
+.drawer{position:fixed;inset:0;z-index:50;visibility:hidden}
+.drawer.is-open{visibility:visible}
+.drawer__scrim{position:absolute;inset:0;background:rgba(28,25,23,.44);opacity:0;transition:opacity 220ms var(--ease)}
+.drawer.is-open .drawer__scrim{opacity:1}
+.drawer__panel{position:absolute;right:0;top:0;bottom:0;width:min(420px,100%);background:var(--bg);border-left:1px solid var(--line);box-shadow:var(--shadow-drawer);display:flex;flex-direction:column;transform:translateX(100%);transition:transform 220ms var(--ease)}
+.drawer.is-open .drawer__panel{transform:none}
+.drawer__hd{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 16px;border-bottom:1px solid var(--line-soft)}
+.drawer__hd b{font-size:17px;font-weight:600;color:var(--ink)}
+.drawer__body{flex:1;overflow-y:auto;padding:18px 20px 0}
+.drawer__ft{padding:18px 20px 22px;border-top:1px solid var(--line-soft)}
+.ship-bar{margin-bottom:18px}
+.ship-bar__top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:7px}
+.ship-bar__top b{font-size:12.5px;font-weight:600;color:var(--ink)}
+.ship-bar__top small{font-size:11.5px;color:var(--ink-50)}
+.ship-bar__track{height:7px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+.ship-bar__fill{height:100%;background:var(--accent);border-radius:999px;transition:width 220ms var(--ease)}
+.ship-bar.is-done .ship-bar__track{background:var(--ok-tint)}
+.ship-bar.is-done .ship-bar__fill{background:var(--ok)}
+.ship-bar.is-done .ship-bar__top b{color:var(--ok-ink)}
+.line{display:flex;gap:12px;padding-bottom:18px}
+.line img{width:70px;height:84px;border-radius:var(--radius-media);object-fit:cover;flex:none;background:var(--surface-2)}
+.line__top{display:flex;justify-content:space-between;gap:10px}
+.line__top b{font-size:13px;font-weight:600;color:var(--ink);line-height:1.3}
+.line__opt{display:block;font-size:11px;color:var(--ink-50);margin-top:2px}
+.line__ctl{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.line__rm{min-height:44px;background:none;border:0;padding:0;font-size:11.5px;color:var(--ink-50);text-decoration:underline;cursor:pointer}
+.upsell{background:var(--accent-tint);border-radius:var(--radius);padding:14px;margin-bottom:18px}
+.upsell h3{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+.upsell__row{display:flex;align-items:center;gap:10px}
+.upsell img{width:48px;height:48px;border-radius:var(--radius-media);object-fit:cover;flex:none}
+.upsell b{display:block;font-size:12px;font-weight:600;color:var(--ink)}
+.upsell small{display:block;font-size:11px;color:var(--ink-50);margin-top:1px}
+.totals div{display:flex;justify-content:space-between;font-size:12.5px;color:var(--ink-70);margin-bottom:5px}
+.totals b{font-weight:600;color:var(--ink)}
+.secure{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:10px;font-size:10.5px;color:var(--ink-50)}
+.secure svg{stroke:var(--ink-50);fill:none}
+
+/* ---- password ---- */
+.pw{max-width:420px;margin:14vh auto;padding:0 22px;text-align:center}
+
+/* ---- standalone additions ---- */
+.view{display:none}
+.view.is-on{display:block}
+.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;background:var(--surface-2);color:var(--ink-50);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;line-height:1.4}
+/* every text link clears 44px */
+.card__title a{display:flex;align-items:center;min-height:44px}
+.crumb{display:flex;align-items:center;gap:4px;flex-wrap:wrap;min-height:44px}
+.crumb a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 4px}
+.qty--sm{height:46px}
+.qty--sm button{width:44px}
+.line__rm{min-width:52px;text-align:left}
+.hdr__logo{display:flex;align-items:center;min-height:44px}
+.ftr__logo{min-height:44px;display:flex;align-items:center}
+.rating{min-height:44px}
+.ph--round{border-radius:999px}
+.toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);z-index:60;background:var(--ink);color:var(--bg);font-size:13px;font-weight:600;padding:12px 18px;border-radius:999px;box-shadow:var(--shadow-float);opacity:0;pointer-events:none;transition:opacity 180ms var(--ease),transform 180ms var(--ease)}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+.crumb{font-size:11px;color:var(--ink-50)}
+.crumb a{color:var(--ink-50)}
+@media(min-width:990px){.crumb{font-size:12px}}
+.sort{margin-left:auto}
+.pdp__thumbs button{position:relative}
+.stats--pdp{margin-top:22px}
+.kit-note{background:var(--surface);border-radius:var(--radius);padding:16px;margin-top:14px}
+.hdr__logo{cursor:pointer}
+.sect--tight{padding-top:22px;padding-bottom:0}
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#MainContent">Skip to content</a>
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true"><defs><g id="presura-stars"><path transform="translate(0,0)" d="M10 1.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.8 4.8 17.5l1-5.8L1.6 7.6l5.8-.8z"/><path transform="translate(21,0)" d="M10 1.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.8 4.8 17.5l1-5.8L1.6 7.6l5.8-.8z"/><path transform="translate(42,0)" d="M10 1.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.8 4.8 17.5l1-5.8L1.6 7.6l5.8-.8z"/><path transform="translate(63,0)" d="M10 1.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.8 4.8 17.5l1-5.8L1.6 7.6l5.8-.8z"/><path transform="translate(84,0)" d="M10 1.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.8 4.8 17.5l1-5.8L1.6 7.6l5.8-.8z"/></g></defs></svg>
+
+<div class="ann">Free shipping over $50 &middot; 60-night trial</div>
+
+<header class="hdr">
+  <button type="button" class="icon-btn hdr__burger" data-nav-toggle aria-expanded="false" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 8h18M3 16h13"/></svg></button>
+  <nav class="hdr__nav">
+    <a href="#/collection/hair">Hair &amp; Scalp</a>
+    <a href="#/collection/skin">Skin &amp; Light</a>
+    <a href="#/collection/home">Home &amp; Pet</a>
+    <a href="#/collection/all" class="is-promo">Kits &mdash; save 15%</a>
+  </nav>
+  <a href="#/" class="hdr__logo">PRESURA</a>
+  <div class="hdr__icons" style="display:flex">
+    <a href="#/collection/all" class="icon-btn" aria-label="Search"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></a>
+    <button type="button" class="icon-btn" data-drawer-open aria-label="Bag">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 8h13l-1.1 12.5H6.6z"/><path d="M9 8V6.2A3 3 0 0115 6.2V8"/></svg>
+      <span class="hdr__cnt" data-cart-count hidden>0</span>
+    </button>
+  </div>
+</header>
+<nav class="mob-nav" data-mob-nav>
+  <a href="#/collection/hair">Hair &amp; Scalp</a>
+  <a href="#/collection/skin">Skin &amp; Light</a>
+  <a href="#/collection/home">Home &amp; Pet</a>
+  <a href="#/collection/all">All devices</a>
+</nav>
+
+<main id="MainContent">
+
+<!-- ============ HOME ============ -->
+<section class="view" data-view="home">
+  <section class="hero">
+    <div class="hero__media"><span class="ph">Hero &mdash; portrait wearing RedLume, warm lamp light, cream sheets</span></div>
+    <div class="hero__body">
+      <p class="eyebrow"><span class="rule"></span>633nm red light &middot; 2 intensities</p>
+      <h1 class="d-xl">Nine minutes,<br><em>most nights.</em></h1>
+      <p class="lede">RedLume is a red-light mask you'll actually keep using &mdash; light, cordless, quiet. Skin looks calmer and more even the longer you stick with it.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#/product/redlume">Shop RedLume &mdash; $120</a>
+        <a class="link-u" href="#/collection/all"><span>All 8 devices</span></a>
+      </div>
+      <p class="caption" style="margin:16px 0 0">Ships in 24h &middot; Returns on us &middot; 4.8 average from 5,412 reviews</p>
+    </div>
+  </section>
+
+  <section class="proof">
+    <div class="proof__i"><span class="stars stars--sm" style="height:12px"><svg viewBox="0 0 105 20" aria-hidden="true"><use href="#presura-stars"/></svg><span class="stars__on" style="width:96%"><svg viewBox="0 0 105 20" aria-hidden="true"><use href="#presura-stars"/></svg></span></span><small>4.8 from 5,412</small></div>
+    <div class="proof__i"><span class="stat">9,300+</span><small>orders shipped</small></div>
+    <div class="proof__i"><span class="stat">60</span><small>nights to return</small></div>
+  </section>
+
+  <section class="sect wrap">
+    <p class="eyebrow">Start here</p>
+    <h2 class="d-m" style="margin-bottom:20px">Three shelves, eight devices.</h2>
+    <div class="cats">
+      <a class="cat" href="#/collection/hair"><div class="cat__media"><span class="ph">Hair</span></div><div class="cat__body"><b>Hair &amp; Scalp</b><small>3 devices &middot; from $17</small><em>Detangle, mist, massage &rarr;</em></div></a>
+      <a class="cat" href="#/collection/skin"><div class="cat__media"><span class="ph">LED</span></div><div class="cat__body"><b>Skin &amp; Light</b><small>2 masks &middot; from $65</small><em>Red and 7-colour LED &rarr;</em></div></a>
+      <a class="cat" href="#/collection/home"><div class="cat__media"><span class="ph">Home &amp; pet</span></div><div class="cat__body"><b>Home &amp; Pet</b><small>3 devices &middot; from $17</small><em>Shave, de-pill, groom &rarr;</em></div></a>
+    </div>
+  </section>
+
+  <section class="sect sect--surface">
+    <div class="wrap" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px">
+      <div><p class="eyebrow">Best sellers</p><h2 class="d-m">What she reorders.</h2></div>
+      <a class="link-u" href="#/collection/all"><span>Shop everything</span></a>
+    </div>
+    <div class="rail rail--grid" data-rail></div>
+  </section>
+
+  <section class="sect sect--surface" style="border-top:0">
+    <div class="wrap">
+      <p class="eyebrow">Build a kit</p>
+      <h2 class="d-m">Two devices, 15% off.</h2>
+      <p class="body-s" style="margin:8px 0 18px;max-width:46ch">Most people start with one and come back for the second. Pair them now and the discount applies automatically at checkout.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:520px" data-kits></div>
+      <button type="button" class="btn btn--primary btn--full" style="margin-top:16px;max-width:520px" data-kit-cta>Add the kit</button>
+      <p class="caption" style="margin:11px 0 0" data-kit-note></p>
+    </div>
+  </section>
+
+  <section class="sect wrap">
+    <div style="text-align:center;margin-bottom:20px">
+      <p class="eyebrow" style="justify-content:center">Why Presura</p>
+      <h2 class="d-m">Specified, not hyped.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><span style="flex:none;color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><div><b>Numbers on the label</b><p>633nm. 132 LEDs. Nine minutes. If we can't measure it, we don't claim it.</p></div></div>
+      <div class="step"><span style="flex:none;color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v6.4c0 4.2-3.1 7.3-7.2 9-4.1-1.7-7.2-4.8-7.2-9V5.8z"/><path d="M8.8 12l2.3 2.3 4.3-4.6"/></svg></span><div><b>FCC &amp; CE tested</b><p>Every batch certified. Masks ship with opaque eye shields and auto shut-off.</p></div></div>
+      <div class="step"><span style="flex:none;color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9.5h10.5a5 5 0 010 10H8.5"/><path d="M8.5 5.2L4.2 9.5l4.3 4.3"/></svg></span><div><b>60 nights, then decide</b><p>Use it properly for two months. If it isn't part of your routine, we refund it.</p></div></div>
+      <div class="step"><span style="flex:none;color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h11v9H3z"/><path d="M14 9.5h3.5l3 3v3H14z"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span><div><b>Honest delivery windows</b><p>We tell you the real range before you pay &mdash; never a date we can't hit.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sect sect--surface">
+    <div class="wrap" style="display:grid;gap:40px">
+      <div>
+        <p class="eyebrow">Shipping, plainly</p>
+        <h2 class="d-m">We ship from Shenzhen. Here's the real timeline.</h2>
+        <p class="body-s" style="margin:10px 0 0;max-width:48ch">Making our own devices there is why a mask is $120 and not $400. It also means your parcel travels. We'd rather tell you now than have you refresh a tracking page.</p>
+        <div class="note note--ok" style="max-width:420px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg><p>Express option at checkout: 6&ndash;9 days, $14 flat.</p></div>
+      </div>
+      <div>
+        <div class="tl__row"><span class="tl__spine"><span class="tl__dot"></span><span class="tl__line"></span></span><div class="tl__body"><b>Days 1&ndash;2 &middot; packed</b><p>Order confirmed, quality-checked, tracking number emailed.</p></div></div>
+        <div class="tl__row"><span class="tl__spine"><span class="tl__dot"></span><span class="tl__line"></span></span><div class="tl__body"><b>Days 3&ndash;12 &middot; in transit</b><p>Air freight to your country's sorting hub. Tracking updates every few days, not hourly.</p></div></div>
+        <div class="tl__row"><span class="tl__spine"><span class="tl__dot"></span></span><div class="tl__body"><b>Days 12&ndash;50 &middot; delivered</b><p>Most US orders land day 14&ndash;21. Remote routes and customs can push it to 50. Past day 50 we refund without asking questions.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nl">
+    <div>
+      <p class="eyebrow">10% off, no popup</p>
+      <h2>Get the code, then take your time.</h2>
+      <p>One email when something launches or restocks. That's the whole programme &mdash; no daily sale blasts.</p>
+    </div>
+    <div>
+      <form onsubmit="return false" style="display:flex;flex-direction:column;gap:9px">
+        <label class="visually-hidden" for="nl-email">Email</label>
+        <input id="nl-email" class="input" type="email" placeholder="you@email.com">
+        <button type="submit" class="btn btn--primary">Send my 10% code</button>
+      </form>
+      <label class="check"><input type="checkbox"><span>Also text me delivery updates. Reply STOP any time.</span></label>
+    </div>
+  </section>
+</section>
+
+<!-- ============ COLLECTION ============ -->
+<section class="view" data-view="collection">
+  <div class="wrap" style="padding-top:22px;padding-bottom:16px">
+    <nav class="crumb" style="margin-bottom:9px"><a href="#/">Home</a> / <span style="color:var(--ink-70)" data-coll-crumb>All devices</span></nav>
+    <h1 class="d-l" data-coll-title>All devices</h1>
+    <p class="body-s" style="margin-top:9px;max-width:56ch" data-coll-desc>Eight tools, each doing one thing properly. Nothing here needs a refill, a subscription or an app.</p>
+  </div>
+
+  <div class="filters">
+    <button type="button" class="chip chip--on" data-sheet-open><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M6 12h12M10 18h4"/></svg> Filter</button>
+    <button type="button" class="chip" data-sort-toggle>Sort: <span data-sort-label>Popular</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button type="button" class="chip" data-filter="under40">Under $40</button>
+    <button type="button" class="chip" data-filter="instock">In stock</button>
+  </div>
+
+  <div class="coll wrap" style="padding-top:14px;padding-bottom:40px">
+    <aside class="side">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:14px;font-weight:600;color:var(--ink)">Filter</span>
+        <button type="button" class="btn btn--ghost" style="padding:0;min-height:44px" data-clear>Clear all</button>
+      </div>
+      <div class="side__grp">
+        <h3 style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);margin:0 0 8px">Category</h3>
+        <label class="check" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:10px"><input type="checkbox" data-cat="hair">Hair &amp; Scalp</span><span style="color:var(--ink-50)">3</span></label>
+        <label class="check" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:10px"><input type="checkbox" data-cat="skin">Skin &amp; Light</span><span style="color:var(--ink-50)">2</span></label>
+        <label class="check" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:10px"><input type="checkbox" data-cat="home">Home &amp; Pet</span><span style="color:var(--ink-50)">3</span></label>
+      </div>
+      <div class="side__grp">
+        <h3 style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);margin:0 0 8px">Price</h3>
+        <label class="check" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:10px"><input type="checkbox" data-price="under40">Under $40</span><span style="color:var(--ink-50)">5</span></label>
+        <label class="check" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:10px"><input type="checkbox" data-price="40to99">$40&ndash;$99</span><span style="color:var(--ink-50)">1</span></label>
+        <label class="check" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:10px"><input type="checkbox" data-price="100plus">$100+</span><span style="color:var(--ink-50)">1</span></label>
+      </div>
+      <div class="side__grp">
+        <label class="check" style="justify-content:space-between"><span>In stock only</span><input type="checkbox" data-instock></label>
+      </div>
+      <div class="kit-note"><span style="display:block;font-size:13.5px;font-weight:600;color:var(--ink)">Pair any two, save 15%</span><span style="display:block;font-size:12.5px;line-height:1.5;color:var(--ink-70);margin-top:5px">Applied automatically in the cart. No code to remember.</span></div>
+    </aside>
+
+    <div>
+      <p class="caption" style="margin:0 0 14px"><span data-coll-count>8</span> devices</p>
+      <div class="grid" data-grid></div>
+      <div class="empty" data-empty hidden>
+        <span style="color:var(--accent-soft);display:flex;justify-content:center;margin-bottom:12px"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span>
+        <p class="d-s" style="margin:0">Nothing matches all your filters.</p>
+        <p class="body-s" style="margin:9px 0 16px">We only make eight devices, so combinations run out fast. Clearing one filter usually brings them back.</p>
+        <button type="button" class="btn btn--primary btn--full" data-clear>Clear all filters</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sheet" data-sheet role="dialog" aria-modal="true" aria-label="Filter">
+    <div class="sheet__scrim" data-sheet-scrim></div>
+    <div class="sheet__panel">
+      <span class="sheet__grip"></span>
+      <div class="sheet__hd"><span style="font-size:17px;font-weight:600;color:var(--ink)">Filter</span><button type="button" class="btn btn--ghost" style="min-height:44px;padding:0" data-clear>Clear all</button></div>
+      <div class="facet">
+        <h3>Category</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <button type="button" class="chip" data-cat-chip="hair">Hair &amp; Scalp <span style="font-weight:400;opacity:.7">3</span></button>
+          <button type="button" class="chip" data-cat-chip="skin">Skin &amp; Light <span style="font-weight:400;opacity:.7">2</span></button>
+          <button type="button" class="chip" data-cat-chip="home">Home &amp; Pet <span style="font-weight:400;opacity:.7">3</span></button>
+        </div>
+      </div>
+      <div class="facet">
+        <h3>Price</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <button type="button" class="chip" data-price-chip="under40">Under $40</button>
+          <button type="button" class="chip" data-price-chip="40to99">$40&ndash;$99</button>
+          <button type="button" class="chip" data-price-chip="100plus">$100+</button>
+        </div>
+      </div>
+      <div class="facet"><label class="check" style="justify-content:space-between"><span style="font-size:14px;color:var(--ink)">In stock only</span><input type="checkbox" data-instock-sheet></label></div>
+      <div style="padding:20px var(--gutter) 0;display:flex;gap:10px;border-top:1px solid var(--line-soft);margin-top:20px">
+        <button type="button" class="btn btn--secondary" style="flex:1" data-clear>Reset</button>
+        <button type="button" class="btn btn--primary" style="flex:1.5" data-sheet-close>Show <span data-coll-count>8</span> devices</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCT ============ -->
+<section class="view" data-view="product">
+  <div data-pdp></div>
+</section>
+
+</main>
+
+<footer class="ftr">
+  <div class="ftr__cols">
+    <div>
+      <span class="ftr__logo">PRESURA</span>
+      <p style="margin:14px 0 0;font-size:13px;line-height:1.65;color:var(--on-dark-dim);max-width:34ch">At-home devices, honestly specified. Designed in Rotterdam, made in Shenzhen, shipped worldwide.</p>
+    </div>
+    <div>
+      <h3>Shop</h3>
+      <a href="#/collection/hair">Hair &amp; Scalp</a>
+      <a href="#/collection/skin">Skin &amp; Light</a>
+      <a href="#/collection/home">Home &amp; Pet</a>
+      <a href="#/collection/all">All devices</a>
+    </div>
+    <div>
+      <h3>Help</h3>
+      <a href="#/">Shipping &amp; delivery times</a>
+      <a href="#/">Returns &amp; 60-night trial</a>
+      <a href="#/">Using your mask safely</a>
+      <a href="#/">Contact &mdash; replies in 1 day</a>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <a href="#/">How we test</a>
+      <a href="#/">Reviews</a>
+      <a href="#/">Privacy</a>
+      <a href="#/">Terms</a>
+    </div>
+  </div>
+  <div class="ftr__base">
+    <p>Cosmetic devices for at-home use. Not medical devices, and nothing here is medical advice. Follow the usage note in the box; stop use if skin becomes irritated. Individual results vary.</p>
+    <span>&copy; 2026 Presura &middot; presura.shop</span>
+  </div>
+</footer>
+
+<div class="drawer" data-drawer role="dialog" aria-modal="true" aria-label="Your bag">
+  <div class="drawer__scrim" data-drawer-scrim></div>
+  <div class="drawer__panel">
+    <div class="drawer__hd">
+      <b>Your bag <span style="color:var(--ink-50);font-weight:400">(<span data-cart-count-txt>0</span>)</span></b>
+      <button type="button" class="icon-btn" data-drawer-close aria-label="Close bag"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="drawer__body" data-drawer-body></div>
+    <div class="drawer__ft" data-drawer-foot></div>
+  </div>
+</div>
+
+<div class="sheet" data-vsheet role="dialog" aria-modal="true" aria-label="Choose a colour">
+  <div class="sheet__scrim" data-vsheet-scrim></div>
+  <div class="sheet__panel" data-vsheet-panel></div>
+</div>
+
+<div class="toast" data-toast>Added to bag</div>
+
+<script>
+
+var PRODUCTS = [
+  {h:'redlume',t:'RedLume LED Face Mask',cat:'skin',price:120,was:150,rating:4.8,count:2141,stock:38,tag:'best',
+   benefit:'633nm red light, two intensities, nine minutes a session. Skin looks calmer and more even the longer you keep it up.',
+   colours:[['Porcelain','#F5EFE7',1],['Clay','#B9705A',1],['Ink','#262220',1],['Sage','#9FB0A2',0]],
+   stats:[['633','nm','red wavelength'],['132','','medical-grade LEDs'],['9','min','auto shut-off'],['198','g','cordless, USB-C']],
+   specs:[['Wavelength','633nm \u00b15 red'],['LEDs','132, two intensities'],['Session','9 min, auto shut-off'],['Battery','1,200mAh \u00b7 ~14 sessions \u00b7 USB-C'],['Body','Medical-grade silicone, 198g'],['Certification','FCC, CE, RoHS'],['In the box','Mask, eye shields, USB-C cable, pouch, card']],
+   steps:[['Start on clean, dry skin','No serum underneath \u2014 oils sit between the light and your skin.'],['Clip the eye shields, press once','Low for the first week, high after. It shuts itself off at nine minutes.'],['Moisturise after, four to five nights a week','Consistency matters more than session length. Most people notice a difference around week eight.']],
+   safety:'Always wear the shields. Skip it if you\u2019re on isotretinoin, photosensitising medication, or have a light-triggered condition \u2014 check with your doctor first. Stop if skin becomes irritated. This is a cosmetic device, not a medical one.',
+   pairs:'pulsemist'},
+  {h:'auraspectrum',t:'AuraSpectrum 7-Colour LED Mask',cat:'skin',price:65,rating:4.6,count:1377,stock:54,
+   benefit:'Seven light modes in one mask \u2014 red, blue, amber and four blends. Ten minutes per session, auto shut-off.',
+   colours:[['Porcelain','#F5EFE7',1],['Clay','#B9705A',1]],
+   stats:[['7','','light modes'],['10','min','auto shut-off'],['210','g','cordless, USB-C'],['FCC','','& CE tested']],
+   specs:[['Modes','7 \u2014 red, blue, amber + 4 blends'],['Session','10 min, auto shut-off'],['Battery','1,000mAh \u00b7 USB-C'],['Certification','FCC, CE, RoHS']],
+   steps:[['Pick one mode and stay with it','Rotating nightly is why most people see nothing. Choose the mode for your concern.'],['Ten minutes, shields on','It powers down by itself.'],['Four nights a week, eight weeks','Then judge it.']],
+   safety:'Always wear the shields. Skip it if you\u2019re on photosensitising medication or have a light-triggered condition. Cosmetic device, not medical.',
+   pairs:'redlume'},
+  {h:'pulsemist',t:'PulseMist Electric Scalp Massage Brush',cat:'hair',price:39,rating:4.9,count:1208,stock:12,
+   benefit:'Fill the reservoir with your oil or tonic and it mists as it massages. Silicone tips reach through thick and curly hair without snagging.',
+   colours:[['Clay','#B9705A',1],['Sage','#9FB0A2',1],['Ink','#262220',1]],
+   stats:[['60','ml','reservoir'],['3','','speeds'],['IPX7','','waterproof'],['10','min','auto shut-off']],
+   specs:[['Reservoir','60ml'],['Speeds','3'],['Waterproofing','IPX7'],['Battery','USB-C, ~20 sessions'],['In the box','Brush, USB-C cable, cleaning pick']],
+   pairs:'silkmist'},
+  {h:'silkmist',t:'SilkMist Conditioning Spray Hair Brush',cat:'hair',price:24,was:30,rating:4.6,count:1904,stock:46,tag:'best',
+   benefit:'A 150ml reservoir in the handle mists water, leave-in or oil as you brush, so detangling takes one pass instead of four.',
+   colours:[['Porcelain','#F5EFE7',1],['Sand','#E0CDB4',1],['Clay','#B9705A',1],['Sage','#9FB0A2',1],['Ink','#262220',1],['Blush','#E7C9C2',1],['Slate','#8D96A0',0]],
+   specs:[['Reservoir','150ml'],['Bristles','Dual-length, fine + thick'],['Power','None \u2014 manual pump'],['In the box','Brush only. No refills to buy.']],
+   pairs:'pulsemist'},
+  {h:'mistcomb',t:'MistComb 2-in-1 Spray & Detangle Comb',cat:'hair',price:17,rating:4.5,count:943,stock:63,
+   benefit:'Fill it with water, leave-in or oil. Mists as you comb, so detangling takes one pass.',
+   colours:[['Porcelain','#F5EFE7',1],['Sand','#E0CDB4',1],['Sage','#9FB0A2',1]],
+   specs:[['Reservoir','120ml'],['Teeth','Dual-sided \u2014 wide + fine'],['Power','None']],
+   pairs:'silkmist'},
+  {h:'petmist',t:'PetMist Spray Grooming Brush',cat:'home',price:25,rating:4.9,count:512,stock:33,
+   benefit:'The same misting handle, retuned for coats. Damp brushing lifts loose fur instead of scattering it.',
+   colours:[['Sand','#E0CDB4',1],['Sage','#9FB0A2',1]],
+   specs:[['Reservoir','100ml'],['Head sizes','Small and large'],['Cleaning','Self-cleaning plate, one push']],
+   pairs:'fabricfresh-pro'},
+  {h:'fabricfresh-pro',t:'FabricFresh Pro Fabric Shaver',cat:'home',price:30,rating:4.6,count:2730,stock:57,
+   benefit:'Three blade heights and a 6cm stainless head \u2014 it takes bobbles off a coat sleeve without thinning the weave.',
+   colours:[['Porcelain','#F5EFE7',1],['Ink','#262220',1]],
+   stats:[['3','','blade heights'],['6','cm','stainless head'],['90','min','per charge'],['USB-C','','rechargeable']],
+   specs:[['Blade heights','3'],['Head','6cm stainless'],['Runtime','90 min'],['Chamber','Pops off for emptying']],
+   pairs:'petmist'},
+  {h:'fabricfresh-mini',t:'FabricFresh Mini Fabric Shaver',cat:'home',price:17,rating:4.7,count:1166,stock:0,restock:'Back Aug 14',
+   benefit:'Pocket version of the Pro. One blade height, 4cm head, good for jumpers and travel.',
+   colours:[['Porcelain','#F5EFE7',1],['Blush','#E7C9C2',1]],
+   specs:[['Head','4cm stainless'],['Runtime','40 min'],['Power','USB-C']]}
+];
+var BY = {};
+PRODUCTS.forEach(function (p) { BY[p.h] = p; });
+var THRESHOLD = 50;
+
+function money(n) { return '$' + n.toFixed(2).replace(/\.00$/, ''); }
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+function stars(r, cls) {
+  var g = '<svg viewBox="0 0 105 20" aria-hidden="true"><use href="#presura-stars"/></svg>';
+  return '<span class="stars ' + (cls || '') + '" role="img" aria-label="' + r + ' out of 5 stars">' + g +
+    '<span class="stars__on" style="width:' + (r / 5 * 100) + '%">' + g + '</span></span>';
+}
+
+/* ---------- cart ---------- */
+var cart = [];
+try { cart = JSON.parse(localStorage.getItem('presura-cart') || '[]'); } catch (e) { cart = []; }
+function saveCart() { try { localStorage.setItem('presura-cart', JSON.stringify(cart)); } catch (e) {} }
+function cartCount() { return cart.reduce(function (n, l) { return n + l.qty; }, 0); }
+var PAIR_PCT = 15;
+/* Multi-buy mirrors the PDP tiers: only products that show tiers (>= $40) discount at 2 and 3+. */
+function tierPct(p, qty) {
+  if (p.price < 40 || qty < 2) return 0;
+  return qty >= 3 ? 20 : 15;
+}
+/* The pair rule, exactly as advertised: two or more DIFFERENT devices take 15% off. */
+function pairActive(list) {
+  var seen = {}, n = 0;
+  (list || cart).forEach(function (l) { if (!seen[l.h]) { seen[l.h] = 1; n++; } });
+  return n >= 2;
+}
+/* One rule per line, whichever is better for her \u2014 never stacked. */
+function lineRule(l, list) {
+  var t = tierPct(BY[l.h], l.qty);
+  var pair = pairActive(list) ? PAIR_PCT : 0;
+  if (!t && !pair) return null;
+  return t >= pair ? { kind: 'multi', pct: t } : { kind: 'pair', pct: pair };
+}
+function lineFull(l) { return BY[l.h].price * l.qty; }
+function lineNet(l, list) {
+  var r = lineRule(l, list);
+  return Math.round(lineFull(l) * (100 - (r ? r.pct : 0)) / 100);
+}
+function cartFull() { return cart.reduce(function (n, l) { return n + lineFull(l); }, 0); }
+function cartTotal() { return cart.reduce(function (n, l) { return n + lineNet(l); }, 0); }
+function savedBy(kind) {
+  return cart.reduce(function (n, l) {
+    var r = lineRule(l);
+    return n + (r && r.kind === kind ? lineFull(l) - lineNet(l) : 0);
+  }, 0);
+}
+/* What the bag would total if we added one of h \u2014 used so every quote matches the charge. */
+function projectAdd(h) {
+  var list = cart.concat([{ h: h, colour: '', qty: 1 }]);
+  return list.reduce(function (n, l) { return n + lineNet(l, list); }, 0);
+}
+
+function addToCart(h, colour, qty) {
+  var p = BY[h];
+  if (!p || p.stock === 0) return;
+  colour = colour || (p.colours ? p.colours[0][0] : '');
+  qty = qty || 1;
+  var found = cart.filter(function (l) { return l.h === h && l.colour === colour; })[0];
+  if (found) found.qty += qty; else cart.push({ h: h, colour: colour, qty: qty });
+  saveCart(); renderCart(); openDrawer(); toast(p.t + ' added');
+}
+function changeLine(i, qty) {
+  if (qty <= 0) cart.splice(i, 1); else cart[i].qty = qty;
+  saveCart(); renderCart();
+}
+
+function renderCart() {
+  var n = cartCount();
+  document.querySelectorAll('[data-cart-count]').forEach(function (el) { el.textContent = n; el.hidden = n === 0; });
+  document.querySelectorAll('[data-cart-count-txt]').forEach(function (el) { el.textContent = n; });
+
+  var body = document.querySelector('[data-drawer-body]');
+  var foot = document.querySelector('[data-drawer-foot]');
+  if (!cart.length) {
+    body.innerHTML = '<div class="empty"><p class="d-s" style="margin:0 0 10px">Your bag is empty.</p>' +
+      '<p class="body-s" style="margin:0 0 18px">Eight devices, each doing one thing properly.</p>' +
+      '<a class="btn btn--primary btn--full" href="#/collection/all" data-drawer-close>Browse all devices</a></div>';
+    foot.innerHTML = '';
+    return;
+  }
+
+  var total = cartTotal();
+  /* Threshold is measured on the merchandise subtotal, before discounts \u2014 so a
+     second device always clears it, exactly as the product-page nudge promises. */
+  var gross = cartFull();
+  var remaining = THRESHOLD - gross;
+  var pct = remaining > 0 ? Math.round(gross / THRESHOLD * 100) : 100;
+
+  var html = '<div class="ship-bar ' + (remaining <= 0 ? 'is-done' : '') + '"><div class="ship-bar__top">';
+  if (remaining > 0) {
+    html += '<b>' + money(remaining) + ' to free shipping</b><small>' + money(gross) + ' / ' + money(THRESHOLD) + '</small>';
+  } else {
+    html += '<b style="display:flex;align-items:center;gap:8px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg>Free shipping unlocked</b>';
+  }
+  html += '</div><div class="ship-bar__track"><div class="ship-bar__fill" style="width:' + pct + '%"></div></div></div>';
+
+  cart.forEach(function (l, i) {
+    var p = BY[l.h];
+    var rule = lineRule(l);
+    html += '<div class="line"><span style="position:relative;width:70px;height:84px;flex:none;border-radius:var(--radius-media);overflow:hidden"><span class="ph" style="font-size:8px">' + esc(p.t.split(' ')[0]) + '</span></span>' +
+      '<div style="flex:1"><div class="line__top"><b>' + esc(p.t) + '</b>' +
+      '<span style="font-size:13px;font-weight:600;color:var(--ink)">' + money(lineNet(l)) +
+      (rule ? ' <s style="font-weight:400;color:var(--ink-50)">' + money(lineFull(l)) + '</s>' : '') + '</span></div>' +
+      (l.colour ? '<span class="line__opt">' + esc(l.colour) + '</span>' : '') +
+      (rule ? '<span class="line__opt" style="color:var(--ok)">' + rule.pct + '% ' + (rule.kind === 'pair' ? 'kit' : 'multi-buy') + ' discount applied</span>' : '') +
+      '<div class="line__ctl"><div class="qty qty--sm">' +
+      '<button type="button" data-line="' + i + '" data-to="' + (l.qty - 1) + '" aria-label="Decrease quantity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>' +
+      '<input type="number" value="' + l.qty + '" min="1" aria-label="Quantity" readonly>' +
+      '<button type="button" data-line="' + i + '" data-to="' + (l.qty + 1) + '" aria-label="Increase quantity"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>' +
+      '</div><button type="button" class="line__rm" data-line="' + i + '" data-to="0">Remove</button></div></div></div>';
+  });
+
+  /* one upsell, sized to close the gap */
+  if (remaining > 0) {
+    var first = BY[cart[0].h];
+    var rec = first.pairs ? BY[first.pairs] : null;
+    var inBag = rec && cart.some(function (l) { return l.h === rec.h; });
+    if (rec && !inBag && rec.stock > 0) {
+      var projected = projectAdd(rec.h);
+      var recNet = Math.round(rec.price * (100 - PAIR_PCT) / 100);
+      var bagSaving = (cartFull() + rec.price) - projected;
+      var clears = (cartFull() + rec.price) >= THRESHOLD;
+      html += '<div class="upsell"><h3>Pairs with this &mdash; save ' + PAIR_PCT + '%</h3><div class="upsell__row">' +
+        '<span style="position:relative;width:48px;height:48px;flex:none;border-radius:var(--radius-media);overflow:hidden"><span class="ph" style="font-size:8px">' + esc(rec.t.split(' ')[0]) + '</span></span>' +
+        '<div style="flex:1"><b>' + esc(rec.t) + '</b><small>' + money(rec.price) + ' &rarr; ' + money(recNet) + ' in this bag</small></div>' +
+        '<button type="button" class="btn btn--primary btn--sm" data-add="' + rec.h + '">Add</button></div>' +
+        '<p style="margin:10px 0 0;font-size:11.5px;line-height:1.5;color:var(--accent)">' +
+        (clears ? 'Clears free shipping and takes ' + money(bagSaving) + ' off the bag.' : 'Takes ' + money(bagSaving) + ' off the bag.') +
+        ' Bag becomes ' + money(projected) + '.</p></div>';
+    }
+  }
+  body.innerHTML = html;
+
+  var ship = remaining > 0 ? 4.9 : 0;
+  var savedPair = savedBy('pair');
+  var savedMulti = savedBy('multi');
+  foot.innerHTML = '<div class="totals">' +
+    '<div><span>Subtotal</span><b>' + money(cartFull()) + '</b></div>' +
+    (savedPair > 0 ? '<div style="color:var(--ok)"><span>Kit discount (' + PAIR_PCT + '% \u2014 two or more devices)</span><b style="color:var(--ok)">\u2212' + money(savedPair) + '</b></div>' : '') +
+    (savedMulti > 0 ? '<div style="color:var(--ok)"><span>Multi-buy discount</span><b style="color:var(--ok)">\u2212' + money(savedMulti) + '</b></div>' : '') +
+    '<div><span>Shipping</span><span>' + (ship ? money(ship) : 'Free') + '</span></div>' +
+    '<div><span>Arrives</span><b>12&ndash;21 days</b></div></div>' +
+    '<button type="button" class="btn btn--primary btn--full">Checkout &middot; ' + money(total + ship) + '</button>' +
+    '<button type="button" class="btn btn--ghost btn--full" data-drawer-close style="margin-top:8px;color:var(--ink-70);text-decoration:underline">Keep looking</button>' +
+    '<p class="secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10.5" rx="2"/><path d="M8 10V7.5a4 4 0 018 0V10"/></svg> Secure checkout &middot; Shop Pay, cards, PayPal, Klarna</p>';
+}
+
+/* ---------- drawer ---------- */
+var drawer = document.querySelector('[data-drawer]');
+var lastFocus = null;
+function openDrawer() {
+  lastFocus = document.activeElement;
+  drawer.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  var c = drawer.querySelector('[data-drawer-close]');
+  if (c) c.focus();
+}
+function closeDrawer() {
+  drawer.classList.remove('is-open');
+  document.body.style.overflow = '';
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+drawer.addEventListener('keydown', function (e) {
+  if (e.key !== 'Tab') return;
+  var f = drawer.querySelectorAll('a[href],button:not([disabled]),input:not([readonly])');
+  if (!f.length) return;
+  var first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
+var toastEl = document.querySelector('[data-toast]');
+var toastT = null;
+function toast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('is-on');
+  clearTimeout(toastT);
+  toastT = setTimeout(function () { toastEl.classList.remove('is-on'); }, 2200);
+}
+
+/* ---------- cards ---------- */
+function card(p, lazyLabel) {
+  var out = '<article class="card' + (p.stock === 0 ? ' card--soldout' : '') + '">' +
+    '<div class="card__media"><a href="#/product/' + p.h + '" aria-label="' + esc(p.t) + '"><span class="ph">' + esc(lazyLabel || p.t) + '</span></a>';
+  if (p.stock === 0) out += '<span class="badge badge--soon card__badge">' + esc(p.restock || 'Sold out') + '</span>';
+  else if (p.tag === 'best') out += '<span class="badge badge--best card__badge">Best seller</span>';
+  else if (p.was) out += '<span class="badge badge--sale card__badge">Save ' + money(p.was - p.price) + '</span>';
+  else if (p.stock <= 15) out += '<span class="badge badge--warn card__badge">Only ' + p.stock + ' left</span>';
+  if (p.stock > 0) {
+    var multi = p.colours && p.colours.filter(function (c) { return c[2]; }).length > 1;
+    var attr = multi ? 'data-vsheet-open="' + p.h + '"' : 'data-add="' + p.h + '"';
+    var lbl = multi ? 'Choose options for ' : 'Quick add ';
+    out += '<button type="button" class="quick-add" ' + attr + ' aria-label="' + lbl + esc(p.t) + '">' +
+      '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>';
+  }
+  out += '</div><div><h3 class="card__title"><a href="#/product/' + p.h + '" style="color:inherit">' + esc(p.t) + '</a></h3>' +
+    '<span class="rating">' + stars(p.rating) + '<span class="rating__count">' + p.rating + ' (' + p.count.toLocaleString() + ')</span></span>';
+  if (p.colours && p.colours.length > 1) {
+    out += '<div class="swatch-mini">';
+    p.colours.slice(0, 5).forEach(function (c) { out += '<i style="background:' + c[1] + '"></i>'; });
+    if (p.colours.length > 5) out += '<span>+' + (p.colours.length - 5) + '</span>';
+    out += '</div>';
+  }
+  out += '<div class="price"><span class="price__now">' + money(p.price) + '</span>' +
+    (p.was ? '<s class="price__was">' + money(p.was) + '</s>' : '') + '</div>';
+  if (p.stock === 0) out += '<button type="button" class="btn btn--tertiary btn--full" style="margin-top:8px">Notify me</button>';
+  return out + '</div></article>';
+}
+
+/* ---------- collection ---------- */
+var state = { cat: [], price: [], instock: false, sort: 'Popular', coll: 'all' };
+var COLL = {
+  all: ['All devices', 'Eight tools, each doing one thing properly. Nothing here needs a refill, a subscription or an app.'],
+  hair: ['Hair &amp; Scalp', 'Three brushes that mist as they work, so detangling and oiling take one pass.'],
+  skin: ['Skin &amp; Light', 'Two LED masks, both with the wavelength printed on the box.'],
+  home: ['Home &amp; Pet', 'De-pill a coat, groom a dog, rescue a jumper.']
+};
+
+function renderCollection() {
+  var meta = COLL[state.coll] || COLL.all;
+  document.querySelector('[data-coll-title]').innerHTML = meta[0];
+  document.querySelector('[data-coll-crumb]').innerHTML = meta[0];
+  document.querySelector('[data-coll-desc]').innerHTML = meta[1];
+
+  var list = PRODUCTS.filter(function (p) {
+    if (state.coll !== 'all' && p.cat !== state.coll) return false;
+    if (state.cat.length && state.cat.indexOf(p.cat) === -1) return false;
+    if (state.instock && p.stock === 0) return false;
+    if (state.price.length) {
+      var ok = state.price.some(function (b) {
+        return b === 'under40' ? p.price < 40 : b === '40to99' ? p.price >= 40 && p.price < 100 : p.price >= 100;
+      });
+      if (!ok) return false;
+    }
+    return true;
+  });
+
+  if (state.sort === 'Price: low') list.sort(function (a, b) { return a.price - b.price; });
+  else if (state.sort === 'Price: high') list.sort(function (a, b) { return b.price - a.price; });
+  else if (state.sort === 'Rating') list.sort(function (a, b) { return b.rating - a.rating; });
+  else list.sort(function (a, b) { return b.count - a.count; });
+
+  document.querySelectorAll('[data-coll-count]').forEach(function (el) { el.textContent = list.length; });
+  var grid = document.querySelector('[data-grid]');
+  grid.innerHTML = list.map(function (p) { return card(p); }).join('');
+  document.querySelector('[data-empty]').hidden = list.length !== 0;
+  grid.hidden = list.length === 0;
+
+  document.querySelectorAll('[data-filter=under40]').forEach(function (b) { b.classList.toggle('chip--active', state.price.indexOf('under40') > -1); });
+  document.querySelectorAll('[data-filter=instock]').forEach(function (b) { b.classList.toggle('chip--active', state.instock); });
+  document.querySelectorAll('[data-cat-chip]').forEach(function (b) { b.classList.toggle('chip--on', state.cat.indexOf(b.dataset.catChip) > -1); });
+  document.querySelectorAll('[data-price-chip]').forEach(function (b) { b.classList.toggle('chip--on', state.price.indexOf(b.dataset.priceChip) > -1); });
+  document.querySelectorAll('[data-cat]').forEach(function (i) { i.checked = state.cat.indexOf(i.dataset.cat) > -1; });
+  document.querySelectorAll('[data-price]').forEach(function (i) { i.checked = state.price.indexOf(i.dataset.price) > -1; });
+  document.querySelectorAll('[data-instock],[data-instock-sheet]').forEach(function (i) { i.checked = state.instock; });
+  document.querySelector('[data-sort-label]').textContent = state.sort;
+}
+
+function toggle(arr, v) {
+  var i = arr.indexOf(v);
+  if (i > -1) arr.splice(i, 1); else arr.push(v);
+}
+
+/* ---------- pdp ---------- */
+var pdpState = { colour: null, qty: 1, tier: 1 };
+
+function renderPDP(h) {
+  var p = BY[h];
+  if (!p) { location.hash = '#/collection/all'; return; }
+  var lean = p.price < 40;
+  if (!pdpState.colour || !p.colours.some(function (c) { return c[0] === pdpState.colour; })) {
+    var firstIn = p.colours.filter(function (c) { return c[2]; })[0];
+    pdpState.colour = firstIn ? firstIn[0] : p.colours[0][0];
+  }
+  var tiers = [[1, 0], [2, 15], [3, 20]];
+  if (lean) pdpState.tier = 1;
+  var tq = pdpState.tier;
+  var pct = tiers.filter(function (t) { return t[0] === tq; })[0][1];
+  var lineTotal = Math.round(p.price * tq * (100 - pct) / 100);
+
+  var out = '<div class="pdp">';
+
+  /* gallery column */
+  out += '<div class="pdp__gal"><nav class="crumb wrap" style="padding:0;margin-bottom:12px"><a href="#/">Home</a> / ' +
+    '<a href="#/collection/' + p.cat + '">' + COLL[p.cat][0] + '</a> / <span style="color:var(--ink-70)">' + esc(p.t) + '</span></nav>';
+  out += '<div class="pdp__main"><span class="ph">' + esc(p.t) + ' &mdash; lifestyle, worn, warm light</span></div>';
+  if (!lean) {
+    out += '<div class="pdp__thumbs">' +
+      '<button type="button" aria-current="true" aria-label="Lifestyle"><span class="ph" style="font-size:8px">Worn</span></button>' +
+      '<button type="button" aria-label="Product"><span class="ph" style="font-size:8px">Flat</span></button>' +
+      '<button type="button" aria-label="Detail"><span class="ph" style="font-size:8px">Detail</span></button>' +
+      '<button type="button" aria-label="In hand"><span class="ph" style="font-size:8px">Scale</span></button>' +
+      '</div>';
+  }
+
+  if (p.stats && !lean) {
+    out += '<div class="stats stats--pdp">';
+    p.stats.forEach(function (s) {
+      out += '<div><span class="stat">' + s[0] + (s[1] ? '<small>' + s[1] + '</small>' : '') + '</span><small>' + s[2] + '</small></div>';
+    });
+    out += '</div>';
+  }
+
+  if (p.steps && !lean) {
+    out += '<div style="margin-top:34px" class="wrap-none"><p class="eyebrow">How to use</p>' +
+      '<h2 class="d-m" style="margin-bottom:18px">Three steps, then forget about it.</h2><div class="steps">';
+    p.steps.forEach(function (s, i) {
+      out += '<div class="step"><span class="step__n">' + (i + 1) + '</span><div><b>' + esc(s[0]) + '</b><p>' + esc(s[1]) + '</p></div></div>';
+    });
+    out += '</div>';
+    if (p.safety) {
+      out += '<div class="note"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.2"/></svg>' +
+        '<p><strong style="font-weight:600;color:#5C3A0D">Before you start:</strong> ' + esc(p.safety) + '</p></div>';
+    }
+    out += '</div>';
+  }
+
+  out += '<div style="margin-top:30px">' +
+    '<details class="acc" open><summary>Specs &amp; what\u2019s in the box <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></summary><div class="acc__body"><dl style="margin:0">';
+  p.specs.forEach(function (s) { out += '<div class="spec"><dt>' + esc(s[0]) + '</dt><dd>' + esc(s[1]) + '</dd></div>'; });
+  out += '</dl></div></details>' +
+    '<details class="acc"><summary>Shipping, duties &amp; returns <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="acc__body">Ships from Shenzhen within 2 days. Standard delivery 12&ndash;21 days; remote routes and customs can push it to 50, and past day 50 we refund without asking questions. Express is 6&ndash;9 days for $14 flat. Duties prepaid for US, UK, EU and AU. Returns free for 60 nights, used, with our label.</div></details>' +
+    '<details class="acc"><summary>Cleaning &amp; care <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="acc__body">Wipe the silicone with a damp cloth and mild soap. Never submerge the control unit. Empty any reservoir after use and leave it open to dry.</div></details>' +
+    '</div></div>';
+
+  /* buy column */
+  out += '<aside class="pdp__aside"><div class="pdp__info"><p class="eyebrow">' + COLL[p.cat][0];
+  if (p.stock > 0 && p.stock <= 15) out += '<span class="rule"></span><span style="color:var(--warn)">Only ' + p.stock + ' left</span>';
+  out += '</p><h1 class="d-l">' + esc(p.t) + '</h1><p class="lede">' + esc(p.benefit) + '</p>' +
+    '<span class="rating">' + stars(p.rating, 'stars--md') + '<span class="rating__count" style="font-size:13px;color:var(--ink-70);font-weight:500">' + p.rating + ' &middot; ' + p.count.toLocaleString() + ' reviews</span></span>' +
+    '<div class="price price--pdp"><span class="price__now">' + money(p.price) + '</span>' +
+    (p.was ? '<s class="price__was">' + money(p.was) + '</s><span class="badge badge--sale">Save ' + money(p.was - p.price) + '</span>' : '') +
+    '</div></div>';
+
+  if (p.colours.length > 1) {
+    out += '<div style="margin-top:24px" class="pdp__info"><div style="display:flex;align-items:baseline;gap:8px;margin-bottom:11px">' +
+      '<span style="font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-50)">Colour</span>' +
+      '<span style="font-size:14px;font-weight:600;color:var(--ink)">' + esc(pdpState.colour) + '</span></div><div class="swatches">';
+    p.colours.forEach(function (c) {
+      out += '<button type="button" class="swatch' + (c[2] ? '' : ' swatch--out') + '" data-colour="' + esc(c[0]) + '"' +
+        ' aria-pressed="' + (c[0] === pdpState.colour) + '" aria-label="' + esc(c[0]) + (c[2] ? '' : ', sold out') + '">' +
+        '<i style="background:' + c[1] + '"></i></button>';
+    });
+    out += '</div></div>';
+  }
+
+  if (!lean) {
+    out += '<div class="pdp__panel"><div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:13px">' +
+      '<span style="font-size:14px;font-weight:600;color:var(--ink)">How many?</span><span class="caption">Discount applies at checkout</span></div>' +
+      '<div style="display:flex;flex-direction:column;gap:9px">';
+    tiers.forEach(function (t) {
+      var q = t[0], d = t[1];
+      var full = p.price * q, net = Math.round(full * (100 - d) / 100);
+      out += '<label class="tier' + (q === tq ? ' tier--on' : '') + '">' +
+        (q === 2 ? '<span class="tier__flag">Most chosen</span>' : '') +
+        '<input type="radio" name="tier" class="visually-hidden" data-tier="' + q + '"' + (q === tq ? ' checked' : '') + '>' +
+        '<span class="tier__dot"></span><span class="tier__body"><b>' +
+        (q === 1 ? 'One' : q + ' &mdash; save ' + d + '%') + '</b><small>' +
+        (q === 1 ? 'For you' : q === 2 ? 'One to gift, or one per bathroom' : 'Best per-unit price') + '</small></span>' +
+        '<span style="text-align:right;flex:none"><b style="display:block;font-size:15px;font-weight:600;color:var(--ink)">' + money(net) + '</b>' +
+        (d ? '<s style="display:block;font-size:11px;color:var(--ink-50)">' + money(full) + '</s>' : '') + '</span></label>';
+    });
+    out += '</div></div>';
+  }
+
+  out += '<div class="pdp__buy" data-atc-anchor><div class="qty" style="flex:none">' +
+    '<button type="button" data-qty="down" aria-label="Decrease quantity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg></button>' +
+    '<input type="number" value="' + tq + '" min="1" aria-label="Quantity" data-main-qty readonly>' +
+    '<button type="button" data-qty="up" aria-label="Increase quantity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>' +
+    '<button type="button" class="btn btn--primary" data-pdp-add="' + p.h + '"' + (p.stock === 0 ? ' disabled' : '') + '>' +
+    (p.stock === 0 ? 'Sold out' : 'Add to bag &mdash; ' + money(lineTotal)) + '</button></div>';
+
+  out += '<div style="padding:0 var(--gutter)"><div class="assure">' +
+    '<div class="assure__row"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h11v9H3z"/><path d="M14 9.5h3.5l3 3v3H14z"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg>' +
+    '<div><b>Arrives in 12&ndash;21 days</b><p>Free standard shipping over $50. Ships from Shenzhen within 2 days. Express 6&ndash;9 days for $14.</p></div></div>' +
+    '<div class="assure__row"><span style="color:var(--ok);flex:none"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v6.4c0 4.2-3.1 7.3-7.2 9-4.1-1.7-7.2-4.8-7.2-9V5.8z"/><path d="M8.8 12l2.3 2.3 4.3-4.6"/></svg></span>' +
+    '<div><b>60 nights to change your mind</b><p>Return it used. We pay the label. No restocking fee.</p></div></div>' +
+    '<div class="assure__row"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10.5" rx="2"/><path d="M8 10V7.5a4 4 0 018 0V10"/></svg>' +
+    '<div><b>Secure checkout</b><p>Shop Pay, cards, PayPal, Klarna. Duties prepaid for US, UK, EU and AU.</p></div></div></div>';
+
+  if (lean && p.price < THRESHOLD) {
+    out += '<div class="note note--ok" style="background:var(--surface)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>' +
+      '<p style="color:var(--ink-70);font-weight:400"><b style="color:var(--ink)">' + money(THRESHOLD - p.price) + ' to free shipping.</b> Add a second device and you clear it &mdash; and save 15%.</p></div>';
+  }
+
+  if (p.pairs && BY[p.pairs]) {
+    var rec = BY[p.pairs];
+    out += '<div style="margin-top:20px"><h3 style="font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);margin:0 0 12px">Goes with it</h3>' +
+      '<div class="fbt"><span style="position:relative;width:60px;height:60px;flex:none;border-radius:var(--radius-media);overflow:hidden"><span class="ph" style="font-size:8px">' + esc(rec.t.split(' ')[0]) + '</span></span>' +
+      '<div style="flex:1"><b>' + esc(rec.t) + '</b><small>' + money(rec.price) + '</small></div>' +
+      '<button type="button" class="btn btn--tertiary btn--sm" data-add="' + rec.h + '">Add</button></div></div>';
+  }
+  out += '</div></aside></div>';
+
+  /* related */
+  var related = PRODUCTS.filter(function (x) { return x.h !== p.h; }).slice(0, 4);
+  out += '<section class="sect sect--surface"><div class="wrap"><p class="eyebrow">More from Presura</p>' +
+    '<h2 class="d-m">Small devices, real mechanisms.</h2></div><div class="rail rail--grid">' +
+    related.map(function (x) { return card(x); }).join('') + '</div></section>';
+
+  /* sticky atc */
+  if (p.stock > 0) {
+    out += '<div class="sticky-atc" data-sticky-atc><span style="position:relative;width:46px;height:46px;flex:none;border-radius:6px;overflow:hidden"><span class="ph" style="font-size:8px">' + esc(p.t.split(' ')[0]) + '</span></span>' +
+      '<span class="sticky-atc__meta"><small>' + tq + ' \u00d7 ' + esc(pdpState.colour) + '</small><b>' + money(lineTotal) + '</b></span>' +
+      '<button type="button" class="btn btn--primary" data-pdp-add="' + p.h + '">Add to bag</button></div>';
+  }
+
+  document.querySelector('[data-pdp]').innerHTML = out;
+  observeATC();
+}
+
+var atcObserver = null;
+function observeATC() {
+  var sticky = document.querySelector('[data-sticky-atc]');
+  var anchor = document.querySelector('[data-atc-anchor]');
+  if (atcObserver) atcObserver.disconnect();
+  if (!sticky || !anchor || !('IntersectionObserver' in window)) return;
+  atcObserver = new IntersectionObserver(function (entries) {
+    sticky.classList.toggle('is-on', !entries[0].isIntersecting && entries[0].boundingClientRect.top < 0);
+  }, { threshold: 0 });
+  atcObserver.observe(anchor);
+}
+
+/* ---------- router ---------- */
+function route() {
+  var hash = location.hash.replace(/^#\/?/, '') || '';
+  var parts = hash.split('/').filter(Boolean);
+  var view = 'home';
+  if (parts[0] === 'collection') {
+    view = 'collection';
+    state.coll = parts[1] || 'all';
+    renderCollection();
+  } else if (parts[0] === 'product') {
+    view = 'product';
+    pdpState = { colour: null, qty: 1, tier: BY[parts[1]] && BY[parts[1]].price >= 40 ? 2 : 1 };
+    renderPDP(parts[1]);
+  }
+  document.querySelectorAll('[data-view]').forEach(function (v) { v.classList.toggle('is-on', v.dataset.view === view); });
+  var nav = document.querySelector('[data-mob-nav]');
+  if (nav) nav.classList.remove('is-open');
+  window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+
+/* ---------- home rail ---------- */
+document.querySelector('[data-rail]').innerHTML =
+  ['redlume', 'silkmist', 'pulsemist', 'fabricfresh-pro'].map(function (h) { return card(BY[h]); }).join('');
+
+/* ---------- kit builder ---------- */
+var KITS = [
+  { label: 'The Wash-Day Kit', a: 'silkmist', b: 'pulsemist' },
+  { label: 'The Light Kit', a: 'redlume', b: 'auraspectrum' },
+  { label: 'The Reset Kit', a: 'fabricfresh-pro', b: 'petmist' }
+];
+/* Priced from the products themselves, so the label can never drift from the charge. */
+function kitPrice(k) {
+  var full = BY[k.a].price + BY[k.b].price;
+  return { full: full, net: Math.round(full * (100 - PAIR_PCT) / 100) };
+}
+function paintKits() {
+  document.querySelector('[data-kits]').innerHTML = KITS.map(function (k, i) {
+    var pr = kitPrice(k);
+    return '<label class="tier' + (i === 0 ? ' tier--on' : '') + '">' +
+      '<input type="radio" name="kit" class="visually-hidden"' + (i === 0 ? ' checked' : '') + ' data-kit="' + i + '">' +
+      '<span class="tier__dot"></span><span class="tier__body"><b>' + esc(k.label) + '</b>' +
+      '<small>' + esc(BY[k.a].t.split(' ')[0]) + ' + ' + esc(BY[k.b].t.split(' ')[0]) + '</small></span>' +
+      '<span style="text-align:right;flex:none">' +
+      '<b style="display:block;font-size:15px;font-weight:600;color:var(--ink)">' + money(pr.net) + '</b>' +
+      '<s style="display:block;font-size:11.5px;color:var(--ink-50)">' + money(pr.full) + '</s></span></label>';
+  }).join('');
+}
+function syncKits() {
+  var form = document.querySelector('[data-kits]');
+  var on = form.querySelector('input[name=kit]:checked');
+  if (!on) return;
+  form.querySelectorAll('.tier').forEach(function (t) { t.classList.toggle('tier--on', t.contains(on)); });
+  var k = KITS[+on.dataset.kit];
+  var pr = kitPrice(k);
+  document.querySelector('[data-kit-cta]').innerHTML = 'Add the ' + esc(k.label.replace(/^The /, '')) + ' &mdash; ' + money(pr.net);
+  document.querySelector('[data-kit-note]').innerHTML = 'You save ' + money(pr.full - pr.net) +
+    (pr.full >= THRESHOLD ? ' &middot; qualifies for free shipping' : '');
+}
+paintKits();
+document.querySelector('[data-kits]').addEventListener('change', syncKits);
+
+/* ---------- variant sheet (quick-add for multi-colourway products) ---------- */
+var vsheet = document.querySelector('[data-vsheet]');
+var vsheetPick = null;
+var vsheetH = null;
+
+function openVSheet(h) {
+  var p = BY[h];
+  if (!p) return;
+  vsheetH = h;
+  var firstIn = p.colours.filter(function (c) { return c[2]; })[0];
+  vsheetPick = firstIn ? firstIn[0] : p.colours[0][0];
+  paintVSheet();
+  vsheet.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeVSheet() {
+  vsheet.classList.remove('is-open');
+  document.body.style.overflow = '';
+  vsheetH = null;
+}
+function paintVSheet() {
+  var p = BY[vsheetH];
+  var html = '<span class="sheet__grip"></span>' +
+    '<div class="sheet__hd"><span style="font-size:17px;font-weight:600;color:var(--ink)">' + esc(p.t) + '</span>' +
+    '<button type="button" class="icon-btn" data-vsheet-close aria-label="Close">' +
+    '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
+    '<div class="facet"><h3>Colour &mdash; ' + esc(vsheetPick) + '</h3><div class="swatches">';
+  p.colours.forEach(function (c) {
+    html += '<button type="button" class="swatch' + (c[2] ? '' : ' swatch--out') + '" data-vcolour="' + esc(c[0]) + '"' +
+      ' aria-pressed="' + (c[0] === vsheetPick) + '" aria-label="' + esc(c[0]) + (c[2] ? '' : ', sold out') + '">' +
+      '<i style="background:' + c[1] + '"></i></button>';
+  });
+  html += '</div></div><div style="padding:20px var(--gutter) 0">' +
+    '<button type="button" class="btn btn--primary btn--full" data-vsheet-add>Add to bag &mdash; ' + money(p.price) + '</button></div>';
+  document.querySelector('[data-vsheet-panel]').innerHTML = html;
+}
+
+/* ---------- delegated events ---------- */
+document.addEventListener('click', function (e) {
+  var t = e.target;
+
+  if (t.closest('[data-drawer-open]')) { e.preventDefault(); openDrawer(); return; }
+  if (t.closest('[data-drawer-close]') || t.hasAttribute('data-drawer-scrim')) { closeDrawer(); return; }
+  if (t.closest('[data-sheet-open]')) { document.querySelector('[data-sheet]').classList.add('is-open'); return; }
+  if (t.closest('[data-sheet-close]') || t.hasAttribute('data-sheet-scrim')) { document.querySelector('[data-sheet]').classList.remove('is-open'); return; }
+
+  var burger = t.closest('[data-nav-toggle]');
+  if (burger) {
+    var nav = document.querySelector('[data-mob-nav]');
+    var open = nav.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    return;
+  }
+
+  var add = t.closest('[data-add]');
+  if (add) { addToCart(add.dataset.add); return; }
+
+  var vOpen = t.closest('[data-vsheet-open]');
+  if (vOpen) { openVSheet(vOpen.dataset.vsheetOpen); return; }
+  if (t.closest('[data-vsheet-close]') || t.hasAttribute('data-vsheet-scrim')) { closeVSheet(); return; }
+  var vPick = t.closest('[data-vcolour]');
+  if (vPick) {
+    var c = BY[vsheetH].colours.filter(function (x) { return x[0] === vPick.dataset.vcolour; })[0];
+    if (c && c[2]) { vsheetPick = c[0]; paintVSheet(); }
+    return;
+  }
+  if (t.closest('[data-vsheet-add]')) {
+    var h = vsheetH;
+    var colour = vsheetPick;
+    closeVSheet();
+    addToCart(h, colour);
+    return;
+  }
+
+  var pdpAdd = t.closest('[data-pdp-add]');
+  if (pdpAdd && !pdpAdd.disabled) {
+    addToCart(pdpAdd.dataset.pdpAdd, pdpState.colour, pdpState.tier);
+    return;
+  }
+
+  var kitCta = t.closest('[data-kit-cta]');
+  if (kitCta) {
+    var on = document.querySelector('input[name=kit]:checked');
+    var k = KITS[+on.dataset.kit];
+    addToCart(k.a); addToCart(k.b);
+    return;
+  }
+
+  var line = t.closest('[data-line]');
+  if (line) { changeLine(+line.dataset.line, +line.dataset.to); return; }
+
+  var sw = t.closest('[data-colour]');
+  if (sw) {
+    pdpState.colour = sw.dataset.colour;
+    renderPDP(location.hash.split('/')[2]);
+    return;
+  }
+
+  var q = t.closest('[data-qty]');
+  if (q) {
+    pdpState.tier = Math.max(1, pdpState.tier + (q.dataset.qty === 'up' ? 1 : -1));
+    renderPDP(location.hash.split('/')[2]);
+    return;
+  }
+
+  var sort = t.closest('[data-sort-toggle]');
+  if (sort) {
+    var opts = ['Popular', 'Price: low', 'Price: high', 'Rating'];
+    state.sort = opts[(opts.indexOf(state.sort) + 1) % opts.length];
+    renderCollection();
+    return;
+  }
+
+  var chip = t.closest('[data-filter]');
+  if (chip) {
+    if (chip.dataset.filter === 'instock') state.instock = !state.instock;
+    else toggle(state.price, 'under40');
+    renderCollection();
+    return;
+  }
+
+  var catChip = t.closest('[data-cat-chip]');
+  if (catChip) { toggle(state.cat, catChip.dataset.catChip); renderCollection(); return; }
+
+  var priceChip = t.closest('[data-price-chip]');
+  if (priceChip) { toggle(state.price, priceChip.dataset.priceChip); renderCollection(); return; }
+
+  if (t.closest('[data-clear]')) {
+    state.cat = []; state.price = []; state.instock = false;
+    renderCollection();
+    return;
+  }
+});
+
+document.addEventListener('change', function (e) {
+  var t = e.target;
+  if (t.dataset.cat != null) { toggle(state.cat, t.dataset.cat); renderCollection(); }
+  else if (t.dataset.price != null) { toggle(state.price, t.dataset.price); renderCollection(); }
+  else if (t.hasAttribute('data-instock') || t.hasAttribute('data-instock-sheet')) { state.instock = t.checked; renderCollection(); }
+  else if (t.dataset.tier) { pdpState.tier = +t.dataset.tier; renderPDP(location.hash.split('/')[2]); }
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Escape') return;
+  if (drawer.classList.contains('is-open')) closeDrawer();
+  if (vsheet.classList.contains('is-open')) closeVSheet();
+  var sheet = document.querySelector('[data-sheet].is-open');
+  if (sheet) sheet.classList.remove('is-open');
+});
+
+syncKits();
+renderCart();
+route();
+
+</script>
+</body>
+</html>

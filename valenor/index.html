@@ -13,7 +13,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20260925211806">
+<link rel="stylesheet" href="assets/style.css?v=20260925213611">
+<script>/* Forced dark mode (e.g. Samsung Internet) recolours even dark sites; flag it so image fills take over. */
+(function(){try{var d=document.createElement('i');d.style.cssText='display:none;background-color:canvas;color-scheme:light';document.documentElement.appendChild(d);var m=getComputedStyle(d).backgroundColor.match(/\d+/g);d.parentNode.removeChild(d);if(m&&(+m[0]+ +m[1]+ +m[2])<384)document.documentElement.className+=' fd';}catch(e){}})();</script>
 </head>
 <body data-page="home">
 <main>
@@ -80,6 +82,7 @@
   </section>
 
   <section class="four" id="the-four" aria-labelledby="four-title">
+    <div class="dropbar dropbar--m"><span class="pulse"></span><span>Drop 07 · Thu 8PM ·</span><button type="button" data-join>Join</button></div>
     <div class="four__head">
       <span class="eyebrow eyebrow--mute">Every man dresses as someone</span>
       <h2 id="four-title">Defined by <br class="d-show"><em>character</em></h2>
@@ -93,7 +96,7 @@
     </div>
   </section>
 </main>
-<script src="assets/data.js?v=20260925211806"></script>
-<script src="assets/app.js?v=20260925211806"></script>
+<script src="assets/data.js?v=20260925213611"></script>
+<script src="assets/app.js?v=20260925213611"></script>
 </body>
 </html>

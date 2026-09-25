@@ -181,9 +181,10 @@
       '<button type="button" class="bag" data-bag>Bag<span class="d-hide"> (</span><span class="d-show"> </span><span class="bagn">0</span><span class="d-hide">)</span></button></div></div>' +
       '<nav class="mnav" id="mnav" aria-label="Mobile">' + nav +
       '<button type="button" class="m-small" data-join>' + (joined ? 'Drop 07 · on the list ✓' : 'Drop 07 · Thu 8PM · Join') + '</button>' +
-      '<button type="button" class="m-small" data-fit><span class="pulse"></span>Fit profile on</button><button type="button" class="m-small" data-search>Search</button><a class="m-small" href="index.html#wardrobe">My wardrobe</a></nav></header>';
+      '<button type="button" class="m-small" data-fit><span class="pulse"></span>Fit profile on</button><button type="button" class="m-small" data-search>Search</button><a class="m-small" href="index.html#wardrobe">My wardrobe</a><a class="m-small" href="' + PORTFOLIO_URL + '">← Back to portfolio</a></nav></header>';
     var main = $('main');
     Array.prototype.slice.call(top.children).forEach(function (n) { document.body.insertBefore(n, main); });
+    if (joined) $$('.dropbar [data-join]').forEach(function (b) { b.textContent = 'On the list ✓'; });
 
     var tail = document.createElement('div');
     tail.innerHTML =
@@ -584,7 +585,7 @@
       '<p class="buy__blurb">' + esc(p.blurb) + '</p>' +
       '<div class="fitbox" id="fitbox"></div>' +
       '<div class="opt"><div class="opt__head"><span>Colour<b id="cname"></b></span></div><div class="swatches">' +
-      p.colors.map(function (c) { return '<button type="button" class="swatch" data-color="' + c + '" aria-label="' + c + '"><span style="background:' + VLN.colors[c] + '"></span></button>'; }).join('') + '</div></div>' +
+      p.colors.map(function (c) { return '<button type="button" class="swatch" data-color="' + c + '" aria-label="' + c + '"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13.5" fill="' + VLN.colors[c] + '" stroke="rgba(237,232,223,.18)"/></svg></button>'; }).join('') + '</div></div>' +
       '<div class="opt"><div class="opt__head"><span>' + (unit === 'waist' ? 'Waist' : 'Size') + '<b id="sname"></b></span><button type="button" class="fitbox__edit" data-fit>Edit fit</button></div><div class="chips" id="sizes">' +
       list.map(function (s) { return '<button type="button" class="chip" data-size="' + s + '">' + s + '</button>'; }).join('') + '</div></div>' +
       (p.cat === 'trousers' ? '<div class="opt"><div class="opt__head"><span>Leg<b id="lname"></b></span></div><div class="chips">' + VLN.lengths.map(function (l) { return '<button type="button" class="chip" data-len="' + l + '">' + l + '</button>'; }).join('') + '</div></div>' : '') +

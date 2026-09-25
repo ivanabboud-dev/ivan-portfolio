@@ -8,11 +8,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0b0b0a">
+<meta name="color-scheme" content="dark">
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=202609252108">
+<link rel="stylesheet" href="assets/style.css?v=20260925211806">
 </head>
 <body data-page="home">
 <main>
@@ -47,11 +48,17 @@
 
   <section class="wardrobe" id="wardrobe" aria-labelledby="wr-title">
     <div class="wr-head">
-      <div><span class="eyebrow">Wardrobe reading · updated today</span><h2 class="h-1" id="wr-title"></h2></div>
+      <div><span class="eyebrow">Wardrobe reading<span class="d-hide"> · updated today</span></span><h2 class="h-1" id="wr-title"></h2></div>
       <div class="wr-pct"><b id="wr-pct"></b><div class="meter"><i id="wr-meter"></i></div><div id="wr-pct-label"></div></div>
     </div>
     <div class="slots" id="slots"></div>
     <p class="wr-note">Dashed = a gap in your wardrobe. We only recommend into the gaps.</p>
+    <div class="gap-m">
+      <b>Fill the gap — Look 04</b>
+      <small>2 pieces · unlocks 8 new outfits</small>
+      <button type="button" class="btn" id="bundle-btn-m">Add both</button>
+      <p id="bundle-save-m"></p>
+    </div>
     <div class="gapfill">
       <div>
         <span class="eyebrow">Fill the gap · Look 04</span>
@@ -75,9 +82,9 @@
   <section class="four" id="the-four" aria-labelledby="four-title">
     <div class="four__head">
       <span class="eyebrow eyebrow--mute">Every man dresses as someone</span>
-      <h2 id="four-title">Defined by <em>character</em></h2>
+      <h2 id="four-title">Defined by <br class="d-show"><em>character</em></h2>
       <div class="ornament" aria-hidden="true"><i></i><span>✦</span><i></i></div>
-      <p>Choose the man you dress as. We build the capsule around him — no browsing required.</p>
+      <p><span class="d-hide">Choose the man you dress as. We build the capsule around him — no browsing required.</span><span class="d-show">Choose the man you dress as.</span></p>
     </div>
     <div class="four__grid" id="four-grid"></div>
     <div class="capsule">
@@ -86,7 +93,7 @@
     </div>
   </section>
 </main>
-<script src="assets/data.js?v=202609252108"></script>
-<script src="assets/app.js?v=202609252108"></script>
+<script src="assets/data.js?v=20260925211806"></script>
+<script src="assets/app.js?v=20260925211806"></script>
 </body>
 </html>

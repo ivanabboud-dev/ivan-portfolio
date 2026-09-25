@@ -150,9 +150,11 @@
     var r = fit.rec(p), list = sizesFor(p), start = list.indexOf(r.size), c, d, sgn, s;
     var colors = color ? [color].concat(p.colors.filter(function (x) { return x !== color; })) : p.colors;
     for (c = 0; c < colors.length; c++) if (inStock(p, colors[c], r.size)) return { color: colors[c], size: r.size, length: r.length, exact: true };
+    /* Nothing in the picked size: go up a size first (safer), unless we already sized up. */
+    var order = /sized up/.test(r.note) ? [-1, 1] : [1, -1];
     for (d = 1; d < list.length; d++) {
-      for (sgn = -1; sgn <= 1; sgn += 2) {
-        s = list[start + d * sgn]; if (!s) continue;
+      for (var o = 0; o < 2; o++) {
+        sgn = order[o]; s = list[start + d * sgn]; if (!s) continue;
         for (c = 0; c < colors.length; c++) if (inStock(p, colors[c], s)) return { color: colors[c], size: s, length: r.length, exact: false };
       }
     }
@@ -167,7 +169,7 @@
     var joined = store.get('vln_joined', false);
     var top = document.createElement('div');
     top.innerHTML =
-      '<div class="demo-line"><span>Portfolio demo · sample products, checkout off</span><a href="' + PORTFOLIO_URL + '">← Back to portfolio</a></div>' +
+      '<div class="demo-line"><span><span class="d-hide">Portfolio demo · sample products, checkout off</span><span class="d-show">Portfolio demo</span></span><a href="' + PORTFOLIO_URL + '">← Back to portfolio</a></div>' +
       '<div class="dropbar"><span class="pulse"></span><span class="d-hide">Atelier Drop 07 — Thursday 8PM</span><span class="d-show">Drop 07 · Thu 8PM</span>' +
       '<span class="dropbar__count d-hide">' + (412 + (joined ? 1 : 0)) + ' on the list</span><button type="button" data-join>' + (joined ? 'On the list ✓' : 'Join') + '</button></div>' +
       '<header class="hdr"><div class="hdr__bar">' +
@@ -176,8 +178,9 @@
       '<a class="logo logo--m" href="index.html" aria-label="VALENOR home">VALENOR</a>' +
       '<div class="tools"><button type="button" class="fitstate t-hide" data-fit><span class="pulse"></span>Fit profile on</button>' +
       '<button type="button" class="t-hide" data-search>Search</button><a class="t-hide" href="index.html#wardrobe">Wardrobe</a>' +
-      '<button type="button" class="bag" data-bag>Bag (<span class="bagn">0</span>)</button></div></div>' +
+      '<button type="button" class="bag" data-bag>Bag<span class="d-hide"> (</span><span class="d-show"> </span><span class="bagn">0</span><span class="d-hide">)</span></button></div></div>' +
       '<nav class="mnav" id="mnav" aria-label="Mobile">' + nav +
+      '<button type="button" class="m-small" data-join>' + (joined ? 'Drop 07 · on the list ✓' : 'Drop 07 · Thu 8PM · Join') + '</button>' +
       '<button type="button" class="m-small" data-fit><span class="pulse"></span>Fit profile on</button><button type="button" class="m-small" data-search>Search</button><a class="m-small" href="index.html#wardrobe">My wardrobe</a></nav></header>';
     var main = $('main');
     Array.prototype.slice.call(top.children).forEach(function (n) { document.body.insertBefore(n, main); });
@@ -255,7 +258,8 @@
       store.set('vln_joined', true);
       msg.textContent = 'You’re on the list. (Demo: nothing was sent.)';
       $('.dropbar__count').textContent = '413 on the list';
-      $('[data-join]').textContent = 'On the list ✓';
+      $$('.dropbar [data-join]').forEach(function (b) { b.textContent = 'On the list ✓'; });
+      $$('.mnav [data-join]').forEach(function (b) { b.textContent = 'Drop 07 · on the list ✓'; });
       setTimeout(closeAll, 1400);
     });
     setTimeout(function () { $('#je').focus(); }, 80);
@@ -371,9 +375,11 @@
     var st = wardrobeState(), core = st.filter(function (s) { return !s.mobileOnly; });
     var pct = Math.round(core.filter(function (s) { return !s.gap; }).length / core.length * 100);
     var mid = st.find(function (s) { return s.slot === 'mid'; }), outer = st.find(function (s) { return s.slot === 'outer'; });
-    $('#wr-title', root).innerHTML = mid.gap && outer.gap ? 'You own eleven tops<br>and <em>nothing to layer</em> them under.'
-      : !mid.gap && outer.gap ? 'Layered up. Now <em>the coat</em><br>it all goes under.'
-      : mid.gap ? 'The coat is sorted.<br>Now <em>the layer</em> beneath it.' : 'Your wardrobe is <em>complete.</em>';
+    var k = mid.gap && outer.gap ? 0 : !mid.gap && outer.gap ? 1 : mid.gap ? 2 : 3;
+    var titles = ['You own eleven tops<br>and <em>nothing to layer</em> them under.', 'Layered up. Now <em>the coat</em><br>it all goes under.',
+      'The coat is sorted.<br>Now <em>the layer</em> beneath it.', 'Your wardrobe is <em>complete.</em>'];
+    var titlesM = ['Eleven tops.<br><em>Nothing to layer.</em>', 'Layered.<br><em>Now the coat.</em>', 'Coat sorted.<br><em>Now the layer.</em>', 'Wardrobe<br><em>complete.</em>'];
+    $('#wr-title', root).innerHTML = '<span class="d-hide">' + titles[k] + '</span><span class="d-show">' + titlesM[k] + '</span>';
     $('#wr-pct', root).innerHTML = pct + '<small>%</small>';
     $('#wr-meter', root).style.width = pct + '%';
     $('#wr-pct-label', root).innerHTML = '<span class="d-hide">Wardrobe complete</span><span class="d-show">' + pct + '% complete</span>';
@@ -382,7 +388,7 @@
       var count = s.gap ? 'Gap' : s.filled ? 'In bag' : String(s.owned).padStart(2, '0');
       return '<' + tag + (href ? ' href="' + href + '"' : '') + ' class="slot' + (s.gap ? ' is-gap' : '') + (s.filled ? ' is-filled' : '') + (s.mobileOnly ? ' m-only' : '') + '">' +
         '<div class="slot__top"><span>' + s.label + '</span><span>' + count + '</span></div><div class="slot__icon"><i></i></div>' +
-        '<div class="slot__title">' + (s.filled ? 'Filled' : s.title) + '</div></' + tag + '>';
+        '<div class="slot__title">' + (s.filled ? 'Filled' : s.title) + '</div><div class="m-count">' + count + '</div></' + tag + '>';
     }).join('');
     var g = VLN.gapBundle, items = g.items.map(function (it) { return { p: byId(it[0]), color: it[1] }; }), owned = byId(g.owned);
     var sum = items.reduce(function (a, x) { return a + x.p.price; }, 0), price = sum - g.save;
@@ -394,10 +400,11 @@
         '<div class="bundle__price">' + money(x.p.price) + '</div></div>';
     }).join('') + '<div class="bundle__row"><a class="bundle__thumb media" href="product.html?p=' + owned.id + '" aria-label="' + esc(owned.name) + '">' + media(owned, owned.colors[0], 0) + '</a>' +
       '<div class="bundle__name"><a href="product.html?p=' + owned.id + '">' + esc(owned.name) + '</a><small class="is-owned">Already yours</small></div><div class="bundle__price">owned</div></div>';
-    var btn = $('#bundle-btn', root);
+    var btn = $('#bundle-btn', root), btnM = $('#bundle-btn-m', root);
     btn.textContent = inBag ? 'In your bag — view bag' : 'Add the 2 missing — ' + money(price);
-    btn.dataset.state = inBag ? 'in' : 'add';
-    $('#bundle-save', root).textContent = 'Bundle saves ' + money(g.save);
+    btnM.textContent = inBag ? 'In your bag — view bag' : 'Add both — ' + money(price);
+    btn.dataset.state = btnM.dataset.state = inBag ? 'in' : 'add';
+    $('#bundle-save', root).textContent = $('#bundle-save-m', root).textContent = 'Bundle saves ' + money(g.save);
     $('#bundle-instal', root).textContent = 'or 4 × ' + money(price / 4) + ', no interest';
     var gapEl = $('#canvas-gap', root);
     gapEl.classList.toggle('is-filled', !mid.gap);
@@ -405,14 +412,16 @@
   }
   function bindWardrobe() {
     var root = $('#wardrobe'); if (!root) return;
-    $('#bundle-btn', root).addEventListener('click', function () {
+    function addGap() {
       if (this.dataset.state === 'in') { openBag(); return; }
       VLN.gapBundle.items.forEach(function (it) {
         var p = byId(it[0]), v = bestVariant(p, it[1]);
         if (v) cart.add(p.id, v.color, v.size, 1, { bundle: 'gap', length: v.length });
       });
       openBag();
-    });
+    }
+    $('#bundle-btn', root).addEventListener('click', addGap);
+    $('#bundle-btn-m', root).addEventListener('click', addGap);
     document.addEventListener('bagchange', renderWardrobe);
     document.addEventListener('fitchange', renderWardrobe);
     renderWardrobe();

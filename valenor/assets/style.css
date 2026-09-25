@@ -1,6 +1,7 @@
 /* VALENOR demo storefront. Every value below comes from the VALENOR design screens:
    onyx canvas, champagne accents, Cormorant Garamond display, Jost for everything else. */
 :root {
+  color-scheme: dark;
   --bg: #0b0b0a;
   --bg-2: #0e0d0c;
   --card: #111010;
@@ -602,4 +603,36 @@ a.slot:hover { border-color: rgba(214, 197, 168, .35); }
 @media (max-width: 860px) {
   .d-show { display: inline; }
   .d-hide { display: none; }
+}
+
+/* ---------- phones: follow the design's mobile screens (1a fit gate, 1b wardrobe, 1c the four) ---------- */
+.gap-m, .m-count { display: none; }
+@media (max-width: 860px) {
+  .demo-line { padding: 6px 16px; font-size: 8.5px; letter-spacing: .18em; gap: 10px; }
+  .dropbar { display: none; }
+  .hdr__bar { padding: 16px 20px 14px; }
+  .burger { font-size: 15px; width: 28px; height: 22px; }
+  .hero__body { padding-top: 22px; }
+  .hero__body > .lede { display: none; }
+  .fitpanel { position: sticky; bottom: 0; z-index: 20; box-shadow: 0 -12px 24px rgba(0, 0, 0, .35); }
+  .fitpanel .fitcta .text-link { display: none; }
+  .wr-head .eyebrow { font-size: 9px; letter-spacing: .26em; margin-bottom: 14px; }
+  .slot__top { flex-direction: row; }
+  .slot__top span:last-child, .slot__title { display: none; }
+  .m-count { display: block; font: 400 15px/1 var(--display); color: var(--ink); text-transform: uppercase; letter-spacing: .04em; }
+  .slot.is-gap .m-count, .slot.is-filled .m-count { color: var(--champ); }
+  .wr-note { margin-bottom: 0; font-size: 11px; }
+  .wardrobe { padding-bottom: 0; }
+  .gapfill { display: none; }
+  .gap-m { display: block; margin: 24px -20px 0; padding: 20px 22px 24px; border-top: 1px solid var(--line); background: var(--bg-2); }
+  .gap-m b { display: block; font: 400 21px/1.2 var(--display); color: var(--head); margin-bottom: 6px; }
+  .gap-m small { display: block; font-size: 11px; letter-spacing: .06em; color: var(--m45); margin-bottom: 16px; }
+  .gap-m .btn { width: 100%; padding: 17px; letter-spacing: .18em; }
+  .gap-m p { text-align: center; font-size: 9.5px; letter-spacing: .1em; color: var(--gold); margin: 11px 0 0; }
+  .four__head { padding: 26px 24px 22px; }
+  .arch::before, .arch::after, .arch__img { display: none; }
+  .four__grid { border-bottom: 0; }
+  .arch { min-height: 96px; }
+  .capsule { justify-content: center; border-top: 1px solid var(--line); padding: 16px 22px 22px; }
+  .capsule__name, .capsule__cta span { display: none; }
 }

@@ -32,7 +32,7 @@ VLN.products = [
     blurb: 'A heavy rib half-zip with a stand collar that holds its shape. Over a tee now, under a coat later.',
     details: ['Heavy rib knit, 70% cotton, 30% wool', 'Metal zip, soft-touch pull', 'Dropped shoulder, ribbed cuffs and hem'] },
   { id: 'ridge-overshirt', name: 'Ridge Overshirt', cat: 'shirts', slot: 'mid', shape: 'jacket', price: 44.99, cut: 'roomy', adj: -1,
-    colors: ['Charcoal', 'Olive', 'Camel'], four: ['modernist', 'traditionalist'], out: ['Camel:L'], gone: ['M'],
+    colors: ['Charcoal', 'Olive', 'Camel'], four: ['modernist', 'traditionalist'], out: ['Camel:L'], gone: ['XXL'],
     blurb: 'Brushed twill with two flap pockets. A shirt that does the work of a light jacket.',
     details: ['Brushed cotton twill', 'Two flap chest pockets', 'Roomy cut, layers over knitwear'] },
   { id: 'corbin-pleated-trouser', name: 'Corbin Pleated Trouser', cat: 'trousers', slot: 'trousers', shape: 'trouser', price: 39.99, cut: 'true', adj: 3,

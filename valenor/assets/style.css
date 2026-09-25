@@ -619,6 +619,14 @@ a.slot:hover { border-color: rgba(214, 197, 168, .35); }
   /* screen 1: the fit gate */
   .hero { display: flex; flex-direction: column; border-bottom: 0; min-height: calc(100vh - var(--hdr-h)); min-height: calc(100svh - var(--hdr-h)); }
   .hero__media { flex: none; height: clamp(220px, calc(100svh - var(--hdr-h) - 392px), 352px); }
+  /* The photo itself fades out (a mask, not a colour overlay), so it melts into the page like design 1a
+     even when a browser's dark mode recolours backgrounds and gradients. */
+  .hero__media { background: transparent; }
+  .hero__media::after { display: none; }
+  .hero__media img {
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, rgba(0, 0, 0, .82) 55%, rgba(0, 0, 0, .5) 72%, rgba(0, 0, 0, .2) 86%, transparent 98%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 40%, rgba(0, 0, 0, .82) 55%, rgba(0, 0, 0, .5) 72%, rgba(0, 0, 0, .2) 86%, transparent 98%);
+  }
   .hero__body { flex: 1; display: flex; flex-direction: column; padding: 22px 22px 0; }
   .hero__body > .lede { display: none; }
   .fitgate { flex: 1; display: flex; flex-direction: column; }

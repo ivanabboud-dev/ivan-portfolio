@@ -92,10 +92,10 @@ window.LM = {
       details: ["Recyclable CPLA", "Sip hole and vent", "Fits LM-CUP-08 and LM-CUP-08K"]
     },
     {
-      sku: "LM-SYR-VAN", name: "Vanilla Syrup, 1L", category: "syrups",
+      sku: "LM-SYR-VAN", name: "Vanilla Syrup, 750ml", category: "syrups",
       pack: "Case of 6 bottles", unitLabel: "bottle", units: 6, price: 58.20, minCases: 1,
       img: "img/p-syrup-vanilla.webp", gallery: ["img/case-stack.webp"],
-      blurb: "Madagascan vanilla. About 100 shots per bottle.",
+      blurb: "Madagascan vanilla. About 75 shots per bottle.",
       details: ["Glass bottle", "Pump sold separately", "Keeps 4 weeks once open"]
     },
     {

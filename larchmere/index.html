@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Larchmere | Café supply, sold by the case</title>
+  <meta name="description" content="Wholesale store demo: trade prices after sign-in, quantity breaks, a quick-order table, a minimum order and 30-day terms for approved cafés.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#FBFBFA">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Larchmere | Wholesale store demo">
+  <meta property="og:description" content="Trade prices after sign-in, quantity breaks, quick order, minimum order and 30-day terms.">
+  <meta property="og:image" content="https://ivanabboud-dev.github.io/ivan-portfolio/larchmere/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111111'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' fill='%23FBFBFA'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="preload" as="image" href="img/hero-station.webp">
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+  <a class="skip" href="#app">Skip to content</a>
+
+  <div class="demo-strip" role="note">Portfolio demo · Sample brand · Checkout off</div>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="wordmark" href="#/" aria-label="Larchmere home" translate="no">LARCHMERE</a>
+      <nav class="main-nav" aria-label="Main">
+        <a href="#/catalog" data-nav="catalog">Catalog</a>
+        <a href="#/quick-order" data-nav="quick-order">Quick order</a>
+        <a href="#/lookbook" data-nav="lookbook">Lookbook</a>
+        <a href="#/pricing" data-nav="pricing">Trade pricing</a>
+      </nav>
+      <div class="header-actions" id="header-actions"></div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <i class="ph-bold ph-list" aria-hidden="true"></i>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile" hidden>
+      <a href="#/catalog">Catalog</a>
+      <a href="#/quick-order">Quick order</a>
+      <a href="#/lookbook">Lookbook</a>
+      <a href="#/pricing">Trade pricing</a>
+      <div class="mobile-account" id="mobile-account"></div>
+    </nav>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <a class="wordmark" href="#/" translate="no">LARCHMERE</a>
+        <p class="muted footer-note">Coffee, tea, cups and syrups for independent cafés. Orders before 2pm leave the same day.</p>
+      </div>
+      <nav aria-label="Shop">
+        <a href="#/catalog">Catalog</a>
+        <a href="#/quick-order">Quick order</a>
+        <a href="#/lookbook">Lookbook</a>
+        <a href="#/pricing">Trade pricing</a>
+      </nav>
+      <nav aria-label="Help">
+        <a href="#/help/delivery">Delivery</a>
+        <a href="#/help/returns">Returns</a>
+        <a href="#/apply">Apply for trade</a>
+      </nav>
+    </div>
+    <div class="wrap footer-base">
+      <p>Portfolio demo. Sample brand, sample prices. Photos from Unsplash.</p>
+      <p>Prices shown exclude VAT.</p>
+    </div>
+  </footer>
+
+  <dialog class="signin" id="signin" aria-labelledby="signin-title">
+    <form method="dialog" class="signin-inner">
+      <div class="signin-head">
+        <h2 id="signin-title" class="serif">Sign in</h2>
+        <button class="icon-btn" value="cancel" aria-label="Close"><i class="ph-bold ph-x" aria-hidden="true"></i></button>
+      </div>
+      <p class="muted">This is a demo store with no real accounts. Pick one to see how prices and payment options change.</p>
+      <div class="account-choices">
+        <button class="account-choice" value="pine" type="submit">
+          <span class="account-name">Pine Street Café</span>
+          <span class="muted">Approved account. Trade prices, 30-day invoice terms, a saved last order.</span>
+        </button>
+        <button class="account-choice" value="harbour" type="submit">
+          <span class="account-name">Harbour Kiosk</span>
+          <span class="muted">New account. Trade prices, card payment only until three orders are paid.</span>
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js?v=1"></script>
+  <script src="js/app.js?v=1"></script>
+</body>
+</html>

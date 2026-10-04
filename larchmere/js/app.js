@@ -177,7 +177,7 @@
         <div class="hero-ctas">${ctas}</div>
       </div>
       <div class="hero-photo">
-        <img src="img/hero-station.webp" alt="A coffee station on a tiled counter with a bean-to-cup machine, cups and syrup bottles" width="2000" height="1000" fetchpriority="high">
+        <img src="img/hero.webp" alt="A bright café back counter with shelves of takeaway cups, Larchmere coffee bags and tea boxes above an espresso machine" width="1536" height="1024" fetchpriority="high">
       </div>
     </section>
 
@@ -196,7 +196,7 @@
           <h3>${money(rules.minimumOrder).replace(".00", "")} minimum order</h3>
           <p>Mix any products to reach it. Delivery is free from ${money(rules.freeDeliveryFrom).replace(".00", "")}, otherwise ${money(rules.deliveryFee)}.</p>
         </div>
-        <div class="cell cell-photo"><img src="img/case-stack.webp" alt="Stacked kraft cardboard cases" width="1000" height="1000" loading="lazy"></div>
+        <div class="cell cell-photo"><img src="img/case-stack.webp" alt="A Larchmere shipping case beside an open case of six House Espresso bags" width="1000" height="1000" loading="lazy"></div>
         <div class="cell cell-terms">
           <h3>30-day terms</h3>
           <p>Approved accounts pay by invoice, 30 days after delivery.</p>
@@ -214,7 +214,7 @@
 
     <section class="teaser wrap" aria-labelledby="teaser-title">
       <div class="look-hero">
-        <img src="${sc.img}" alt="${esc(sc.alt)}" width="1800" height="1000" loading="lazy">
+        <img src="${sc.img}" alt="${esc(sc.alt)}" width="1536" height="1024" loading="lazy">
         <div class="look-panel">
           <h2 id="teaser-title">${sc.title}</h2>
           <p>${sc.line}</p>
@@ -589,7 +589,7 @@
     const item = (id, cls) => {
       const s = setups[id];
       return `<div class="look-item ${cls}"><figure>
-        <div class="ph"><img src="${s.img}" alt="${esc(s.alt)}" width="${cls === "tall" ? 900 : 1200}" height="${cls === "tall" ? 1100 : 900}" loading="lazy"></div>
+        <div class="ph"><img src="${s.img}" alt="${esc(s.alt)}" width="1536" height="1024" loading="lazy"></div>
         <figcaption class="look-cap"><h3>${s.title}</h3><a class="arrow-link" href="#/quick-order?setup=${id}">Shop this setup (${count(s)} products)<i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a><p>${s.line}</p></figcaption>
       </figure></div>`;
     };
@@ -599,7 +599,7 @@
         <p class="page-lede">Three setups and the products in them. Load one into quick order, then change the cases to suit you.</p>
       </div>
       <div class="look-hero look-hero-wide">
-        <img src="${main.img}" alt="${esc(main.alt)}" width="1800" height="1000">
+        <img src="${main.img}" alt="${esc(main.alt)}" width="1536" height="1024">
         <div class="look-panel">
           <h2>${main.title}</h2>
           <p>${main.line}</p>

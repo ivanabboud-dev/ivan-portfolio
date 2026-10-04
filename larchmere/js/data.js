@@ -125,21 +125,21 @@ window.LM = {
       title: "The small counter",
       line: "What a 30-seat café goes through in a week.",
       img: "img/look-small-counter.webp",
-      alt: "A small café counter with a grinder, jars of beans and two stools",
+      alt: "A small café counter with a tiled front, two black stools, jars of beans and an espresso machine",
       items: { "LM-ESP-1K": 3, "LM-DEC-1K": 1, "LM-CUP-08": 2, "LM-LID-80": 1, "LM-OAT-1L": 4, "LM-SYR-VAN": 1 }
     },
     "tea-bar": {
       title: "Tea bar",
       line: "Three teas that cover most orders, hot and iced.",
       img: "img/look-tea.webp",
-      alt: "Loose black tea leaves in a terracotta cup",
+      alt: "A tea corner with Larchmere tea boxes and pouches on a wooden shelf, a glass teapot and two glass cups",
       items: { "LM-TEA-EB": 2, "LM-TEA-SEN": 1, "LM-TEA-HIB": 1, "LM-TEA-MAT": 1 }
     },
     "takeaway": {
       title: "Takeaway station",
       line: "White and kraft cups that share one lid, so there is one less thing to run out of.",
       img: "img/look-takeaway.webp",
-      alt: "Plain white paper cups on a grey stone counter",
+      alt: "A takeaway station with stacks of white and kraft cups, black lids, wooden stirrers and napkins",
       items: { "LM-CUP-08": 2, "LM-CUP-08K": 2, "LM-LID-80": 2 }
     }
   }

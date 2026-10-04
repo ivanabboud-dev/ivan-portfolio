@@ -239,29 +239,29 @@
           </div>
         </div>`
       : `<form class="apply-form" id="apply-form" novalidate>
-          <div class="field"><label for="ap-biz">Business name</label><input class="input" id="ap-biz" name="biz" autocomplete="organization" required></div>
-          <div class="field"><label for="ap-name">Contact name</label><input class="input" id="ap-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="ap-biz">Business name</label><input class="input" id="ap-biz" name="biz" autocomplete="organization" placeholder="e.g. Pine Street Café Ltd" required></div>
+          <div class="field"><label for="ap-name">Contact name</label><input class="input" id="ap-name" name="name" autocomplete="name" placeholder="e.g. Alex Brown" required></div>
           <div class="field full"><label for="ap-email">Work email</label><input class="input" id="ap-email" name="email" type="email" autocomplete="email" spellcheck="false" placeholder="orders@yourcafe.co.uk" required></div>
           <div class="field"><label for="ap-type">Business type</label>
             <select class="select" id="ap-type" name="type"><option>Café</option><option>Restaurant</option><option>Hotel</option><option>Office kitchen</option><option>Other</option></select></div>
           <div class="field"><label for="ap-spend">Expected monthly spend</label>
             <select class="select" id="ap-spend" name="spend"><option>Under £500</option><option selected>£500 to £1,500</option><option>£1,500 to £5,000</option><option>Over £5,000</option></select></div>
-          <div class="field"><label for="ap-post">Delivery postcode</label><input class="input" id="ap-post" name="post" autocomplete="postal-code" required></div>
-          <div class="field"><label for="ap-vat">VAT number <span class="muted">(optional)</span></label><input class="input" id="ap-vat" name="vat" autocomplete="off" spellcheck="false"></div>
-          <div class="full"><button class="btn" type="submit">Send application</button></div>
+          <div class="field"><label for="ap-post">Delivery postcode</label><input class="input" id="ap-post" name="post" autocomplete="postal-code" placeholder="e.g. SW1A 1AA" required></div>
+          <div class="field"><label for="ap-vat">VAT number (optional)</label><input class="input" id="ap-vat" name="vat" autocomplete="off" spellcheck="false" placeholder="e.g. 123 4567 89"></div>
+          <div class="full"><button class="btn btn-block btn-lg" type="submit">Send application</button></div>
         </form>`;
     return `<section class="apply wrap" id="apply" aria-labelledby="apply-title">
       <div class="apply-grid">
         <div>
-          <h2 class="section-title" id="apply-title">Apply for a trade account</h2>
+          <h2 class="apply-title" id="apply-title">Apply for a trade account</h2>
           <p class="page-lede">We check every application by hand and reply within one working day.</p>
           <ul class="perks">
-            <li><i class="ph-bold ph-tag" aria-hidden="true"></i>Trade prices on every product</li>
-            <li><i class="ph-bold ph-stack" aria-hidden="true"></i>Quantity breaks from 5 cases</li>
-            <li><i class="ph-bold ph-receipt" aria-hidden="true"></i>30-day terms after three paid orders</li>
+            <li><i class="ph ph-tag" aria-hidden="true"></i>Trade prices on every product</li>
+            <li><i class="ph ph-stack" aria-hidden="true"></i>Quantity breaks from 5 cases</li>
+            <li><i class="ph ph-receipt" aria-hidden="true"></i>30-day terms after three paid orders</li>
           </ul>
         </div>
-        <div>${body}</div>
+        <div class="apply-panel">${body}</div>
       </div>
     </section>`;
   }
@@ -507,47 +507,48 @@
     const lines = t.lines.map((l) => {
       const nt = nextTier(l.q);
       const tierLine = l.short
-        ? `<span class="line-warn">Minimum ${l.p.minCases} cases for this product</span>`
+        ? `<span class="chip chip-warn">Minimum ${l.p.minCases} cases for this product</span>`
         : l.tier.off
-          ? `<span class="line-tier">${pct(l.tier.off)} tier applied</span>`
-          : nt ? `<span class="line-meta">${nt.from - l.q} more for ${pct(nt.off)} off</span>` : "";
+          ? `<span class="chip">${pct(l.tier.off)} tier applied</span>`
+          : nt ? `<span class="chip">${nt.from - l.q} more for ${pct(nt.off)} off</span>` : "";
       return `<div class="line">
-        <a class="line-photo" href="#/product/${l.p.sku}" tabindex="-1" aria-hidden="true"><img src="${l.p.img}" alt="" width="88" height="88" loading="lazy"></a>
+        <a class="line-photo" href="#/product/${l.p.sku}" tabindex="-1" aria-hidden="true"><img src="${l.p.img}" alt="" width="148" height="148" loading="lazy"></a>
         <div>
           <a class="line-name" href="#/product/${l.p.sku}">${esc(l.p.name)}</a>
           <div class="line-meta">${l.p.pack} · ${money(l.unit)} per case</div>
           ${tierLine}
         </div>
-        ${stepper({ scope: "cart", sku: l.p.sku, qty: l.q, small: true, label: "Cases of " + l.p.name })}
+        <div class="qty-cell">${stepper({ scope: "cart", sku: l.p.sku, qty: l.q, label: "Cases of " + l.p.name })}<span class="qty-cap" aria-hidden="true">cases</span></div>
         <div class="line-total"><span class="mono">${money(l.total)}</span><button class="text-link" type="button" data-act="cart-remove" data-sku="${l.p.sku}">Remove</button></div>
       </div>`;
     }).join("");
 
     const minLine = t.minMet
-      ? `<div class="minbar ok"><i class="ph-bold ph-check" aria-hidden="true"></i><span>${money(rules.minimumOrder).replace(".00", "")} minimum order: met</span></div>`
-      : `<div class="minbar short"><i class="ph-bold ph-info" aria-hidden="true"></i><span>Add ${money(t.toMin)} more to reach the ${money(rules.minimumOrder).replace(".00", "")} minimum order.</span></div>`;
+      ? `<div class="minbar ok"><span class="minbar-ico" aria-hidden="true"><i class="ph-bold ph-check"></i></span><span>${money(rules.minimumOrder).replace(".00", "")} minimum order: met</span></div>`
+      : `<div class="minbar short"><span class="minbar-ico" aria-hidden="true"><i class="ph-bold ph-exclamation-mark"></i></span><span>Add ${money(t.toMin)} more to reach the ${money(rules.minimumOrder).replace(".00", "")} minimum order.</span></div>`;
     const blocked = !t.minMet || t.short.length > 0;
     const tomorrow = nextWeekday(new Date());
     const min = new Date(); min.setDate(min.getDate() + 1);
 
-    return `<section class="page wrap">
-      <div class="page-head"><h1 class="page-title">Your order</h1><span class="tag">${esc(acc.name)}</span></div>
+    return `<section class="page page-tight wrap">
       <div class="cart">
-        <div class="lines">${lines}</div>
+        <div class="cart-main"><h1 class="page-title">Your order</h1><div class="lines">${lines}</div></div>
         <aside class="summary" aria-labelledby="sum-title">
           <h2 id="sum-title">Order summary</h2>
           ${minLine}
           <div class="sum-rows">
             <div class="sum-row"><span>Subtotal (${t.cases} ${casesWord(t.cases)})</span><span class="mono">${money(t.list)}</span></div>
-            <div class="sum-row saving"><span>Tier savings</span><span class="mono">${t.savings ? "-" + money(t.savings) : money(0)}</span></div>
+            <div class="sum-row${t.savings ? " saving" : ""}"><span>Tier savings</span><span class="mono">${t.savings ? "-" + money(t.savings) : money(0)}</span></div>
             <div class="sum-row"><span>Delivery${t.delivery ? ` <span class="muted">(free from ${money(rules.freeDeliveryFrom).replace(".00", "")})</span>` : ""}</span><span class="mono">${t.delivery ? money(t.delivery) : "Free"}</span></div>
             <div class="sum-row"><span>VAT ${pct(rules.vatRate)}</span><span class="mono">${money(t.vat)}</span></div>
             <div class="sum-row total"><span>Total</span><span class="mono">${money(t.total)}</span></div>
           </div>
           <form id="checkout" novalidate>
-            <div class="field"><label for="po">PO number <span class="muted">(optional)</span></label><input class="input" id="po" name="po" maxlength="30" autocomplete="off" spellcheck="false"></div>
-            <div class="field"><label for="deliver">Delivery date</label><input class="input" id="deliver" name="deliver" type="date" min="${isoDate(min)}" value="${isoDate(tomorrow)}" required>
-              <span class="hint">Orders placed by 2pm leave the same day.</span></div>
+            <div class="field-row">
+              <div class="field"><label for="po">PO number (optional)</label><input class="input" id="po" name="po" maxlength="30" autocomplete="off" spellcheck="false" placeholder="e.g. PO-12345"></div>
+              <div class="field"><label for="deliver">Delivery date</label><input class="input" id="deliver" name="deliver" type="date" min="${isoDate(min)}" value="${isoDate(tomorrow)}" aria-describedby="deliver-hint" required></div>
+              <span class="hint hint-right" id="deliver-hint">Orders placed by 2pm leave the same day.</span>
+            </div>
             <fieldset class="pay-options">
               <legend>Payment</legend>
               <label class="radio"><input type="radio" name="pay" value="card" ${acc.terms ? "" : "checked"}><span>Pay by card<small>Charged when the order ships.</small></span></label>
@@ -589,20 +590,20 @@
       const s = setups[id];
       return `<div class="look-item ${cls}"><figure>
         <div class="ph"><img src="${s.img}" alt="${esc(s.alt)}" width="${cls === "tall" ? 900 : 1200}" height="${cls === "tall" ? 1100 : 900}" loading="lazy"></div>
-        <figcaption class="look-cap"><h3>${s.title}</h3><a class="text-link" href="#/quick-order?setup=${id}">Shop this setup (${count(s)} products)</a><p>${s.line}</p></figcaption>
+        <figcaption class="look-cap"><h3>${s.title}</h3><a class="arrow-link" href="#/quick-order?setup=${id}">Shop this setup (${count(s)} products)<i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a><p>${s.line}</p></figcaption>
       </figure></div>`;
     };
-    return `<section class="page wrap">
-      <div class="page-head"><div>
+    return `<section class="page page-tight wrap">
+      <div class="look-head">
         <h1 class="page-title">Lookbook</h1>
         <p class="page-lede">Three setups and the products in them. Load one into quick order, then change the cases to suit you.</p>
-      </div></div>
-      <div class="look-hero">
+      </div>
+      <div class="look-hero look-hero-wide">
         <img src="${main.img}" alt="${esc(main.alt)}" width="1800" height="1000">
         <div class="look-panel">
           <h2>${main.title}</h2>
           <p>${main.line}</p>
-          <a class="text-link" href="#/quick-order?setup=small-counter">Shop this setup (${count(main)} products)</a>
+          <a class="arrow-link" href="#/quick-order?setup=small-counter">Shop this setup (${count(main)} products)<i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="look-pair">${item("tea-bar", "tall")}${item("takeaway", "wide")}</div>

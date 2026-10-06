@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asrar Parfums | Eau de parfum, made in small batches</title>
+  <meta name="description" content="Small-batch eau de parfum built on oud, rose and amber. Shop in English or Arabic.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f6f7f4">
+  <meta property="og:title" content="Asrar Parfums">
+  <meta property="og:description" content="Bilingual English and Arabic perfume store demo with a quick view, product carousel and working bag. Sample brand and prices.">
+  <meta property="og:image" content="https://ivanabboud-dev.github.io/ivan-portfolio/asrar/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://ivanabboud-dev.github.io/ivan-portfolio/asrar/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%231f3a2f'/%3E%3Ctext x='32' y='43' font-family='sans-serif' font-size='30' text-anchor='middle' fill='%23f6f7f4'%3EA%3C/text%3E%3C/svg%3E">
+  <script>
+    /* Set language before first paint to avoid a flash. */
+    (function () {
+      var root = document.documentElement;
+      var lang = null;
+      try { lang = localStorage.getItem("asrar2-lang"); } catch (e) {}
+      if (lang !== "ar" && lang !== "en") {
+        lang = (navigator.language || "en").toLowerCase().indexOf("ar") === 0 ? "ar" : "en";
+      }
+      root.setAttribute("lang", lang);
+      root.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="preload" as="image" href="assets/hero.jpg">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+  <a class="skip" href="#collection" data-i18n="skip">Skip to the collection</a>
+  <p class="demo-bar" data-i18n="demo.bar">Portfolio demo · Sample brand · Checkout off</p>
+
+  <header class="top wrap">
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" data-i18n-aria="nav.menuOpen" aria-label="Open menu">
+      <span class="menu-btn__label" data-i18n="nav.menu">Menu</span>
+      <span class="menu-btn__icon" aria-hidden="true"><span></span><span></span></span>
+    </button>
+
+    <a class="brand" href="#top" translate="no" data-i18n="brand">Asrar</a>
+
+    <div class="top__actions">
+      <button class="pill-btn" id="langBtn" type="button" data-i18n="nav.lang" data-i18n-aria="nav.langLabel">العربية</button>
+      <button class="icon-btn" id="cartBtn" type="button" data-i18n-aria="nav.cart" aria-label="Open bag">
+        <i class="ph ph-handbag" aria-hidden="true"></i>
+        <span class="badge" id="cartCount" hidden>0</span>
+      </button>
+      <a class="btn btn--dark btn--sm top__contact" href="#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav aria-label="Main">
+      <ul class="menu__list">
+        <li style="--i:0"><a href="#collection" data-i18n="nav.shop">Collection</a></li>
+        <li style="--i:1"><a href="#gifts" data-i18n="nav.gifts">Gifts</a></li>
+        <li style="--i:2"><a href="#notes" data-i18n="nav.notes">Signature notes</a></li>
+        <li style="--i:3"><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main id="top">
+    <!-- Hero: one cinematic image card, centred copy -->
+    <section class="wrap hero" aria-labelledby="heroTitle">
+      <div class="hero__card dark-card">
+        <img class="hero__img" src="assets/hero.jpg" width="2200" height="1150" data-i18n-alt="hero.alt" alt="A bottle of Oud Nocturne on a mossy stone in a misty forest" fetchpriority="high" decoding="async" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
+        <div class="hero__content">
+          <span class="tag tag--glass reveal" data-i18n="hero.tag">Eau de parfum, Oud Nocturne</span>
+          <h1 class="hero__title reveal" id="heroTitle" style="--d:90ms" data-i18n="hero.title">A quiet trail of oud.</h1>
+          <div class="hero__cta reveal" style="--d:180ms">
+            <button class="btn btn--light" type="button" data-open="oud">
+              <span data-i18n="hero.cta">Discover the scent</span>
+              <span class="btn__dot btn__dot--dark"><i class="ph ph-arrow-right flip" aria-hidden="true"></i></span>
+            </button>
+            <a class="btn btn--glass" href="#collection">
+              <span data-i18n="hero.cta2">Explore the collection</span>
+              <span class="btn__dot btn__dot--light"><i class="ph ph-arrow-right flip" aria-hidden="true"></i></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature tiles -->
+    <section class="wrap sig" aria-label="Signature scents" data-i18n-aria="sig.label">
+      <ul class="sig__grid" id="sigGrid"></ul>
+    </section>
+
+    <!-- Brand statement -->
+    <section class="wrap statement" aria-labelledby="stBody">
+      <span class="tag reveal" data-i18n="st.tag">Small-batch perfumery</span>
+      <p class="statement__body reveal" id="stBody" style="--d:90ms" data-i18n="st.body">Asrar makes perfume to be remembered, not announced. Natural oils, small batches, and a trail that stays long after you leave.</p>
+    </section>
+
+    <!-- Gifts -->
+    <section class="wrap gifts" id="gifts" aria-label="Gifts" data-i18n-aria="nav.gifts">
+      <article class="gift dark-card reveal">
+        <img class="gift__img" src="assets/gift.jpg" width="1200" height="1500" data-i18n-alt="gift.alt" alt="A perfume bottle wrapped in black paper with dried herbs" loading="lazy" decoding="async" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
+        <div class="gift__content">
+          <h2 class="gift__title" data-i18n="gift.title">A gift that lingers</h2>
+          <p data-i18n="gift.body">The discovery set, wrapped by hand with a written card.</p>
+          <button class="btn btn--light btn--sm" type="button" id="giftBtn">
+            <span data-i18n="gift.cta">Add the gift set</span>
+            <span class="btn__dot btn__dot--dark"><i class="ph ph-plus" aria-hidden="true"></i></span>
+          </button>
+        </div>
+      </article>
+      <article class="gift dark-card reveal" style="--d:120ms">
+        <img class="gift__img" src="assets/self.jpg" width="1200" height="1500" data-i18n-alt="self.alt" alt="A perfume bottle resting in an open black gift box" loading="lazy" decoding="async" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
+        <div class="gift__content">
+          <h2 class="gift__title" data-i18n="self.title">For yourself</h2>
+          <p data-i18n="self.body">A signature scent for every day, chosen in your own time.</p>
+          <a class="btn btn--light btn--sm" href="#collection">
+            <span data-i18n="self.cta">Shop the collection</span>
+            <span class="btn__dot btn__dot--dark"><i class="ph ph-arrow-right flip" aria-hidden="true"></i></span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Collection carousel -->
+    <section class="collection" id="collection" aria-labelledby="colTitle">
+      <div class="wrap collection__head">
+        <span class="tag reveal" data-i18n="col.tag">Explore the collection</span>
+        <h2 class="h2 reveal" id="colTitle" style="--d:90ms" data-i18n="col.title">Eight scents, worn close to the skin.</h2>
+      </div>
+      <div class="wrap">
+        <ul class="track" id="track" tabindex="0" aria-labelledby="colTitle"></ul>
+        <div class="track__ctrl">
+          <div class="track__bar" aria-hidden="true"><span id="trackFill"></span></div>
+          <div class="track__btns">
+            <button class="round-btn" id="prevBtn" type="button" data-i18n-aria="col.prev" aria-label="Previous scents"><i class="ph ph-arrow-left flip" aria-hidden="true"></i></button>
+            <button class="round-btn round-btn--dark" id="nextBtn" type="button" data-i18n-aria="col.next" aria-label="Next scents"><i class="ph ph-arrow-right flip" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signature notes feature -->
+    <section class="wrap notes" id="notes" aria-labelledby="notesTitle">
+      <div class="notes__card dark-card reveal">
+        <img class="notes__img" src="assets/notes.jpg" width="2200" height="1240" data-i18n-alt="notes.alt" alt="A bottle of Citrus Hadiqa on a wet rock in front of a waterfall" loading="lazy" decoding="async" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
+        <div class="notes__intro">
+          <span class="notes__icon"><i class="ph ph-drop-half" aria-hidden="true"></i></span>
+          <p class="notes__name" data-i18n="notes.name">Citrus Hadiqa</p>
+          <h2 class="notes__title" id="notesTitle" data-i18n="notes.title">Bright. Green. Weightless.</h2>
+        </div>
+        <ul class="callouts">
+          <li class="callout callout--a">
+            <span class="callout__label" data-i18n="notes.topL">Top</span>
+            <span data-i18n="notes.top">Lemon and bergamot open bright and sharp.</span>
+          </li>
+          <li class="callout callout--b">
+            <span class="callout__label" data-i18n="notes.heartL">Heart</span>
+            <span data-i18n="notes.heart">Green tea and neroli keep it cool.</span>
+          </li>
+          <li class="callout callout--c">
+            <span class="callout__label" data-i18n="notes.baseL">Base</span>
+            <span data-i18n="notes.base">Cedar and white musk settle close to skin.</span>
+          </li>
+        </ul>
+        <div class="notes__cta">
+          <button class="btn btn--light" type="button" data-add="citrus">
+            <span><span data-i18n="notes.cta">Add to bag</span> <span class="notes__price" id="notesPrice"></span></span>
+            <span class="btn__dot btn__dot--dark"><i class="ph ph-plus" aria-hidden="true"></i></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="wrap news" id="contact" aria-labelledby="newsTitle">
+      <div>
+        <h2 class="h2 reveal" id="newsTitle" data-i18n="news.title">First access to new batches.</h2>
+        <p class="lead reveal" style="--d:80ms" data-i18n="news.body">One email when a limited batch lands, never more than twice a month.</p>
+      </div>
+      <form class="news__form reveal" style="--d:160ms" id="newsForm" novalidate>
+        <label for="email" data-i18n="news.label">Email address</label>
+        <div class="field">
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" data-i18n-ph="news.ph" placeholder="name@example.com" aria-describedby="emailMsg" required>
+          <button class="btn btn--dark" type="submit">
+            <span data-i18n="news.cta">Join the list</span>
+            <span class="btn__dot btn__dot--light"><i class="ph ph-arrow-right flip" aria-hidden="true"></i></span>
+          </button>
+        </div>
+        <p class="form-msg" id="emailMsg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <div class="footer__row">
+      <span class="brand brand--foot" translate="no" data-i18n="brand">Asrar</span>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#collection" data-i18n="nav.shop">Collection</a>
+        <a href="#gifts" data-i18n="nav.gifts">Gifts</a>
+        <a href="#notes" data-i18n="nav.notes">Signature notes</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+    </div>
+    <div class="footer__row footer__legal">
+      <span>&copy; 2026 <span translate="no">Asrar Parfums</span>. <span data-i18n="foot.rights">All rights reserved.</span></span>
+      <span data-i18n="foot.preview">Design preview. Orders are not processed.</span>
+    </div>
+  </footer>
+
+  <dialog class="modal" id="pdp" aria-labelledby="pdpName">
+    <div class="modal__panel" id="pdpBody"></div>
+  </dialog>
+
+  <dialog class="drawer" id="cart" aria-labelledby="cartTitle">
+    <div class="drawer__panel">
+      <header class="drawer__head">
+        <h2 class="drawer__title" id="cartTitle" data-i18n="cart.title">Your bag</h2>
+        <button class="icon-btn" type="button" id="cartClose" data-i18n-aria="cart.close" aria-label="Close bag"><i class="ph ph-x" aria-hidden="true"></i></button>
+      </header>
+      <div class="drawer__body" id="cartBody"></div>
+      <footer class="drawer__foot" id="cartFoot"></footer>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data.js?v=1"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>

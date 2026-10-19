@@ -72,21 +72,21 @@ window.DAO = window.DAO || {};
 
   DAO.quiz = [
     { key: 'who', q: ['لمن هذا العطر؟', 'Who is it for?'], short: ['لمن؟', 'For whom?'], opts: [
-      { id: 'me', icon: 'user', t: ['لي', 'For me'], s: ['أختار لنفسي', 'I am choosing for myself'] },
-      { id: 'gift', icon: 'gift', t: ['هدية', 'A gift'], s: ['لشخص عزيز', 'For someone close'] }] },
+      { id: 'me', img: 'santal-oud', icon: 'user', t: ['لي', 'For me'], s: ['أختار لنفسي', 'I am choosing for myself'] },
+      { id: 'gift', img: 'oud-royal', icon: 'gift', t: ['هدية', 'A gift'], s: ['لشخص عزيز', 'For someone close'] }] },
     { key: 'mood', q: ['أي أجواء تحبها أكثر؟', 'Which mood do you love most?'], short: ['الأجواء', 'Mood'], opts: [
-      { id: 'warm', icon: 'flame', t: ['دافئة وغنية', 'Warm & rich'], s: ['عنبر · عود · زعفران', 'Amber · oud · saffron'] },
-      { id: 'clean', icon: 'drop', t: ['نظيفة وناعمة', 'Clean & soft'], s: ['مسك أبيض · قطن', 'White musk · cotton'] },
-      { id: 'floral', icon: 'rosette', t: ['زهرية ومنعشة', 'Floral & fresh'], s: ['ورد طائفي · ياسمين', 'Taif rose · jasmine'] },
-      { id: 'woody', icon: 'mabkhara', t: ['خشبية ودخانية', 'Woody & smoky'], s: ['عود · بخور · صندل', 'Oud · bakhoor · sandalwood'] }] },
+      { id: 'warm', img: 'amber-noir', icon: 'flame', t: ['دافئة وغنية', 'Warm & rich'], s: ['عنبر · عود · زعفران', 'Amber · oud · saffron'] },
+      { id: 'clean', img: 'white-musk', icon: 'drop', t: ['نظيفة وناعمة', 'Clean & soft'], s: ['مسك أبيض · قطن', 'White musk · cotton'] },
+      { id: 'floral', img: 'rose-oud', icon: 'rosette', t: ['زهرية ومنعشة', 'Floral & fresh'], s: ['ورد طائفي · ياسمين', 'Taif rose · jasmine'] },
+      { id: 'woody', img: 'black-oud', icon: 'mabkhara', t: ['خشبية ودخانية', 'Woody & smoky'], s: ['عود · بخور · صندل', 'Oud · bakhoor · sandalwood'] }] },
     { key: 'when', q: ['متى تستخدمه غالباً؟', 'When will you wear it most?'], short: ['متى؟', 'When?'], opts: [
-      { id: 'day', icon: 'clock', t: ['كل يوم', 'Every day'], s: ['للعمل والمشاوير', 'Work and errands'] },
-      { id: 'evening', icon: 'star', t: ['المساء والمناسبات', 'Evenings & occasions'], s: ['أعراس وعزايم', 'Weddings and dinners'] },
-      { id: 'majlis', icon: 'mabkhara', t: ['المجلس', 'The majlis'], s: ['استقبال الضيوف', 'Receiving guests'] }] },
+      { id: 'day', img: 'citrus-oud', icon: 'clock', t: ['كل يوم', 'Every day'], s: ['للعمل والمشاوير', 'Work and errands'] },
+      { id: 'evening', img: 'blue-oud', icon: 'star', t: ['المساء والمناسبات', 'Evenings & occasions'], s: ['أعراس وعزايم', 'Weddings and dinners'] },
+      { id: 'majlis', img: 'santal-oud', icon: 'mabkhara', t: ['المجلس', 'The majlis'], s: ['استقبال الضيوف', 'Receiving guests'] }] },
     { key: 'power', q: ['كم تحب أن يفوح؟', 'How strong should it be?'], short: ['القوة', 'Strength'], opts: [
-      { id: 'soft', icon: 'drop', t: ['هادئ', 'Soft'], s: ['قريب من البشرة', 'Close to the skin'] },
-      { id: 'medium', icon: 'spray', t: ['متوسط', 'Medium'], s: ['يُشم عند الاقتراب', 'Noticed up close'] },
-      { id: 'strong', icon: 'flame', t: ['فوّاح', 'Strong'], s: ['يملأ المكان', 'Fills the room'] }] }
+      { id: 'soft', img: 'white-musk', icon: 'drop', t: ['هادئ', 'Soft'], s: ['قريب من البشرة', 'Close to the skin'] },
+      { id: 'medium', img: 'amber-noir', icon: 'spray', t: ['متوسط', 'Medium'], s: ['يُشم عند الاقتراب', 'Noticed up close'] },
+      { id: 'strong', img: 'black-oud', icon: 'flame', t: ['فوّاح', 'Strong'], s: ['يملأ المكان', 'Fills the room'] }] }
   ];
 
   DAO.sets = {

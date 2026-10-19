@@ -39,6 +39,7 @@
     idx: { bakhoor: ['معمول وكسر عود', 'Maamoul and oud chips'], perfume: ['خمسة منها على قاعدة عود', 'Five of them built on oud'], mukh: ['ورد الطائف للشعر والملابس', 'Taif rose, for hair and clothes'], musk: ['مسك عنبر معتّق', 'Aged amber musk'] },
     storyT: ['عود من المصدر، ويُخلط في الرياض', 'Oud from the source, mixed in Riyadh'],
     storyAlt: ['زجاجة عود رويال على حجر أسود بجانب خشب العود وراتنج العنبر', 'An Oud Royal bottle on black stone beside oud wood and amber resin'],
+    lean: ['نميل حتى الآن إلى', 'Leaning toward'], qPick: ['اخترت', 'Chosen'],
     aOne: ['منتج واحد', '1 product'], aTwo: ['منتجان', '2 products'],
     gOver: ['صندوق الهدايا', 'Gift box'], gT: ['جهّز هدية العيد من هنا', 'Put together an Eid gift'],
     gB: ['اختر الصندوق، ضع فيه ثلاث قطع، ونكتب بطاقتك بخط اليد. يصل مغلّفاً خلال يومين إلى أربعة.', 'Choose the box, fill it with three pieces, and we hand-write your card. It arrives wrapped in 2-4 days.'],
@@ -343,12 +344,15 @@
   function pageQuiz() {
     const Q = D.quiz, st = S.quiz.step, q = Q[st], d = isDesk(), sel = S.quiz.ans[q.key];
     const dots = Q.map((x, i) => `<span class="qdot ${i < st ? 'is-done' : i === st ? 'is-now' : ''}"><i>${i < st ? ic('check') : num(i + 1)}</i><b>${L(x.short)}</b></span>`).join('');
-    const opts = q.opts.map(o => `<button class="opt" data-act="qopt" data-v="${o.id}" aria-pressed="${sel === o.id}"><span class="opt__mark">${ic('check')}</span><span class="opt__ring">${ic(o.icon)}</span><span class="opt__t">${L(o.t)}</span><span class="opt__s">${L(o.s)}</span></button>`).join('');
+    const opts = q.opts.map(o => `<button class="opt" data-act="qopt" data-v="${o.id}" aria-pressed="${sel === o.id}"><span class="opt__img">${pic(o.img, L(o.t), '(min-width:1024px) 220px, 44vw', true)}</span><span class="opt__row"><span class="opt__mark">${ic('check')}</span><span class="opt__t">${L(o.t)}</span></span><span class="opt__s">${L(o.s)}</span></button>`).join('');
+    const lead = S.quiz.ans.mood && st > 1 ? D.byId(D.sets[S.quiz.ans.mood].items[0][0]) : null;
+    const lean = lead ? `<p class="lean">${thumbOf(lead, 'lean__img')}<span><span class="muted">${t('lean')}</span> <b>${esc(pname(lead))}</b></span></p>` : '';
     return `<section class="wrap" style="padding-block:${d ? '56px 96px' : '24px 64px'}"><div class="quizcard">
       <div><div class="fgroup__label"><span class="t-label gold">${t('qOf', { n: num(st + 1) })}</span><span class="t-label muted">${t('quizName')}</span></div><div class="qbar" style="margin-top:12px"><i style="width:${(st + (sel ? 1 : 0.5)) / 4 * 100}%"></i></div><div class="qdots">${dots}</div></div>
       <div class="qstage"><div class="${S.quiz.dir === 'next' ? 'qin-next' : 'qin-prev'}">
         <div class="stack" style="text-align:center;display:flex;flex-direction:column;align-items:center;margin-top:${d ? 40 : 28}px"><p class="t-over">${t('findYours')}</p><h1 class="${d ? 't-display' : 't-h1'}" style="--g:12px">${L(q.q)}</h1><p class="t-small muted" style="--g:10px">${t('pickOne')}</p></div>
         <div class="opts n${q.opts.length}" style="margin-top:${d ? 40 : 28}px">${opts}</div>
+        ${lean}
       </div></div>
       <div class="qnav" style="margin-top:${d ? 40 : 28}px"><button class="btn btn--secondary" data-act="qback">${t('back')}</button><button class="btn btn--primary" data-act="qnext" ${sel ? '' : 'disabled'}>${st === 3 ? t('seeSet') : t('next')}</button></div>
     </div></section>`;
@@ -360,14 +364,17 @@
     const answers = D.quiz.map(q => { const o = q.opts.find(x => x.id === S.quiz.ans[q.key]); return o ? `<span>${L(o.t)}</span>` : ''; }).join('');
     const items = set.items.map(([id, s], i) => { const p = D.byId(id), z = p.sizes[s]; return `${i ? '<hr class="hair">' : ''}<div class="setitem">${thumbOf(p)}<div class="setitem__t"><p class="t-label muted">${pmeta(p)}</p><a class="t-bodyb" href="#/p/${p.id}">${esc(pname(p))}</a><p class="t-label muted">${L([z.ar, z.en])}</p></div><span class="t-small">${money(z.price)}</span></div>`; }).join('');
     const famWord = L(D.fams[set.more]);
-    const also = D.products.filter(p => !set.items.some(([id]) => id === p.id)).filter(p => p.fam === set.more || p.cat === 'bakhoor').slice(0, d ? 4 : 2);
+    const pool = D.products.filter(p => p.img && !set.items.some(([id]) => id === p.id));
+    const also = [...pool.filter(p => p.fam === set.more), ...pool.filter(p => p.fam !== set.more)].slice(0, d ? 4 : 2);
     const head = `<div class="stack"><p class="t-over">${t('yourResult')}</p><h1 class="${d ? 't-display' : 't-h1'}" style="--g:12px">${L(set.title)}</h1><p class="t-body muted" style="--g:16px">${L(set.why)}</p>${answers ? `<p class="t-label muted" style="--g:28px">${t('basedOn')}</p><div class="answers" style="--g:10px">${answers}</div>` : ''}</div>`;
     const panel = `<div class="tabpanel"><span class="tabpanel__tab">${t('your3')}</span><div class="tabpanel__box" style="padding:40px 20px 24px;gap:18px;text-align:start;align-items:stretch">
       <div style="display:flex;flex-direction:column;gap:14px">${items}</div><hr class="hair">
       <div class="fgroup__label"><div><p class="t-small muted">${t('setPrice')}</p><p style="display:flex;gap:8px;align-items:baseline"><span class="t-h2">${money(price)}</span><span class="was">${money(sum)}</span></p></div><span class="badge badge--gold">${t('saveX', { x: money(sum - price) })}</span></div>
       <button class="btn btn--primary btn--block" data-act="setcart">${t('addSet')}</button>
       <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap"><a class="btn btn--ghost" href="#/quiz" data-act="qreset">${t('retake')}${ic('chev', 'flip')}</a><a class="btn btn--ghost" href="#/shop?fam=${set.more}">${t('shopFam', { f: famWord })}${ic('chev', 'flip')}</a></div></div></div>`;
-    return `<section class="wrap" style="padding-block:${d ? '64px 48px' : '32px'}"><div class="result">${head}<div style="margin-top:${d ? 0 : 28}px">${panel}</div></div></section>
+    const leadP = D.byId(set.items[0][0]);
+    const arch = `<div class="arch arch--result" aria-hidden="true"><svg class="arch__line arch__line--out" viewBox="0 0 200 280" preserveAspectRatio="none"><path pathLength="1" d="M2 280V122C2 64 50 32 100 3c50 29 98 61 98 119v158"/></svg><div class="arch__img">${pic(leadP.img, pname(leadP), '(min-width:1024px) 340px, 70vw', true)}</div><svg class="arch__line arch__line--in" viewBox="0 0 200 280"><path pathLength="1" d="M2 280V122C2 64 50 32 100 3c50 29 98 61 98 119v158"/></svg></div>`;
+    return `<section class="wrap" style="padding-block:${d ? '64px 48px' : '32px'}"><div class="result"><div class="result__l">${head}${arch}</div><div style="margin-top:${d ? 0 : 28}px">${panel}</div></div></section>
     <section class="wrap" style="padding-block:${d ? '32px 80px' : '16px 48px'}">${secHead(t('alsoLike'), null, d)}<div class="grid">${also.map(card).join('')}</div></section>`;
   }
 
@@ -401,7 +408,7 @@
   function closeCart() { document.body.classList.remove('cart-open'); $('#drawer').setAttribute('aria-hidden', 'true'); }
   function refreshCart() { if (document.body.classList.contains('cart-open')) $('#drawer').innerHTML = drawer(); document.querySelectorAll('.bag__n').forEach(b => b.textContent = cartCount() ? num(cartCount()) : ''); }
 
-  let toastT;
+  let toastT, qAuto;
   function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2200); }
 
   /* ---------- render ---------- */
@@ -475,9 +482,9 @@
       case 'gadd': { if (S.gift.items.length < 3) { const p = D.byId(el.dataset.id); S.gift.items.push({ id: p.id, size: p.cat === 'perfume' ? 2 : 0 }); saveGift(); render(true); } break; }
       case 'gdel': S.gift.items.splice(+el.dataset.i, 1); saveGift(); render(true); break;
       case 'gcart': { if (S.gift.items.length === 3) { S.cart.push({ type: 'box', uid: Date.now(), box: S.gift.box, theme: S.gift.theme, items: S.gift.items.slice(), msg: S.gift.msg, price: giftTotal(), qty: 1 }); saveCart(); bumpBag(); toast(t('boxAdded')); openCart(); } break; }
-      case 'qopt': S.quiz.ans[D.quiz[S.quiz.step].key] = el.dataset.v; el.parentNode.querySelectorAll('.opt').forEach(o => o.setAttribute('aria-pressed', o === el)); $('[data-act="qnext"]').disabled = false; $('.qbar i').style.width = (S.quiz.step + 1) / 4 * 100 + '%'; break;
-      case 'qnext': if (S.quiz.step < 3) { S.quiz.step++; S.quiz.dir = 'next'; render(true); } else { location.hash = '#/quiz/result'; } break;
-      case 'qback': if (S.quiz.step > 0) { S.quiz.step--; S.quiz.dir = 'prev'; render(true); } else { location.hash = '#/'; } break;
+      case 'qopt': { const step = S.quiz.step; S.quiz.ans[D.quiz[step].key] = el.dataset.v; el.parentNode.querySelectorAll('.opt').forEach(o => o.setAttribute('aria-pressed', o === el)); $('[data-act="qnext"]').disabled = false; $('.qbar i').style.width = (step + 1) / 4 * 100 + '%'; clearTimeout(qAuto); if (step < 3) qAuto = setTimeout(() => { if (S.quiz.step === step && route()[0] === 'quiz' && !location.hash.includes('result')) { S.quiz.step++; S.quiz.dir = 'next'; render(true); } }, 520); break; }
+      case 'qnext': clearTimeout(qAuto); if (S.quiz.step < 3) { S.quiz.step++; S.quiz.dir = 'next'; render(true); } else { location.hash = '#/quiz/result'; } break;
+      case 'qback': clearTimeout(qAuto); if (S.quiz.step > 0) { S.quiz.step--; S.quiz.dir = 'prev'; render(true); } else { location.hash = '#/'; } break;
       case 'qreset': S.quiz = { step: 0, ans: {}, dir: 'next' }; break;
       case 'setcart': { const m = S.quiz.ans.mood || 'warm', set = D.sets[m]; S.cart.push({ type: 'set', uid: Date.now(), mood: m, items: set.items.map(([id, size]) => ({ id, size })), price: setPrices(set).price, qty: 1 }); saveCart(); bumpBag(); toast(t('setAdded')); openCart(); break; }
       case 'cdel': S.cart.splice(+el.dataset.i, 1); saveCart(); refreshCart(); break;

@@ -15,15 +15,16 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/hero-360.webp" imagesrcset="assets/img/hero-360.webp 360w, assets/img/hero-720.webp 720w" imagesizes="(min-width:1024px) 370px, 236px">
-<link rel="stylesheet" href="assets/css/style.css?v=5">
+<link rel="preload" href="assets/fonts/ReemKufi-arabic-8.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/BodoniModa-latin-0.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=6">
+<link rel="preload" as="image" href="assets/img/hero-720.webp" imagesrcset="assets/img/hero-360.webp 360w, assets/img/hero-720.webp 720w" imagesizes="(min-width:1024px) 535px, 80vw">
+<link rel="stylesheet" href="assets/css/style.css?v=6">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+    <clipPath id="arch-clip" clipPathUnits="objectBoundingBox"><path d="M0.01,1V0.4357C0.01,0.2286,0.25,0.1143,0.5,0.0107C0.75,0.1143,0.99,0.2286,0.99,0.4357V1Z"/></clipPath>
     <symbol id="i-mabkhara" viewBox="0 0 24 24"><path d="M4.5 11h15"/><path d="M6 11c.5 2.5 2.8 4 6 4s5.5-1.5 6-4"/><path d="M10.5 15v2.5h3V15"/><path d="M8 21l1.2-3.5h5.6L16 21z"/><path d="M12 8.5c-1.2-1.3 1.2-2.2 0-4"/><path d="M9 8.8c-.9-1 .9-1.7 0-3"/><path d="M15 8.8c-.9-1 .9-1.7 0-3"/></symbol>
     <symbol id="i-bottle" viewBox="0 0 24 24"><rect x="9.5" y="2.5" width="5" height="3" rx=".5"/><path d="M10.5 5.5v2M13.5 5.5v2"/><rect x="6" y="7.5" width="12" height="14" rx="1.5"/><rect x="9" y="11.5" width="6" height="6" rx=".5"/></symbol>
     <symbol id="i-jar" viewBox="0 0 24 24"><rect x="5.5" y="4" width="13" height="3.5" rx="1"/><path d="M6 7.5h12c.8 0 1.5.7 1.5 1.5v10.5c0 .8-.7 1.5-1.5 1.5H6c-.8 0-1.5-.7-1.5-1.5V9c0-.8.7-1.5 1.5-1.5z"/><path d="M12 11l2.5 3-2.5 3-2.5-3z"/></symbol>
@@ -62,6 +63,8 @@
   </defs>
 </svg>
 <a class="sr-only" href="#main">تخطَّ إلى المحتوى</a>
+<div class="announce" id="announce"></div>
+<div class="sentinel" id="sentinel" aria-hidden="true"></div>
 <header class="hdr" id="hdr"></header>
 <div class="menu" id="menu" role="dialog" aria-modal="true"></div>
 <main id="main" tabindex="-1"></main>
@@ -69,7 +72,7 @@
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true"></aside>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="assets/js/data.js?v=5"></script>
-<script src="assets/js/app.js?v=5"></script>
+<script src="assets/js/data.js?v=6"></script>
+<script src="assets/js/app.js?v=6"></script>
 </body>
 </html>

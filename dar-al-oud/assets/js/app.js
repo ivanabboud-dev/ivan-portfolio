@@ -30,14 +30,18 @@
     menu: ['القائمة', 'Menu'], search: ['بحث', 'Search'], account: ['الحساب', 'Account'], bag: ['السلة', 'Bag'], close: ['إغلاق', 'Close'],
     otherLang: ['EN', 'ع'], otherLangName: ['English', 'العربية'],
     over: ['دار العود · الرياض', 'Dar Al Oud · Riyadh'],
-    h1: ['فخامة الرائحة...', 'Rich scent'], h2: ['تبدأ من هنا', 'starts here.'],
-    heroSub: ['دهن عود كمبودي معتّق ثلاث سنوات، ومعمول نخلطه كل خميس في محلنا بالرياض.', 'Cambodian oud oil aged three years, and maamoul we mix every Thursday in our Riyadh shop.'],
+    h1: ['عود كمبودي', 'Cambodian oud,'], h2: ['معتّق ثلاث سنوات', 'aged three years.'],
+    heroSub: ['نخلط المعمول كل خميس في محلنا بالرياض، ونوصل داخل السعودية والإمارات.', 'We mix maamoul every Thursday in our Riyadh shop, and deliver across Saudi Arabia and the UAE.'],
     shopNow: ['تسوّق الآن', 'Shop now'], findScent: ['اكتشف عطرك', 'Find your scent'],
-    svcDelivery: ['توصيل ٢–٤ أيام', '2–4 day delivery'], svcCod: ['الدفع عند الاستلام', 'Cash on delivery'], svcBnpl: ['تابي وتمارا', 'Tabby & Tamara'],
+    svcDelivery: ['توصيل ٢-٤ أيام', '2-4 day delivery'], svcCod: ['الدفع عند الاستلام', 'Cash on delivery'], svcBnpl: ['تابي وتمارا', 'Tabby & Tamara'],
     catTab: ['يتوفر لدينا', 'We carry'], catTitle: ['جميع أنواع البخور والعطور والمخمريات والمسكيات', 'Bakhoor, perfume, mukhamariya and musk'],
-    best: ['الأكثر مبيعاً', 'Best sellers'], viewAll: ['عرض الكل', 'View all'],
+    best: ['الأكثر مبيعاً', 'Best sellers'], viewAll: ['عرض الكل', 'View all'], add: ['أضف', 'Add'],
+    idx: { bakhoor: ['معمول وكسر عود', 'Maamoul and oud chips'], perfume: ['خمسة منها على قاعدة عود', 'Five of them built on oud'], mukh: ['ورد الطائف للشعر والملابس', 'Taif rose, for hair and clothes'], musk: ['مسك عنبر معتّق', 'Aged amber musk'] },
+    storyT: ['عود من المصدر، ويُخلط في الرياض', 'Oud from the source, mixed in Riyadh'],
+    storyAlt: ['زجاجة عود رويال على حجر أسود بجانب خشب العود وراتنج العنبر', 'An Oud Royal bottle on black stone beside oud wood and amber resin'],
+    aOne: ['منتج واحد', '1 product'], aTwo: ['منتجان', '2 products'],
     gOver: ['صندوق الهدايا', 'Gift box'], gT: ['جهّز هدية العيد من هنا', 'Put together an Eid gift'],
-    gB: ['اختر الصندوق، ضع فيه ثلاث قطع، ونكتب بطاقتك بخط اليد. يصل مغلّفاً خلال يومين إلى أربعة.', 'Choose the box, fill it with three pieces, and we hand-write your card. It arrives wrapped in 2–4 days.'],
+    gB: ['اختر الصندوق، ضع فيه ثلاث قطع، ونكتب بطاقتك بخط اليد. يصل مغلّفاً خلال يومين إلى أربعة.', 'Choose the box, fill it with three pieces, and we hand-write your card. It arrives wrapped in 2-4 days.'],
     gCta: ['ابدأ صندوقك', 'Start your box'],
     qT: ['ما عطرك؟', 'Which scent is yours?'], qB: ['أجب عن ٤ أسئلة ونقترح لك ٣ قطع تناسب بعضها.', 'Answer 4 questions and we suggest 3 pieces that go together.'], qCta: ['ابدأ الاختبار', 'Take the quiz'],
     trust: [
@@ -104,8 +108,8 @@
   const pname = p => AR() ? p.ar : p.en;
   const pmeta = p => { const a = L(D.catSingle[p.cat]), b = L(D.fams[p.fam]); return a === b ? a : `${a} · ${b}`; };
   const pic = (name, alt, sizes = '(min-width:1024px) 282px, 50vw', eager) => `<img src="assets/img/${name}-400.webp" srcset="assets/img/${name}-400.webp 400w, assets/img/${name}-800.webp 800w" sizes="${sizes}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" width="400" height="400">`;
-  const slot = label => `<div class="slot">${ic('image')}<b>IMAGE SLOT</b><small>${esc(label)}</small></div>`;
-  const thumbOf = (p, cls = 'thumb') => `<span class="${cls}">${p.img ? pic(p.img, pname(p), '120px') : ic('image')}</span>`;
+  const slot = (label, icon = 'image') => `<div class="slot">${ic(icon)}<b>IMAGE SLOT</b><small>${esc(label)}</small></div>`;
+  const thumbOf = (p, cls = 'thumb') => `<span class="${cls}">${p.img ? pic(p.img, pname(p), '120px') : ic(D.cats[p.cat][2])}</span>`;
 
   /* ---------- cart ---------- */
   const isBundle = l => l.type === 'box' || l.type === 'set';
@@ -130,84 +134,88 @@
   const bagBtn = () => `<button class="bag" data-act="cart" aria-label="${t('bag')}">${ic('bag')}<span class="bag__n">${cartCount() ? num(cartCount()) : ''}</span></button>`;
   const seg = () => `<div class="seg" role="group" aria-label="SAR / AED"><button data-act="cur" data-v="SAR" aria-pressed="${S.cur === 'SAR'}">SAR</button><button data-act="cur" data-v="AED" aria-pressed="${S.cur === 'AED'}">AED</button></div>`;
   const navItems = () => [['#/', t('home')], ['#/shop?cat=bakhoor', L(D.cats.bakhoor)], ['#/shop?cat=perfume', L(D.cats.perfume)], ['#/shop?cat=mukh', L(D.cats.mukh)], ['#/shop?cat=musk', L(D.cats.musk)], ['#/gift', t('giftbox')], ['#/quiz', t('finder')]];
+  const countLabel = n => AR() ? (n === 1 ? t('aOne') : n === 2 ? t('aTwo') : `${num(n)} ${n <= 10 ? 'منتجات' : 'منتجًا'}`) : (n === 1 ? t('aOne') : `${n} ${t('products')}`);
+  function announce() { return `<span class="m">${t('announceM')}</span><span class="d">${t('announceD')}</span>`; }
   function header() {
     const route = location.hash || '#/';
-    return `<div class="announce"><span class="m">${t('announceM')}</span><span class="d">${t('announceD')}</span></div>
-    <div class="hdr__bar">
-      <div class="hdr__start"><button data-act="menu" aria-label="${t('menu')}">${ic('menu')}</button><a href="#/shop" aria-label="${t('search')}">${ic('search')}</a></div>
+    return `<div class="hdr__bar">
+      <div class="hdr__start"><button class="burger" data-act="menu" aria-label="${t('menu')}" aria-expanded="false"><i></i><i></i></button><a class="search" href="#/shop" aria-label="${t('search')}">${ic('search')}</a></div>
       ${wordmark()}
       <nav class="hdr__nav" aria-label="main">${navItems().map(([h, l]) => `<a href="${h}" ${h === route || (h === '#/' && route === '#/') ? 'aria-current="page"' : ''}>${l}</a>`).join('')}</nav>
-      <div class="hdr__tools"><a href="#/shop" aria-label="${t('search')}">${ic('search')}</a><button data-act="account" aria-label="${t('account')}">${ic('user')}</button>${seg()}${langBtn()}${bagBtn()}</div>
+      <div class="hdr__tools"><a class="bag search" href="#/shop" aria-label="${t('search')}">${ic('search')}</a>${seg()}${langBtn()}${bagBtn()}</div>
       <div class="hdr__end">${langBtn()}${bagBtn()}</div>
     </div>`;
   }
   function menu() {
-    return `<div class="menu__top">${wordmark()}<button data-act="menu" aria-label="${t('close')}">${ic('close')}</button></div>
-      ${navItems().map(([h, l]) => `<a href="${h}" data-act="menu-go">${l}</a>`).join('')}
-      <div style="display:flex;gap:12px;align-items:center;margin-top:20px">${langBtn()}${seg()}</div>`;
+    return `${navItems().map(([h, l], i) => `<a href="${h}" data-act="menu-go" style="--i:${i}"><span>${l}</span></a>`).join('')}
+      <div class="menu__foot">${langBtn()}${seg()}</div>`;
   }
   function footer() {
     const shopLinks = ['bakhoor', 'perfume', 'mukh', 'musk'].map(c => `<a href="#/shop?cat=${c}">${L(D.cats[c])}</a>`).join('') + `<a href="#/gift">${t('giftbox')}</a>`;
-    const wa = full => `<a class="btn btn--wa ${full ? 'btn--block' : ''}" href="https://wa.me/?text=${encodeURIComponent(t('brand'))}" target="_blank" rel="noopener">${ic('wa')}${t(full ? 'chatWa' : 'chatWaD')}</a>`;
     return `<div class="wrap">
       <div class="ftr__top">
-        <div class="ftr__brand"><div class="wmfull"><span class="wmfull__emb">${ic('mabkhara')}</span><span class="wmfull__n">${t('brand')}</span><svg class="divider" viewBox="0 0 180 10" aria-hidden="true" style="width:150px"><use href="#o-divider"/></svg><span class="wmfull__t">${t('tagline')}</span></div><p class="t-small muted">${t('blurb')}</p></div>
+        <div class="ftr__brand">${wordmark()}<p class="ftr__tag">${t('tagline')}</p><p class="t-small muted" style="max-width:30em">${t('blurb')}</p></div>
         <div class="ftr__cols">
           <div class="ftr__col"><h3 class="t-h3 gold">${t('shop')}</h3>${shopLinks}</div>
           <div class="ftr__col"><h3 class="t-h3 gold">${t('help')}</h3>${W.helpLinks.map(h => `<a href="#/">${L(h)}</a>`).join('')}</div>
         </div>
-        <div class="ftr__contact"><h3 class="t-h3 gold" style="margin-bottom:12px">${t('contact')}</h3><p class="t-small" style="margin-bottom:12px">${t('hours')}</p>${wa(false)}</div>
-        <div class="ftr__wa-m">${wa(true)}</div>
+        <div class="ftr__col ftr__contact"><h3 class="t-h3 gold">${t('contact')}</h3><p>${t('hours')}</p><a class="btn btn--wa" href="https://wa.me/?text=${encodeURIComponent(t('brand'))}" target="_blank" rel="noopener">${ic('wa')}${t('chatWa')}</a></div>
       </div>
       <div class="pays">${W.pays.map(p => `<span>${L(p)}</span>`).join('')}</div>
       <div class="ftr__bottom"><span class="t-small muted">${t('copy')}</span><span class="demo-label">${t('demo')}</span></div>
     </div>`;
   }
   function card(p) {
-    const badge = p.badge ? `<span class="badge ${p.badge === 'best' ? 'badge--gold' : 'badge--outline'}">${t(p.badge === 'best' ? 'best1' : 'new1')}</span>` : '';
+    const badge = p.badge ? `<span class="badge">${t(p.badge === 'best' ? 'best1' : 'new1')}</span>` : '';
     const liked = S.wish.includes(p.id);
     return `<article class="card">
-      <div class="card__media"><a href="#/p/${p.id}" aria-label="${esc(pname(p))}">${p.img ? pic(p.img, pname(p)) : slot(p.slot || p.en)}</a>
-        <div class="card__top">${badge}<button class="card__wish" data-act="wish" data-id="${p.id}" aria-pressed="${liked}" aria-label="${t('save')}">${ic('heart')}</button></div></div>
-      <div class="card__info"><p class="card__meta">${pmeta(p)}</p><a class="card__name" href="#/p/${p.id}">${esc(pname(p))}</a>
-        <div class="card__row"><span class="card__price t-price">${money(p.price)}</span><button class="card__add" data-act="add" data-id="${p.id}" aria-label="${t('addToCart')}: ${esc(pname(p))}">${ic('plus')}</button></div></div>
+      <a class="card__media" href="#/p/${p.id}" aria-label="${esc(pname(p))}" tabindex="-1">${p.img ? pic(p.img, pname(p)) : slot(p.slot || p.en, D.cats[p.cat][2])}</a>
+      <div class="card__info">
+        <div class="card__meta"><span>${pmeta(p)}</span><button class="card__wish" data-act="wish" data-id="${p.id}" aria-pressed="${liked}" aria-label="${t('save')}">${ic('heart')}</button></div>
+        <a class="card__name" href="#/p/${p.id}">${esc(pname(p))}</a>
+        <div class="card__row"><span style="display:flex;align-items:baseline;gap:12px"><span class="card__price t-price">${money(p.price)}</span>${badge}</span><button class="card__add" data-act="add" data-id="${p.id}" aria-label="${t('addToCart')}: ${esc(pname(p))}">${ic('plus')}${t('add')}</button></div>
+      </div>
     </article>`;
   }
-  const secHead = (title, link, big) => `<div class="sec-head"><h2 class="${big ? 't-h1' : 't-h2'} gold">${title}</h2>${link ? `<a class="btn btn--ghost" href="${link[1]}">${link[0]}${ic('chev', 'flip')}</a>` : ''}</div>`;
+  const secHead = (title, link, big) => `<div class="sec-head"><h2 class="${big ? 't-h1' : 't-h2'}">${title}</h2>${link ? `<a class="btn btn--ghost" href="${link[1]}">${link[0]}${ic('chev', 'flip')}</a>` : ''}</div>`;
   const isDesk = () => matchMedia('(min-width:1024px)').matches;
 
   /* ---------- pages ---------- */
   function pageHome() {
-    const cats = ['bakhoor', 'perfume', 'mukh', 'musk'].map(c => `<a class="cat" href="#/shop?cat=${c}"><span class="cat__ring">${ic(D.cats[c][2])}</span>${L(D.cats[c])}</a>`).join('');
+    const rows = ['bakhoor', 'perfume', 'mukh', 'musk'].map(c => `<a class="idx__row" href="#/shop?cat=${c}"><span class="idx__name">${L(D.cats[c])}</span><span class="idx__desc">${L(W.idx[c])}</span><span class="idx__go">${countLabel(D.products.filter(p => p.cat === c).length)}${ic('chev', 'flip')}</span></a>`).join('');
     const bs = ['oud-royal', 'black-oud', 'white-musk', 'amber-noir'].map(D.byId);
-    const d = isDesk();
+    const trio = ['oud-royal', 'white-musk', 'amber-noir'].map(D.byId).map(p => `<figure>${pic(p.img, pname(p), '(min-width:1024px) 280px, 30vw')}</figure>`).join('');
     return `
-    <section class="hero"><div class="wrap hero__grid">
-      <div class="hero__visual" aria-hidden="true">
-        <svg class="arch-line arch-line--out" viewBox="0 0 200 280" preserveAspectRatio="none"><use href="#o-arch"/></svg>
-        <div class="arch-photo"><img src="assets/img/hero-360.webp" srcset="assets/img/hero-360.webp 360w, assets/img/hero-720.webp 720w" sizes="(min-width:1024px) 370px, 236px" alt="" fetchpriority="high" width="360" height="504"></div>
-        <svg class="arch-line arch-line--in" viewBox="0 0 200 280" preserveAspectRatio="none"><use href="#o-arch"/></svg>
-        <svg class="smoke" viewBox="0 0 120 260" preserveAspectRatio="none"><use href="#o-smoke"/></svg>
+    <section class="hero"><div class="wrap">
+      <div class="hero__grid">
+        <div class="hero__text">
+          <p class="t-over" data-in style="--i:0">${t('over')}</p>
+          <h1 class="hero__h"><span class="line"><span class="t-dxl">${t('h1')}</span></span><span class="line"><span class="t-dxl gold">${t('h2')}</span></span></h1>
+          <p class="t-body hero__lead" data-in style="--i:1">${t('heroSub')}</p>
+          <div class="hero__ctas" data-in style="--i:2"><a class="btn btn--primary" href="#/shop">${t('shopNow')}${ic('chev', 'flip')}</a><a class="btn btn--link" href="#/quiz">${t('findScent')}</a></div>
+        </div>
+        <div class="arch" aria-hidden="true">
+          <svg class="arch__line arch__line--out" viewBox="0 0 200 280" preserveAspectRatio="none"><path pathLength="1" d="M2 280V122C2 64 50 32 100 3c50 29 98 61 98 119v158"/></svg>
+          <div class="arch__img"><img src="assets/img/hero-720.webp" srcset="assets/img/hero-360.webp 360w, assets/img/hero-720.webp 720w" sizes="(min-width:1024px) 535px, 80vw" alt="" fetchpriority="high" width="720" height="1008"></div>
+          <svg class="arch__line arch__line--in" viewBox="0 0 200 280"><path pathLength="1" d="M2 280V122C2 64 50 32 100 3c50 29 98 61 98 119v158"/></svg>
+          <svg class="smoke" viewBox="0 0 120 260" preserveAspectRatio="none"><use href="#o-smoke"/></svg>
+        </div>
       </div>
-      <div class="hero__text stack">
-        <p class="t-over">${t('over')}</p>
-        <h1 class="hero__head" style="--g:${d ? 18 : 14}px"><span class="reveal"><span class="${d ? 't-dxl' : 't-display'} gold">${t('h1')}</span></span><span class="reveal"><span class="${d ? 't-dxl' : 't-display'}">${t('h2')}</span></span></h1>
-        <span class="accent-rule" style="--g:${d ? 26 : 20}px"></span>
-        <p class="t-body muted" style="--g:${d ? 26 : 22}px;max-width:460px">${t('heroSub')}</p>
-        <div class="hero__ctas" style="--g:${d ? 36 : 30}px"><a class="btn btn--primary" href="#/shop">${t('shopNow')}</a><a class="btn btn--secondary" href="#/quiz">${t('findScent')}</a></div>
-        <div class="hero__svcs" style="--g:48px"><span class="svc">${ic('truck')}${t('svcDelivery')}</span><span class="svc">${ic('cash')}${t('svcCod')}</span><span class="svc">${ic('card')}${t('svcBnpl')}</span></div>
-      </div>
+      <div class="svcstrip"><span class="svc">${ic('truck')}${t('svcDelivery')}</span><span class="svc">${ic('cash')}${t('svcCod')}</span><span class="svc">${ic('card')}${t('svcBnpl')}</span></div>
     </div></section>
-    <section class="wrap" style="padding-block:${d ? '24px' : '20px 4px'}"><div class="tabpanel"><span class="tabpanel__tab">${t('catTab')}</span><div class="tabpanel__box"><p class="${d ? 't-h2' : 't-h3'}">${t('catTitle')}</p><div class="cats">${cats}</div></div></div></section>
-    <section class="wrap" style="padding-block:${d ? '104px 88px' : '64px 56px'}">${secHead(t('best'), [t('viewAll'), '#/shop'], d)}<div class="grid">${bs.map(card).join('')}</div></section>
-    <section class="gift-band"><div class="wrap gift-band__in">
-      <div class="gift-band__media">${slot('Gift box · open box with 3 pieces and a card')}</div>
-      <div class="gift-band__text stack"><p class="t-over">${t('gOver')}</p><h2 class="${d ? 't-h1' : 't-h2'} gold" style="--g:${d ? 14 : 10}px">${t('gT')}</h2><p class="${d ? 't-body' : 't-small'}" style="--g:${d ? 18 : 14}px">${t('gB')}</p>
-        <div style="--g:${d ? 28 : 22}px;display:flex;gap:8px">${['eid', 'ramadan', 'wedding'].map((o, i) => `<a class="chip ${i === 0 ? 'is-on' : ''}" href="#/gift" data-act="theme-go" data-v="${o}">${t(o)}</a>`).join('')}</div>
-        <a class="btn btn--primary ${d ? '' : 'btn--block'}" href="#/gift" style="--g:${d ? 36 : 28}px">${t('gCta')}</a></div>
+    <section class="wrap sec sec--idx"><div class="idx" data-draw>${rows}</div></section>
+    <section class="wrap sec sec--best">${secHead(t('best'), [t('viewAll'), '#/shop'], true)}<div class="grid grid--stagger">${bs.map(card).join('')}</div></section>
+    <section class="wrap sec sec--story"><div class="story">
+      <div class="story__img">${pic('oud-royal-3', L(W.storyAlt), '(min-width:1024px) 520px, 90vw')}</div>
+      <div><h2 class="t-h1">${t('storyT')}</h2><div class="facts" data-draw>${W.trust.map(([, a, b]) => `<div class="fact"><p class="fact__k">${L(a)}</p><p class="fact__t">${L(b)}</p></div>`).join('')}</div></div>
     </div></section>
-    <section class="wrap" style="padding-block:${d ? '72px 0' : '56px 44px'}"><div class="quiz-strip"><span class="quiz-strip__n">${num(4)}</span><div class="stack" style="flex:1"><h2 class="${d ? 't-h1' : 't-h2'}">${t('qT')}</h2><p class="${d ? 't-body' : 't-small'} muted" style="--g:${d ? 8 : 6}px">${t('qB')}</p></div>${d ? `<a class="btn btn--secondary" href="#/quiz">${t('qCta')}</a>` : ''}</div>${d ? '' : `<a class="btn btn--secondary btn--block" href="#/quiz" style="margin-top:26px">${t('qCta')}</a>`}</section>
-    <section class="wrap" style="padding-block:${d ? '56px 112px' : '4px 72px'}"><div class="trust">${W.trust.map(([i, a, b]) => `<div class="trust__item">${ic(i)}<div class="stack"><h3 class="${d ? 't-h3' : 't-bodyb'}">${L(a)}</h3><p class="t-small muted" style="--g:${d ? 6 : 3}px">${L(b)}</p></div></div>`).join('')}</div></section>`;
+    <section class="gift-band"><div class="wrap sec sec--gift"><div class="gift-band__in">
+      <div class="stack"><p class="t-over">${t('gOver')}</p><h2 class="t-h1" style="--g:14px">${t('gT')}</h2><p class="t-body muted" style="--g:18px;max-width:26em">${t('gB')}</p>
+        <div class="chips" style="--g:28px">${['eid', 'ramadan', 'wedding'].map((o, i) => `<a class="chip ${i === 0 ? 'is-on' : ''}" href="#/gift" data-act="theme-go" data-v="${o}">${t(o)}</a>`).join('')}</div>
+        <div style="--g:32px"><a class="btn btn--primary" href="#/gift">${t('gCta')}${ic('chev', 'flip')}</a></div></div>
+      <div class="trio" aria-hidden="true">${trio}</div>
+    </div></div></section>
+    <section class="wrap sec sec--quiz"><div class="quiz-strip"><span class="quiz-strip__n">${num(4)}</span><div class="stack"><h2 class="t-h1">${t('qT')}</h2><p class="t-body muted" style="--g:8px">${t('qB')}</p></div><a class="btn btn--secondary" href="#/quiz">${t('qCta')}</a></div></section>`;
   }
 
   function parseQuery() { const q = (location.hash.split('?')[1] || ''); const o = {}; q.split('&').filter(Boolean).forEach(kv => { const [k, v] = kv.split('='); o[k] = decodeURIComponent(v || ''); }); return o; }
@@ -233,9 +241,9 @@
     const famChips = [['', t('all')], ...Object.entries(D.fams).map(([k, v]) => [k, L(v)])].map(([k, l]) => `<button class="chip" data-act="fchip" data-k="fam" data-v="${k}" aria-pressed="${k ? f.fam.length === 1 && f.fam[0] === k : !f.fam.length}">${l}</button>`).join('');
     const typeChips = [['', t('all')], ...Object.entries(D.catSingle).map(([k, v]) => [k, L(v)])].map(([k, l]) => `<button class="chip" data-act="fchip" data-k="cat" data-v="${k}" aria-pressed="${k ? f.cat.length === 1 && f.cat[0] === k : !f.cat.length}">${l}</button>`).join('');
     const checks = (k, map, key) => [['', t('all'), D.products.length], ...Object.entries(map).map(([v, l]) => [v, L(l), countBy(key, v)])].map(([v, l, n]) => `<label class="check"><input type="checkbox" data-act="fcheck" data-k="${k}" data-v="${v}" ${v ? (f[k].includes(v) ? 'checked' : '') : (!f[k].length ? 'checked' : '')}><span class="check__box">${ic('check')}</span><span class="check__t">${l}</span><span class="check__n">${num(n)}</span></label>`).join('');
-    const title = `<div class="stack"><p class="crumbs"><a href="#/">${t('home')}</a>  /  ${t('allProducts')}</p><h1 class="t-h1 gold" style="--g:16px">${t('allProducts')}</h1></div>`;
+    const title = `<div class="stack"><p class="crumbs"><a href="#/">${t('home')}</a>  /  ${t('allProducts')}</p><h1 class="t-h1" style="--g:16px">${t('allProducts')}</h1></div>`;
     const sort = `<label class="sort"><span class="sr-only">${t('sort')}</span><select data-act="sort">${[['best', 'sortBest'], ['low', 'sortLow'], ['high', 'sortHigh'], ['new', 'sortNew']].map(([v, k]) => `<option value="${v}" ${f.sort === v ? 'selected' : ''}>${t('sort')}: ${t(k)}</option>`).join('')}</select>${ic('chevd')}</label>`;
-    const priceLabel = `<span class="t-small gold" data-pl>${money(f.min)} – ${money(f.max)}</span>`;
+    const priceLabel = `<span class="t-small gold" data-pl>${money(f.min)} - ${money(f.max)}</span>`;
     return `<section class="wrap" style="padding-block:${d ? '40px 24px' : '24px 16px'}">${d ? `<div style="display:flex;justify-content:space-between;align-items:flex-end">${title}<div style="display:flex;gap:16px;align-items:center"><span class="t-small muted" data-count></span>${sort}</div></div>` : title}</section>
     <section class="wrap" style="padding-bottom:${d ? 80 : 48}px"><div class="coll">
       <aside class="coll__side filters" style="padding:24px;gap:22px" aria-label="${t('filters')}">
@@ -269,20 +277,20 @@
     const sz = p.sizes[S.pdp.size], d = isDesk();
     const gal = (p.gallery || (p.img ? [p.img] : []));
     const mainImg = gal[S.pdp.img];
-    const thumbs = [0, 1, 2, 3].map(i => gal[i] ? `<button class="thumb" data-act="pimg" data-i="${i}" aria-pressed="${S.pdp.img === i}" aria-label="${i + 1}">${pic(gal[i], pname(p), '151px')}</button>` : `<span class="thumb">${ic('image')}</span>`).join('');
+    const thumbs = gal.length > 1 ? gal.map((g, i) => `<button class="thumb" data-act="pimg" data-i="${i}" aria-pressed="${S.pdp.img === i}" aria-label="${i + 1}">${pic(g, pname(p), '151px')}</button>`).join('') : '';
     const badge = p.badge ? `<span class="badge ${p.badge === 'best' ? 'badge--gold' : 'badge--outline'}">${t(p.badge === 'best' ? 'best1' : 'new1')}</span>` : '<span></span>';
     const liked = S.wish.includes(p.id);
     const pairs = D.products.filter(x => x.id !== p.id && (x.fam === p.fam || x.cat !== p.cat)).slice(0, d ? 4 : 2);
     const icons = ['spray', 'rosette', 'drop'];
     return `<section class="wrap" style="padding-top:${d ? '24px' : '0'}">${d ? `<p class="crumbs" style="margin-bottom:16px"><a href="#/">${t('home')}</a>  /  <a href="#/shop?cat=${p.cat}">${L(D.catSingle[p.cat])}</a>  /  ${esc(pname(p))}</p>` : ''}
     <div class="pdp">
-      <div><div class="pdp__main">${mainImg ? `<img src="assets/img/${mainImg}-800.webp" alt="${esc(pname(p))}" width="800" height="800" fetchpriority="high">` : slot(p.slot || p.en)}</div><div class="thumbs">${thumbs}</div></div>
+      <div class="pdp__gal"><div class="pdp__main">${mainImg ? `<img src="assets/img/${mainImg}-800.webp" alt="${esc(pname(p))}" width="800" height="800" fetchpriority="high">` : slot(p.slot || p.en, D.cats[p.cat][2])}</div>${thumbs ? `<div class="thumbs">${thumbs}</div>` : ''}</div>
       <div class="pdp__info stack">
         <div class="pdp__top">${badge}<button class="save" data-act="wish" data-id="${p.id}" aria-pressed="${liked}">${ic('heart')}${t('save')}</button></div>
         <p class="t-over" style="--g:22px">${pmeta(p)}</p>
-        <h1 class="t-h1 gold" style="--g:8px">${esc(pname(p))}</h1>
+        <h1 class="t-h1" style="--g:8px">${esc(pname(p))}</h1>
         <p class="t-body muted" style="--g:12px">${L(p.desc)}</p>
-        <div class="price-row" style="--g:22px"><span class="t-h2 gold" data-price>${money(sz.price)}</span><span class="t-label muted">${t('vat')}</span></div>
+        <div class="price-row" style="--g:22px"><span class="t-h2" data-price>${money(sz.price)}</span><span class="t-label muted">${t('vat')}</span></div>
         <div class="bnpl" style="--g:14px">${ic('card')}<p class="t-small" data-bnpl>${t('bnpl4', { x: money(sz.price / 4) })}</p><span class="pill">${t('tabby')}</span><span class="pill">${t('tamara')}</span></div>
         <hr class="hair" style="--g:26px">
         <div class="stack" style="--g:24px"><div class="fgroup__label"><span class="t-bodyb">${t('size')}</span><span class="t-small muted" data-sizelabel>${L([sz.ar, sz.en])}</span></div>
@@ -294,9 +302,9 @@
         <div class="strip" style="--g:28px"><span class="strip__i">${ic('cash')}${t('svcCod')}</span><span class="strip__i">${ic('card')}${t('splitNoInt')}</span><span class="strip__i">${ic('truck')}${t('svcDelivery')}</span></div>
       </div>
     </div>
-    <div class="details">
-      <div class="stack" style="padding-block:8px"><h2 class="t-h2 gold">${t('notes')}</h2>${[t('top'), t('heart'), t('base')].map((lab, i) => `<div class="note" style="--g:${i ? 4 : 16}px">${ic(icons[i])}<div class="stack"><p class="t-over">${lab}</p><p class="t-bodyb" style="--g:5px">${L(p.notes[i])}</p></div></div>`).join('')}</div>
-      <div class="howto"><div class="howto__head">${ic('flame')}<h2 class="t-h2">${t('howto')}</h2></div>${W.steps.map((s, i) => `<div class="step"><span class="step__n">${num(i + 1)}</span><p class="t-small">${L(s)}</p></div>`).join('')}<p class="tip">${ic('clock')}${t('tip')}</p></div>
+    <div class="details ${p.cat === 'bakhoor' ? '' : 'details--solo'}">
+      <div class="stack notes"><h2 class="t-h2">${t('notes')}</h2>${[t('top'), t('heart'), t('base')].map((lab, i) => `<div class="note" style="--g:${i ? 4 : 16}px">${ic(icons[i])}<div class="stack"><p class="t-over">${lab}</p><p class="t-bodyb" style="--g:5px">${L(p.notes[i])}</p></div></div>`).join('')}</div>
+      ${p.cat === 'bakhoor' ? `<div class="howto"><div class="howto__head">${ic('flame')}<h2 class="t-h2">${t('howto')}</h2></div>${W.steps.map((s, i) => `<div class="step"><span class="step__n">${num(i + 1)}</span><p class="t-small">${L(s)}</p></div>`).join('')}<p class="tip">${ic('clock')}${t('tip')}</p></div>` : ''}
     </div></section>
     <section class="wrap" style="padding-block:${d ? '48px 80px' : '32px 48px'}">${secHead(t('pairs'), null, d)}<div class="grid">${pairs.map(card).join('')}</div></section>`;
   }
@@ -311,7 +319,8 @@
     const picks = [0, 1, 2].map(i => { const it = g.items[i]; if (!it) return `<div class="pick pick--empty">${ic('plus')}${t('addPiece')}</div>`; const p = D.byId(it.id); return `<div class="pick"><button class="pick__x" data-act="gdel" data-i="${i}" aria-label="${t('remove')}">${ic('close')}</button>${thumbOf(p)}<span class="t-label">${esc(pname(p))}</span><span class="t-label gold">${L([p.sizes[it.size].ar, p.sizes[it.size].en])}</span></div>`; }).join('');
     const minis = D.products.map(p => { const inBox = g.items.some(it => it.id === p.id); return `<div class="mini">${thumbOf(p)}<span class="t-label">${esc(pname(p))}</span><span class="mini__row">${money(p.sizes[p.cat === 'perfume' ? 2 : 0].price)}<button class="mini__add" data-act="gadd" data-id="${p.id}" ${inBox || n >= 3 ? 'disabled' : ''} aria-label="${t('addPiece')}: ${esc(pname(p))}">${ic(inBox ? 'check' : 'plus')}</button></span></div>`; }).join('');
     const box = D.boxes.find(b => b.id === g.box), th = D.themes.find(x => x.id === g.theme);
-    const summary = `<aside class="summary"><h2 class="t-h2 gold">${t('yourBox')}</h2><div class="fill-slot" style="aspect-ratio:360/170;border-radius:10px;overflow:hidden">${slot('Box preview · ' + box.en + ', ' + th.en + ' sleeve')}</div>
+    const prev = [0, 1, 2].map(i => { const it = g.items[i]; if (!it) return '<figure class="is-empty"></figure>'; const p = D.byId(it.id); return `<figure>${p.img ? pic(p.img, pname(p), '120px') : `<span class="ph-icon">${ic(D.cats[p.cat][2])}</span>`}</figure>`; }).join('');
+    const summary = `<aside class="summary"><h2 class="t-h2">${t('yourBox')}</h2><div class="boxprev">${prev}</div>
       <div class="sumrow"><span>${L([box.ar, box.en])} · ${L([th.ar, th.en])}</span><b>${money(box.price)}</b></div>
       ${g.items.map(it => { const p = D.byId(it.id), s = p.sizes[it.size]; return `<div class="sumrow"><span>${esc(pname(p))} · ${L([s.ar, s.en])}</span><b>${money(s.price)}</b></div>`; }).join('')}
       <div class="sumrow"><span>${t('handCard')}</span><b>${t('free')}</b></div><hr class="hair">
@@ -326,19 +335,19 @@
         <label class="field" style="--g:12px"><span>${t('yourMsg')}</span><textarea data-act="gfield" data-k="msg" maxlength="150" placeholder="${t('msgPh')}">${esc(g.msg)}</textarea></label>
         <div class="fgroup__label" style="--g:8px"><span class="t-label muted">${t('handwritten')}</span><span class="t-label muted" data-cc>${num(g.msg.length)} / ${num(150)}</span></div></div>
     </div>`;
-    return `<section class="wrap" style="padding-block:${d ? '40px 16px' : '24px 0'}"><div class="stack" style="text-align:center;display:flex;flex-direction:column;align-items:center"><p class="t-over">${t('gOcc')}</p><h1 class="${d ? 't-display' : 't-h1'} gold" style="--g:12px">${t('gTitle')}</h1><p class="t-small muted" style="--g:14px">${t('gSub')}</p></div>
+    return `<section class="wrap" style="padding-block:${d ? '40px 16px' : '24px 0'}"><div class="stack"><p class="t-over">${t('gOcc')}</p><h1 class="${d ? 't-display' : 't-h1'}" style="--g:12px">${t('gTitle')}</h1><p class="t-small muted" style="--g:14px">${t('gSub')}</p></div>
       <div class="steps" style="margin-top:24px">${dot(0, t('stBox'))}<span class="steps__link"></span>${dot(1, t('stPieces'))}<span class="steps__link"></span>${dot(2, t('stCard'))}</div></section>
     <section class="wrap" style="padding-block:${d ? '16px 80px' : '24px 48px'}"><div class="gb-layout">${builder}${d ? summary : `<div style="margin-top:24px">${summary}</div>`}</div></section>`;
   }
 
   function pageQuiz() {
     const Q = D.quiz, st = S.quiz.step, q = Q[st], d = isDesk(), sel = S.quiz.ans[q.key];
-    const dots = Q.map((x, i) => `<span class="qdot ${i < st ? 'is-done' : i === st ? 'is-now' : ''}"><i>${i < st ? ic('check') : num(i + 1)}</i>${L(x.short)}</span>`).join('');
+    const dots = Q.map((x, i) => `<span class="qdot ${i < st ? 'is-done' : i === st ? 'is-now' : ''}"><i>${i < st ? ic('check') : num(i + 1)}</i><b>${L(x.short)}</b></span>`).join('');
     const opts = q.opts.map(o => `<button class="opt" data-act="qopt" data-v="${o.id}" aria-pressed="${sel === o.id}"><span class="opt__mark">${ic('check')}</span><span class="opt__ring">${ic(o.icon)}</span><span class="opt__t">${L(o.t)}</span><span class="opt__s">${L(o.s)}</span></button>`).join('');
     return `<section class="wrap" style="padding-block:${d ? '56px 96px' : '24px 64px'}"><div class="quizcard">
       <div><div class="fgroup__label"><span class="t-label gold">${t('qOf', { n: num(st + 1) })}</span><span class="t-label muted">${t('quizName')}</span></div><div class="qbar" style="margin-top:12px"><i style="width:${(st + (sel ? 1 : 0.5)) / 4 * 100}%"></i></div><div class="qdots">${dots}</div></div>
       <div class="qstage"><div class="${S.quiz.dir === 'next' ? 'qin-next' : 'qin-prev'}">
-        <div class="stack" style="text-align:center;display:flex;flex-direction:column;align-items:center;margin-top:${d ? 40 : 28}px"><p class="t-over">${t('findYours')}</p><h1 class="${d ? 't-display' : 't-h1'} gold" style="--g:12px">${L(q.q)}</h1><p class="t-small muted" style="--g:10px">${t('pickOne')}</p></div>
+        <div class="stack" style="text-align:center;display:flex;flex-direction:column;align-items:center;margin-top:${d ? 40 : 28}px"><p class="t-over">${t('findYours')}</p><h1 class="${d ? 't-display' : 't-h1'}" style="--g:12px">${L(q.q)}</h1><p class="t-small muted" style="--g:10px">${t('pickOne')}</p></div>
         <div class="opts n${q.opts.length}" style="margin-top:${d ? 40 : 28}px">${opts}</div>
       </div></div>
       <div class="qnav" style="margin-top:${d ? 40 : 28}px"><button class="btn btn--secondary" data-act="qback">${t('back')}</button><button class="btn btn--primary" data-act="qnext" ${sel ? '' : 'disabled'}>${st === 3 ? t('seeSet') : t('next')}</button></div>
@@ -352,10 +361,10 @@
     const items = set.items.map(([id, s], i) => { const p = D.byId(id), z = p.sizes[s]; return `${i ? '<hr class="hair">' : ''}<div class="setitem">${thumbOf(p)}<div class="setitem__t"><p class="t-label muted">${pmeta(p)}</p><a class="t-bodyb" href="#/p/${p.id}">${esc(pname(p))}</a><p class="t-label muted">${L([z.ar, z.en])}</p></div><span class="t-small">${money(z.price)}</span></div>`; }).join('');
     const famWord = L(D.fams[set.more]);
     const also = D.products.filter(p => !set.items.some(([id]) => id === p.id)).filter(p => p.fam === set.more || p.cat === 'bakhoor').slice(0, d ? 4 : 2);
-    const head = `<div class="stack" style="text-align:center;display:flex;flex-direction:column;align-items:center"><p class="t-over">${t('yourResult')}</p><h1 class="${d ? 't-display' : 't-h1'} gold" style="--g:12px">${L(set.title)}</h1><p class="t-body muted" style="--g:16px">${L(set.why)}</p>${answers ? `<p class="t-label muted" style="--g:28px">${t('basedOn')}</p><div class="answers" style="--g:10px">${answers}</div>` : ''}</div>`;
+    const head = `<div class="stack"><p class="t-over">${t('yourResult')}</p><h1 class="${d ? 't-display' : 't-h1'}" style="--g:12px">${L(set.title)}</h1><p class="t-body muted" style="--g:16px">${L(set.why)}</p>${answers ? `<p class="t-label muted" style="--g:28px">${t('basedOn')}</p><div class="answers" style="--g:10px">${answers}</div>` : ''}</div>`;
     const panel = `<div class="tabpanel"><span class="tabpanel__tab">${t('your3')}</span><div class="tabpanel__box" style="padding:40px 20px 24px;gap:18px;text-align:start;align-items:stretch">
       <div style="display:flex;flex-direction:column;gap:14px">${items}</div><hr class="hair">
-      <div class="fgroup__label"><div><p class="t-small muted">${t('setPrice')}</p><p style="display:flex;gap:8px;align-items:baseline"><span class="t-h2 gold">${money(price)}</span><span class="was">${money(sum)}</span></p></div><span class="badge badge--gold">${t('saveX', { x: money(sum - price) })}</span></div>
+      <div class="fgroup__label"><div><p class="t-small muted">${t('setPrice')}</p><p style="display:flex;gap:8px;align-items:baseline"><span class="t-h2">${money(price)}</span><span class="was">${money(sum)}</span></p></div><span class="badge badge--gold">${t('saveX', { x: money(sum - price) })}</span></div>
       <button class="btn btn--primary btn--block" data-act="setcart">${t('addSet')}</button>
       <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap"><a class="btn btn--ghost" href="#/quiz" data-act="qreset">${t('retake')}${ic('chev', 'flip')}</a><a class="btn btn--ghost" href="#/shop?fam=${set.more}">${t('shopFam', { f: famWord })}${ic('chev', 'flip')}</a></div></div></div>`;
     return `<section class="wrap" style="padding-block:${d ? '64px 48px' : '32px'}"><div class="result">${head}<div style="margin-top:${d ? 0 : 28}px">${panel}</div></div></section>
@@ -373,7 +382,7 @@
     }).join('');
     const waLines = S.cart.map(l => isBundle(l) ? `${l.type === 'box' ? t('giftBoxName') : L(D.sets[l.mood].title)} × ${num(l.qty)}` : `${pname(D.byId(l.id))} · ${L([D.byId(l.id).sizes[l.size].ar, D.byId(l.id).sizes[l.size].en])} × ${num(l.qty)}`);
     return `<div class="drawer__scroll">
-      <div class="drawer__head"><h2 class="t-h2 gold" id="cart-title">${t('yourBag')} <span class="t-small muted">(${num(count)})</span></h2><button data-act="cart-close" aria-label="${t('close')}">${ic('close')}</button></div>
+      <div class="drawer__head"><h2 class="t-h2" id="cart-title">${t('yourBag')} <span class="t-small muted">(${num(count)})</span></h2><button data-act="cart-close" aria-label="${t('close')}">${ic('close')}</button></div>
       <div class="cur" style="margin-top:20px"><span class="t-small muted">${t('showIn')}</span>${seg()}</div>
       ${count ? `<div style="margin-top:18px"><p class="t-small gold" style="display:flex;gap:6px;align-items:center">${ic('truck')}${left ? t('freeLeft', { x: money(left) }) : t('freeDone')}</p><div class="ship__bar"><i style="width:${Math.min(100, sub / D.freeShip * 100)}%"></i></div></div>
       <div style="margin-top:14px">${lines}</div>
@@ -409,10 +418,13 @@
   function render(keepScroll) {
     const html = document.documentElement;
     html.lang = S.lang; html.dir = AR() ? 'rtl' : 'ltr';
+    $('#announce').innerHTML = announce();
     $('#hdr').innerHTML = header();
     $('#menu').innerHTML = menu();
+    syncMenu();
     $('#ftr').innerHTML = footer();
     const [r, arg] = route();
+    document.body.dataset.page = r;
     const main = $('#main');
     main.innerHTML = r === 'pdp' ? pagePdp(arg) : r === 'shop' ? pageShop() : r === 'gift' ? pageGift() : r === 'quiz' ? pageQuiz() : r === 'result' ? pageResult() : pageHome();
     if (r === 'shop') renderGrid();
@@ -420,7 +432,21 @@
     document.title = p ? `${pname(p)} · ${t('brand') === 'DAR AL OUD' ? 'Dar Al Oud' : 'دار العود'}` : L(titles.home);
     if (!keepScroll) window.scrollTo(0, 0);
     if (document.body.classList.contains('cart-open')) $('#drawer').innerHTML = drawer();
+    watchDraw();
   }
+
+  /* ---------- menu, header state, hairline draw ---------- */
+  function syncMenu() { const open = $('#menu').classList.contains('is-open'); document.body.classList.toggle('menu-open', open); document.querySelectorAll('.burger').forEach(b => { b.classList.toggle('is-open', open); b.setAttribute('aria-expanded', open); }); }
+  function setMenu(open) { $('#menu').classList.toggle('is-open', open); syncMenu(); }
+  const calm = matchMedia('(prefers-reduced-motion:reduce)').matches || !('IntersectionObserver' in window);
+  if (!calm) document.documentElement.classList.add('js-draw');
+  function watchDraw() {
+    const els = document.querySelectorAll('[data-draw]');
+    if (calm) { els.forEach(e => e.classList.add('is-in')); return; }
+    const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } }), { threshold: 0.2 });
+    els.forEach(e => io.observe(e));
+  }
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => document.body.classList.toggle('is-scrolled', !e.isIntersecting)).observe($('#sentinel'));
 
   /* ---------- events ---------- */
   document.addEventListener('click', e => {
@@ -429,8 +455,8 @@
     switch (a) {
       case 'lang': S.lang = AR() ? 'en' : 'ar'; store.set('lang', S.lang); render(true); break;
       case 'cur': S.cur = el.dataset.v; store.set('cur', S.cur); render(true); break;
-      case 'menu': $('#menu').classList.toggle('is-open'); break;
-      case 'menu-go': $('#menu').classList.remove('is-open'); break;
+      case 'menu': setMenu(!$('#menu').classList.contains('is-open')); break;
+      case 'menu-go': setMenu(false); break;
       case 'account': toast(t('demoAccount')); break;
       case 'cart': openCart(); break;
       case 'cart-close': closeCart(); break;
@@ -471,7 +497,7 @@
       const f = S.filters; let v = +el.value;
       if (a === 'rmin') f.min = Math.min(v, f.max - 20); else f.max = Math.max(v, f.min + 20);
       document.querySelectorAll('.range').forEach(r => { r.querySelector('[data-act=rmin]').value = f.min; r.querySelector('[data-act=rmax]').value = f.max; const lo = (f.min - 50) / 550 * 100, hi = (f.max - 50) / 550 * 100, fl = r.querySelector('.range__fill'); fl.style.insetInlineStart = lo + '%'; fl.style.width = (hi - lo) + '%'; });
-      document.querySelectorAll('[data-pl]').forEach(x => x.textContent = `${money(f.min)} – ${money(f.max)}`);
+      document.querySelectorAll('[data-pl]').forEach(x => x.textContent = `${money(f.min)} - ${money(f.max)}`);
       document.querySelectorAll('[data-pmin]').forEach(x => x.textContent = money(f.min)); document.querySelectorAll('[data-pmax]').forEach(x => x.textContent = money(f.max));
       renderGrid();
     }
@@ -482,11 +508,11 @@
     document.querySelectorAll('[data-act="fchip"]').forEach(c => { const k = c.dataset.k, v = c.dataset.v; c.setAttribute('aria-pressed', v ? S.filters[k].length === 1 && S.filters[k][0] === v : !S.filters[k].length); });
   }
   function saveGift() { store.set('gift', S.gift); }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCart(); $('#menu').classList.remove('is-open'); } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCart(); setMenu(false); } });
   $('#scrim').addEventListener('click', closeCart);
-  window.addEventListener('hashchange', () => { $('#menu').classList.remove('is-open'); closeCart(); if (route()[0] === 'quiz' && !location.hash.includes('result') && S.quiz.step === 0) S.quiz.dir = 'next'; render(); });
+  window.addEventListener('hashchange', () => { setMenu(false); closeCart(); if (route()[0] === 'quiz' && !location.hash.includes('result') && S.quiz.step === 0) S.quiz.dir = 'next'; render(); });
   let lastDesk = isDesk();
-  window.addEventListener('resize', () => { const d = isDesk(); if (d !== lastDesk) { lastDesk = d; render(true); } });
+  window.addEventListener('resize', () => { const d = isDesk(); if (d !== lastDesk) { lastDesk = d; if (d) setMenu(false); render(true); } });
   render(true);
   if (new URLSearchParams(location.search).get('open') === 'cart') openCart();
 })();

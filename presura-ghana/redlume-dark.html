@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0B0C0E">
-<title>RedLume — Red Light LED Face Mask · Presura</title>
+<title>RedLume - Red Light LED Face Mask · Presura</title>
 <meta name="description" content="Clinic-grade red light, cordless, ten minutes. 633nm, seven modes, auto shut-off. Delivered across Ghana, MoMo accepted.">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -125,6 +125,9 @@ footer.site{padding:26px var(--pad) 30px;text-align:center;font-size:11px;line-h
   h1{font-size:38px}
   .stickybar{position:static;transform:none;border:1px solid var(--line);border-radius:14px;max-width:1080px;margin:22px auto 30px}
 }
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.thumb{background-size:cover;background-position:center;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.imgnote{margin:10px 0 0;font-size:11px;letter-spacing:.02em;opacity:.65}
 </style>
 </head>
 <body>
@@ -157,19 +160,19 @@ footer.site{padding:26px var(--pad) 30px;text-align:center;font-size:11px;line-h
   <div class="split">
     <div class="gal">
       <div class="glow"></div>
-      <div class="shot" id="mainshot">PRODUCT PHOTO</div>
+      <div class="shot" id="mainshot"><img id="mainimg" src="assets/img/redlume-1000.webp" width="1000" height="1250" alt="RedLume LED face mask" decoding="async"></div>
       <div class="thumbs">
-        <button class="thumb" type="button" aria-current="true" data-shot="PRODUCT PHOTO">Pack</button>
-        <button class="thumb" type="button" aria-current="false" data-shot="WORN">Worn</button>
-        <button class="thumb" type="button" aria-current="false" data-shot="LED DETAIL">LEDs</button>
-        <button class="thumb" type="button" aria-current="false" data-shot="+4 PHOTOS">+4</button>
+          <button class="thumb" type="button" aria-current="true" data-shot="redlume" style="background-image:url(assets/img/redlume-1000.webp)">Product</button>
+          <button class="thumb" type="button" aria-current="false" data-shot="hero" style="background-image:url(assets/img/hero-1000.webp)">Worn</button>
+          <button class="thumb" type="button" aria-current="false" data-shot="redlume-detail" style="background-image:url(assets/img/redlume-detail-1000.webp)">LEDs</button>
       </div>
+        <p class="imgnote">Concept imagery for this design, not final product photography.</p>
     </div>
 
     <div class="intro pad">
       <div class="eyebrow">Skin &amp; Light Therapy</div>
       <h1>Clinic-grade red light. Cordless. Ten minutes.</h1>
-      <p class="lede">RedLume — Red Light LED Face Mask. 633nm, seven modes, auto shut-off. The appointment moves to your bedroom.</p>
+      <p class="lede">RedLume - Red Light LED Face Mask. 633nm, seven modes, auto shut-off. The appointment moves to your bedroom.</p>
 
       <div class="chips">
         <div class="chip"><b>633<s>nm</s></b><span>Red</span></div>
@@ -214,7 +217,7 @@ footer.site{padding:26px var(--pad) 30px;text-align:center;font-size:11px;line-h
   <div class="wrap pad">
     <div class="sechd">Reviews</div>
     <div class="empty">
-      <h3>No reviews yet — and we won't fake them</h3>
+      <h3>No reviews yet - and we won't fake them</h3>
       <p>We opened in August 2026. Every review that appears here will come from a real order we can trace.</p>
       <div class="btnrow">
         <a class="btn" href="#">WhatsApp us first</a>
@@ -225,7 +228,7 @@ footer.site{padding:26px var(--pad) 30px;text-align:center;font-size:11px;line-h
     <div class="sechd">Straight answers</div>
     <details class="faq" open>
       <summary>Is it safe for dark skin?</summary>
-      <div>Yes. Red light isn't a laser and doesn't target pigment, so it's safe across skin tones. Different story for our IPL handset — that page tells you exactly which tones it suits.</div>
+      <div>Yes. Red light isn't a laser and doesn't target pigment, so it's safe across skin tones. Different story for our IPL handset - that page tells you exactly which tones it suits.</div>
     </details>
     <details class="faq">
       <summary>Why does delivery take one to two weeks?</summary>
@@ -266,7 +269,7 @@ footer.site{padding:26px var(--pad) 30px;text-align:center;font-size:11px;line-h
   var shot = document.getElementById('mainshot');
   document.querySelectorAll('.thumb').forEach(function(t){
     t.addEventListener('click', function(){
-      shot.textContent = t.dataset.shot;
+      document.getElementById('mainimg').src = 'assets/img/' + t.dataset.shot + '-1000.webp';
       document.querySelectorAll('.thumb').forEach(function(o){ o.setAttribute('aria-current','false'); });
       t.setAttribute('aria-current','true');
     });
@@ -291,7 +294,7 @@ footer.site{padding:26px var(--pad) 30px;text-align:center;font-size:11px;line-h
   atc.addEventListener('click', function(){
     cart++;
     cartlink.textContent = 'Cart (' + cart + ')';
-    atc.textContent = 'Added — view cart';
+    atc.textContent = 'Added - view cart';
     setTimeout(function(){ atc.textContent = 'Add to cart'; }, 1800);
   });
 

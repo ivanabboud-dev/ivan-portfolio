@@ -3,87 +3,106 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Presura Ghana — Case Study</title>
-<meta property="og:title" content="Presura Ghana — Case Study">
-<meta property="og:description" content="Ghana-market Shopify build: cedi pricing, Paystack + Mobile Money checkout, a shoppable video feed and two product page directions.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23E61919%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%23fff%27/%3E%3C/svg%3E">
+<meta name="theme-color" content="#F2F1EC">
+<title>Presura Ghana | Case study</title>
+<meta name="description" content="Ghana-market Shopify build: GHS pricing, Paystack and Mobile Money checkout, a store audit, a shoppable video feed and two product page directions.">
+<meta property="og:title" content="Presura Ghana | Case study">
+<meta property="og:description" content="Ghana-market Shopify build: cedi pricing, Paystack and Mobile Money checkout, a store audit, a shoppable video feed and two product page directions.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://ivanabboud-dev.github.io/ivan-portfolio/presura-ghana/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="description" content="Ghana-market Shopify build: GHS pricing, Paystack + Mobile Money, shoppable video feed.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/Archivo-latin-0.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
 <style>
-  :root{
-    --bg:#0E0F11; --surface:#17181B; --line:#26282C; --ink:#F3F1EC; --mut:#9A9CA2; --acc:#C99A6B;
-    --serif:'Instrument Serif',Georgia,serif; --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  }
-  *,*::before,*::after{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
-  .back{display:inline-flex;align-items:center;gap:6px;margin:32px 0 0;font-size:13px;color:var(--mut)}
-  .back:hover{color:var(--acc)}
-  header{padding:24px 0 50px;border-bottom:1px solid var(--line)}
-  .eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin:0 0 14px}
-  h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.6vw,48px);line-height:1.12;margin:0 0 18px;letter-spacing:-.01em}
-  .lede{font-size:16.5px;line-height:1.65;color:var(--mut);max-width:62ch;margin:0}
-  main{padding:50px 0 90px}
-  .sect-label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 24px}
-  .cards{display:flex;flex-direction:column;gap:16px}
-  .card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px 28px;transition:border-color 160ms ease,transform 160ms ease}
-  .card:hover{border-color:var(--acc);transform:translateY(-2px)}
-  .card__tag{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:0 0 10px}
-  .card h2{font-family:var(--serif);font-weight:400;font-size:24px;margin:0 0 10px;color:var(--ink)}
-  .card p{margin:0;font-size:14px;line-height:1.6;color:var(--mut);max-width:64ch}
-  .card__cta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--ink)}
-  .card:hover .card__cta{color:var(--acc)}
-  .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media(max-width:640px){.pair{grid-template-columns:1fr}}
+:root{--paper:#F2F1EC;--paper-2:#E8E7E1;--ink:#0B0B0B;--muted:#55554F;--hair:#C9C8C0;--red:#E61919;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;--body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased;background-image:linear-gradient(to right,rgba(11,11,11,.045) 1px,transparent 1px);background-size:calc(100%/12) 100%}
+::selection{background:var(--red);color:#fff}
+a{color:inherit}
+p{margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px 80px}
+.mast{padding-top:20px;border-bottom:2px solid var(--ink)}
+.mast__bar{display:flex;flex-wrap:wrap;gap:6px 28px;font:500 11.5px/1.3 var(--mono);letter-spacing:.06em;padding-bottom:14px;border-bottom:1px solid var(--ink)}
+.mast__bar span:last-child{margin-left:auto}
+.mast__bar a{text-decoration:none;border-bottom:1px solid var(--ink)}
+.mast__bar a:hover{color:var(--red);border-color:var(--red)}
+h1{font-family:var(--display);font-weight:900;font-stretch:80%;text-transform:uppercase;font-size:clamp(72px,17vw,260px);line-height:.8;letter-spacing:-.06em;margin:34px 0 28px}
+h1 em{font-style:normal;color:var(--red)}
+.mast__grid{display:grid;border-top:1px solid var(--ink)}
+.mast__grid>*{padding:22px 0}
+.lede{font-size:18px;line-height:1.55;max-width:56ch}
+.facts{display:grid;grid-template-columns:1fr;margin:0;font-family:var(--mono)}
+.facts div{padding:12px 0;border-bottom:1px solid var(--hair)}
+.facts dt{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:3px 0 0;font-size:14px;font-weight:500}
+.live{display:flex;flex-direction:column;justify-content:flex-end;gap:10px}
+.live a{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;border:2px solid var(--ink);padding:16px 18px;text-decoration:none;font:600 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;transition:background .25s,color .25s}
+.live a:hover{background:var(--ink);color:#fff}
+.live small{font:500 11px var(--mono);color:var(--muted);letter-spacing:.04em}
+@media(min-width:900px){.mast__grid{grid-template-columns:5fr 3fr 4fr}.mast__grid>*{padding:26px 26px 26px 0}.mast__grid>*+*{border-left:1px solid var(--ink);padding-left:26px}}
+main{padding-top:64px}
+.label{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;display:flex;gap:12px;align-items:baseline;padding-bottom:16px;border-bottom:2px solid var(--ink);margin:0 0 26px}
+.label::before{content:"///";color:var(--red)}
+.plates{display:grid;gap:26px}
+.plate{display:grid;border:2px solid var(--ink);background:#fff;text-decoration:none;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.plate__img{aspect-ratio:16/10;overflow:hidden;border-bottom:2px solid var(--ink);background:var(--paper-2)}
+.plate__img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
+.plate:hover .plate__img img{transform:scale(1.035)}
+.plate__body{padding:20px 22px 24px;display:grid;gap:10px;align-content:start}
+.plate__tag{font:500 11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--red)}
+.plate h2{font-family:var(--display);font-weight:800;font-stretch:84%;font-size:clamp(26px,3.4vw,40px);line-height:.98;letter-spacing:-.035em;text-transform:uppercase;margin:0}
+.plate p{font-size:15px;color:var(--muted);max-width:56ch}
+.plate__cta{font:600 12px var(--mono);letter-spacing:.07em;text-transform:uppercase;display:inline-flex;gap:8px;margin-top:6px}
+.plate:hover .plate__cta{color:var(--red)}
+@media(min-width:900px){.plates{grid-template-columns:repeat(12,1fr)}.plate--lead{grid-column:span 12;grid-template-columns:7fr 5fr}.plate--lead .plate__img{aspect-ratio:auto;min-height:420px;border-bottom:0;border-right:2px solid var(--ink)}.plate--lead .plate__body{padding:34px 34px 38px;align-content:end}.plate--third{grid-column:span 4}}
+footer{margin-top:72px;padding-top:16px;border-top:2px solid var(--ink);font:500 12px/1.6 var(--mono);color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 </style>
 </head>
 <body>
-<div class="wrap"><a class="back" href="../">&larr; All case studies</a></div>
-
-<header class="wrap">
-  <p class="eyebrow">Ghana Market · Paystack &amp; Mobile Money</p>
-  <h1>Presura Ghana</h1>
-  <p class="lede">A GHS-native rebuild for a market the USD store couldn't serve — Paystack + MTN Mobile Money checkout, honest 12–50 day delivery windows instead of false promises, and a shoppable video feed replacing the standard grid homepage.</p>
+<div class="wrap">
+<header class="mast">
+  <div class="mast__bar"><span>[ CASE STUDY ]</span><span>GHANA MARKET</span><span>PAYSTACK + MTN MOBILE MONEY</span><span><a href="../">&larr; ALL WORK</a></span></div>
+  <h1>Presura<br><em>Ghana</em></h1>
+  <div class="mast__grid">
+    <p class="lede">A GHS-native rebuild for a market the USD store couldn't serve: Paystack and MTN Mobile Money checkout, honest 12 to 50 day delivery windows instead of false promises, and a shoppable video feed in place of the standard grid homepage.</p>
+    <dl class="facts">
+      <div><dt>Market</dt><dd>Ghana, priced in GHS</dd></div>
+      <div><dt>Payments</dt><dd>Paystack, MTN MoMo, cards</dd></div>
+      <div><dt>Delivery</dt><dd>Stated plainly: 12 to 50 days</dd></div>
+      <div><dt>Audit</dt><dd>20 checks, 9 passed, 2 failed</dd></div>
+    </dl>
+    <div class="live"><a href="./audit/">Read the audit <span aria-hidden="true">&rarr;</span></a><small>20 checks, each with a fix, run on the store's own data.</small></div>
+  </div>
 </header>
 
-<main class="wrap">
-  <p class="sect-label">Live builds</p>
-  <div class="cards">
-    <a class="card" href="./audit/">
-      <p class="card__tag">Store Audit</p>
-      <h2>20-Point "Why No Sales?" Audit</h2>
-      <p>The live store audited against its own data: funnel, a real payment test, variant availability, Markets vs shipping, and policy vs checkout. It found 2 fails and 7 warnings, each with a fix.</p>
-      <span class="card__cta">Read the audit →</span>
+<main>
+  <p class="label">Four pieces of work</p>
+  <div class="plates">
+    <a class="plate plate--lead" href="./audit/">
+      <div class="plate__img"><img src="assets/img/prev-audit.webp" alt="The audit page: a huge masthead reading Presura Ghana Store Audit in red and black" width="1400" height="900" loading="eager"></div>
+      <div class="plate__body"><p class="plate__tag">Store audit</p><h2>20-point &ldquo;Why no sales?&rdquo; audit</h2><p>The live store audited against its own data: funnel, a real payment test, variant availability, Markets against shipping zones, and policy against checkout. It found 2 fails and 7 warnings, each with a fix.</p><span class="plate__cta">Read the audit &rarr;</span></div>
     </a>
-    <a class="card" href="./feed.html">
-      <p class="card__tag">Homepage Concept</p>
-      <h2>Shoppable Video Feed</h2>
-      <p>A full storefront rebuilt as a scrollable, TikTok-style shoppable feed — browse, collection, and product views, cart drawer, filters, and variant selection, all in a single self-contained build.</p>
-      <span class="card__cta">Open feed demo →</span>
+    <a class="plate plate--third" href="./feed.html">
+      <div class="plate__img"><img src="assets/img/prev-feed.webp" alt="The video feed homepage concept" width="1400" height="900" loading="lazy"></div>
+      <div class="plate__body"><p class="plate__tag">Homepage concept</p><h2>Shoppable video feed</h2><p>A full storefront rebuilt as a scrollable, short-video feed: browse, collection and product views, a cart drawer, filters and variant selection in one self-contained build.</p><span class="plate__cta">Open the feed &rarr;</span></div>
     </a>
-  </div>
-
-  <p class="sect-label" style="margin-top:44px">Product page — two directions</p>
-  <div class="pair">
-    <a class="card" href="./redlume-light.html">
-      <p class="card__tag">Concept A · Light</p>
-      <h2>Porcelain Clinic</h2>
-      <p>Warm, clinical light theme — editorial serif type, sand accents, honest delivery timeline and a real reviews-not-yet-faked empty state.</p>
-      <span class="card__cta">View concept →</span>
+    <a class="plate plate--third" href="./redlume-light.html">
+      <div class="plate__img"><img src="assets/img/prev-light.webp" alt="Product page concept A, a warm light theme" width="1400" height="900" loading="lazy"></div>
+      <div class="plate__body"><p class="plate__tag">Product page, direction A</p><h2>Porcelain Clinic</h2><p>A warm, clinical light theme with editorial type, sand accents, an honest delivery timeline and a reviews empty state that doesn't fake any.</p><span class="plate__cta">View concept &rarr;</span></div>
     </a>
-    <a class="card" href="./redlume-dark.html">
-      <p class="card__tag">Concept B · Dark</p>
-      <h2>Nocturne</h2>
-      <p>Dark, device-forward theme — amber accent, glow treatment on the hero shot, same honest delivery and pricing logic underneath.</p>
-      <span class="card__cta">View concept →</span>
+    <a class="plate plate--third" href="./redlume-dark.html">
+      <div class="plate__img"><img src="assets/img/prev-dark.webp" alt="Product page concept B, a dark theme" width="1400" height="900" loading="lazy"></div>
+      <div class="plate__body"><p class="plate__tag">Product page, direction B</p><h2>Nocturne</h2><p>A dark, device-forward theme with an amber accent and a glow on the hero shot, with the same honest delivery and pricing logic underneath.</p><span class="plate__cta">View concept &rarr;</span></div>
     </a>
   </div>
 </main>
+<footer>Ivan Abboud &middot; Shopify builds, audits and fixes &middot; Accra, Ghana (GMT)</footer>
+</div>
 </body>
 </html>

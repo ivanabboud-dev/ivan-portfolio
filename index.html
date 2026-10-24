@@ -4,116 +4,215 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<title>Ivan Abboud — Shopify Developer Portfolio</title>
-<meta name="description" content="Shopify theme builds, checkout diagnostics, and store builds for Paystack and Mobile Money markets.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0E0F11; --surface:#17181B; --line:#26282C; --ink:#F3F1EC; --mut:#9A9CA2; --acc:#C99A6B;
-    --serif:'Instrument Serif',Georgia,serif; --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  }
-  *,*::before,*::after{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
-  header{padding:90px 0 56px;border-bottom:1px solid var(--line)}
-  .eyebrow{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--acc);margin:0 0 14px}
-  h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,6vw,54px);line-height:1.1;margin:0 0 18px;letter-spacing:-.01em}
-  .lede{font-size:17px;line-height:1.65;color:var(--mut);max-width:58ch;margin:0}
-  .meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:26px;font-size:13.5px;color:var(--mut)}
-  .meta a{color:var(--ink);border-bottom:1px solid var(--line)}
-  .meta a:hover{border-color:var(--acc);color:var(--acc)}
-  main{padding:56px 0 90px}
-  .sect-label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 24px}
-  .cards{display:flex;flex-direction:column;gap:16px}
-  .card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px 30px;transition:border-color 160ms ease,transform 160ms ease}
-  .card:hover{border-color:var(--acc);transform:translateY(-2px)}
-  .card__tag{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin:0 0 10px}
-  .card h2{font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 10px;color:var(--ink)}
-  .card p{margin:0;font-size:14.5px;line-height:1.65;color:var(--mut);max-width:64ch}
-  .card__cta{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;font-weight:600;color:var(--ink)}
-  .card:hover .card__cta{color:var(--acc)}
-  footer{border-top:1px solid var(--line);padding:34px 0 60px;font-size:13px;color:var(--mut)}
-  footer a{border-bottom:1px solid var(--line)}
-  footer a:hover{border-color:var(--acc);color:var(--acc)}
-</style>
+<meta name="theme-color" content="#0A0A0A">
+<title>Ivan Abboud | Shopify developer for Arabic and English stores</title>
+<meta name="description" content="Shopify developer in Accra. Arabic right-to-left stores, theme work, checkout and currency fixes, and Paystack and Mobile Money setups. Seven working demo stores you can click through.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ivan Abboud | Shopify developer for Arabic and English stores">
+<meta property="og:description" content="Seven working demo stores: Arabic RTL, B2B wholesale, a quiz funnel, a Ghana market build and a store audit.">
+<meta property="og:image" content="https://ivanabboud-dev.github.io/ivan-portfolio/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/BricolageGrotesque-latin-0.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/home.css?v=1">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-<header class="wrap">
-  <p class="eyebrow">Shopify Developer</p>
-  <h1>Theme builds, checkout fixes,<br>Paystack &amp; Mobile Money.</h1>
-  <p class="lede">I build, fix, and run Shopify stores end to end — custom theme development, checkout diagnostics, catalog and pricing systems, and store builds for emerging-market payment environments most developers never touch.</p>
-  <div class="meta">
-    <span>Based in Accra, Ghana</span>
-    <a href="mailto:ivanabboudios@gmail.com">ivanabboudios@gmail.com</a>
-  </div>
+<a class="skip" href="#work">Skip to the work</a>
+
+<header class="hdr">
+  <a class="hdr__brand" href="#top" aria-label="Ivan Abboud, home"><span class="hdr__mark" aria-hidden="true">IA</span><span>Ivan Abboud</span></a>
+  <nav class="hdr__nav" aria-label="Main">
+    <a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a>
+  </nav>
+  <a class="hdr__cta" href="mailto:ivanabboudios@gmail.com">Email me</a>
+  <button class="hdr__burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><i></i><i></i></button>
 </header>
+<nav class="menu" id="menu" aria-label="Menu">
+  <a href="#work"><span>Work</span></a><a href="#services"><span>Services</span></a><a href="#about"><span>About</span></a><a href="#contact"><span>Contact</span></a>
+</nav>
 
-<main class="wrap">
-  <p class="sect-label">Case studies</p>
-  <div class="cards">
-    <a class="card" href="./asrar/">
-      <p class="card__tag">Perfume · English &amp; Arabic Storefront · Live Demo</p>
-      <h2>Asrar</h2>
-      <p>A light editorial perfume store in English and Arabic. One tap mirrors the whole layout right to left. Quick view with size choice, a product carousel with sale pricing, a hand-wrapped gift set, a scent notes feature and a working bag with a free delivery threshold. Sample brand, products and prices.</p>
-      <span class="card__cta">Open the demo store →</span>
-    </a>
-
-    <a class="card" href="./larchmere/">
-      <p class="card__tag">Café Supply · B2B Wholesale Store · Live Demo</p>
-      <h2>Larchmere</h2>
-      <p>A trade-only wholesale store for cafés. Prices stay hidden until a buyer signs in, quantity breaks apply per product, a quick-order table takes SKUs or a pasted list, and checkout enforces a minimum order with 30-day invoice terms for approved accounts. Sample products and prices.</p>
-      <span class="card__cta">Open the demo store →</span>
-    </a>
-
-    <a class="card" href="./dar-al-oud/">
-      <p class="card__tag">Perfume &amp; Bakhoor · Arabic RTL Storefront · Live Demo</p>
-      <h2>Dar Al Oud</h2>
-      <p>An Arabic-first store for Gulf shoppers, designed in Figma and built as a working demo. Right-to-left by default with a one-tap English mirror, Arabic-Indic prices, SAR and AED, a gift box builder, a four-question scent quiz, a cart drawer and WhatsApp ordering. Sample products and prices.</p>
-      <span class="card__cta">Open the demo store →</span>
-    </a>
-
-    <a class="card" href="./presura-ghana/audit/">
-      <p class="card__tag">Store Audit · 20-Point Check</p>
-      <h2>Presura Ghana — "Why no sales?" audit</h2>
-      <p>A 20-point audit of a live Shopify store, run against real store data: the funnel from 3,651 sessions to checkout, a real cart and payment test, variant availability, Markets vs shipping zones, policy vs checkout, and pricing. Every number comes from the store's own data, and nothing is rounded up.</p>
-      <span class="card__cta">Read the audit →</span>
-    </a>
-
-    <a class="card" href="./valenor/">
-      <p class="card__tag">Menswear · Storefront Build · Live Demo</p>
-      <h2>VALENOR</h2>
-      <p>Built two full theme lineages for a menswear dropshipping brand — a custom Dawn-based dual-tone design, then a fully bespoke non-Dawn theme wired to a 200+ product catalog. Diagnosed a live-but-zero-conversion store down to root cause, executed a full multi-currency variant conversion with zero pricing errors, and rebuilt the review system after confirming the supplier had none. The demo store lets you try it: a fit quiz that picks your size on every product, a wardrobe that shows its gaps, capsules for four style archetypes, and a working bag.</p>
-      <span class="card__cta">Open the demo store →</span>
-    </a>
-
-    <a class="card" href="./dewfield/">
-      <p class="card__tag">Skincare · Quiz Funnel · Live Demo</p>
-      <h2>DEWFIELD skin quiz</h2>
-      <p>A "find your routine" product quiz for a sample skincare brand, designed mobile-first for shoppers arriving from Instagram and TikTok ads. Seven questions build a routine from real rules: skin type, sensitivity, up to two concerns, ingredients to leave out and how long the routine should take. The results explain every product, split the routine into morning and evening, let the shopper swap any step, and sell the whole routine as a set with a subscribe option. Products, questions and rules live in one data file, so a brand can change them without touching the code. Design concept with sample products; checkout is off.</p>
-      <span class="card__cta">Take the quiz →</span>
-    </a>
-
-    <a class="card" href="./presura/">
-      <p class="card__tag">Beauty &amp; Home Devices · Catalog &amp; Ads</p>
-      <h2>Presura</h2>
-      <p>Managed a beauty/home-device dropshipping store through a full product pivot, repricing an entire catalog after finding the platform's own stored cost field wrong by up to 350× on some items. Ran Meta ad campaigns across multiple product lines and diagnosed a checkout-layer payment failure invisible to every standard analytics check.</p>
-      <span class="card__cta">View case study →</span>
-    </a>
-
-    <a class="card" href="./presura-ghana/">
-      <p class="card__tag">Ghana Market · Paystack &amp; Mobile Money</p>
-      <h2>Presura Ghana</h2>
-      <p>Built a Ghana-market Shopify store from zero after confirming the sister USD store had a hard platform block on GHS pricing. Fixed a same-day checkout outage hours before ad spend, launched a Meta campaign, and traced a near-zero conversion rate to a single storefront contradiction — fixing it was followed by the store's first real customer order.</p>
-      <span class="card__cta">View case study →</span>
-    </a>
+<main>
+<section class="hero" id="top">
+  <div class="hero__stage" aria-hidden="true">
+    <canvas id="scene"></canvas>
+    <div class="hero__fallback">
+      <img src="assets/img/scene/dar-al-oud.webp" alt="" width="1024" height="640">
+      <img src="assets/img/scene/larchmere.webp" alt="" width="1024" height="640">
+      <img src="assets/img/scene/dewfield.webp" alt="" width="1024" height="640">
+    </div>
   </div>
+  <a class="hero__cap" id="sceneCap" href="#work" hidden><span class="cap__n mono"></span><span class="cap__t"></span><span class="cap__g mono"></span><span class="cap__a" aria-hidden="true">&nearr;</span></a>
+  <div class="wrap hero__in">
+    <p class="mono hero__kicker" data-in>Shopify developer &middot; Accra, Ghana</p>
+    <h1 class="hero__h" aria-label="Shopify stores that read right in Arabic and English.">
+      <span class="ln"><span>Shopify stores</span></span>
+      <span class="ln"><span>that read right in</span></span>
+      <span class="ln"><span class="acc">Arabic and English.</span></span>
+    </h1>
+    <p class="hero__sub" data-in>I build and fix Shopify stores: Arabic right-to-left layouts, theme work, checkout and currency fixes, and Paystack and Mobile Money setups. Seven working demos are below. Click through any of them.</p>
+    <div class="hero__cta" data-in>
+      <a class="btn btn--solid" href="#work">See the work <span aria-hidden="true">&darr;</span></a>
+      <a class="btn btn--line" href="mailto:ivanabboudios@gmail.com">Email me</a>
+    </div>
+    <dl class="hero__facts" data-in>
+      <div><dt>Demos</dt><dd>7 working stores</dd></div>
+      <div><dt>Arabic</dt><dd>Native speaker</dd></div>
+      <div><dt>Payments</dt><dd>Paystack, MoMo</dd></div>
+      <div><dt>Time zone</dt><dd>Accra, GMT</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <header class="sech">
+      <h2>Selected work</h2>
+      <p>Seven demos you can click through. Brands, products and prices are samples.</p>
+    </header>
+
+    <div class="work__grid">
+      <article class="work__card w-7" data-scene="assets/img/scene/dar-al-oud.webp">
+        <a class="work__link" href="dar-al-oud/" aria-label="Open Dar Al Oud">
+          <div class="work__media"><img class="work__shot" src="assets/img/work/dar-al-oud-d.webp" alt="Dar Al Oud home page: an oud perfume bottle in a gold arch on black" width="1200" height="750"><img class="work__phone" src="assets/img/work/dar-al-oud-m.webp" alt="" width="360" height="780" loading="lazy"></div>
+        </a>
+        <div class="work__meta">
+          <p class="mono">Arabic RTL &middot; Perfume and bakhoor &middot; Storefront</p>
+          <h3>Dar Al Oud</h3>
+          <p>An Arabic-first store for Gulf shoppers. Right to left by default with a one-tap English mirror, Arabic-Indic prices, SAR and AED, a gift box builder, a scent quiz and WhatsApp ordering.</p>
+          <p class="work__links"><a href="dar-al-oud/">Open the store <span aria-hidden="true">&rarr;</span></a><a href="dar-al-oud/?lang=en">English version</a></p>
+        </div>
+      </article>
+
+      <article class="work__card w-5" data-scene="assets/img/scene/larchmere.webp">
+        <a class="work__link" href="larchmere/" aria-label="Open Larchmere">
+          <div class="work__media"><img class="work__shot" src="assets/img/work/larchmere-d.webp" alt="Larchmere home page: coffee, tea and cups for cafes, sold by the case" width="1200" height="750" loading="lazy"><img class="work__phone" src="assets/img/work/larchmere-m.webp" alt="" width="360" height="780" loading="lazy"></div>
+        </a>
+        <div class="work__meta">
+          <p class="mono">B2B wholesale &middot; Café supply</p>
+          <h3>Larchmere</h3>
+          <p>A trade-only store for cafés. Prices stay hidden until a buyer signs in, quantity breaks apply per product, a quick-order table takes SKUs or a pasted list, and checkout enforces a minimum order with 30-day invoice terms.</p>
+          <p class="work__links"><a href="larchmere/">Open the store <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+      </article>
+
+      <article class="work__card w-5" data-scene="assets/img/scene/dewfield.webp">
+        <a class="work__link" href="dewfield/" aria-label="Open Dewfield">
+          <div class="work__media"><img class="work__shot" src="assets/img/work/dewfield-d.webp" alt="Dewfield skin quiz landing page with a group of skincare bottles" width="1200" height="750" loading="lazy"><img class="work__phone" src="assets/img/work/dewfield-m.webp" alt="" width="360" height="780" loading="lazy"></div>
+        </a>
+        <div class="work__meta">
+          <p class="mono">Quiz funnel &middot; Skincare</p>
+          <h3>Dewfield</h3>
+          <p>A find-your-routine quiz built mobile first for shoppers arriving from Instagram and TikTok. Seven questions build a routine from real rules, explain every product, and sell it as a set or a subscription.</p>
+          <p class="work__links"><a href="dewfield/">Take the quiz <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+      </article>
+
+      <article class="work__card w-7" data-scene="assets/img/scene/asrar.webp">
+        <a class="work__link" href="asrar/" aria-label="Open Asrar">
+          <div class="work__media"><img class="work__shot" src="assets/img/work/asrar-d.webp" alt="Asrar home page: a perfume bottle on a mossy rock in a forest" width="1200" height="750" loading="lazy"><img class="work__phone" src="assets/img/work/asrar-m.webp" alt="" width="360" height="780" loading="lazy"></div>
+        </a>
+        <div class="work__meta">
+          <p class="mono">Bilingual &middot; Perfume &middot; Storefront</p>
+          <h3>Asrar</h3>
+          <p>A light editorial perfume store in English and Arabic. One tap mirrors the whole layout right to left. Quick view with size choice, a product carousel with sale pricing, a hand-wrapped gift set, scent notes and a working bag with a free delivery threshold.</p>
+          <p class="work__links"><a href="asrar/">Open the store <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+      </article>
+
+      <article class="work__card w-6" data-scene="assets/img/scene/valenor.webp">
+        <a class="work__link" href="valenor/" aria-label="Open VALENOR">
+          <div class="work__media"><img class="work__shot" src="assets/img/work/valenor-d.webp" alt="VALENOR home page: a fit quiz that picks your size" width="1200" height="750" loading="lazy"><img class="work__phone" src="assets/img/work/valenor-m.webp" alt="" width="360" height="780" loading="lazy"></div>
+        </a>
+        <div class="work__meta">
+          <p class="mono">Menswear &middot; Dark storefront</p>
+          <h3>VALENOR</h3>
+          <p>A custom theme for a 200+ product catalog. A fit quiz picks your size on every product, a wardrobe shows its own gaps, and capsules group the range into four style archetypes.</p>
+          <p class="work__links"><a href="valenor/">Open the demo <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+      </article>
+
+      <article class="work__card w-6" data-scene="assets/img/scene/presura.webp">
+        <a class="work__link" href="presura/" aria-label="Open Presura">
+          <div class="work__media"><img class="work__shot" src="assets/img/work/presura-d.webp" alt="Presura home page: Nine minutes, most nights, with a glowing LED face mask" width="1200" height="750" loading="lazy"><img class="work__phone" src="assets/img/work/presura-m.webp" alt="" width="360" height="780" loading="lazy"></div>
+        </a>
+        <div class="work__meta">
+          <p class="mono">At-home devices &middot; Storefront concept</p>
+          <h3>Presura</h3>
+          <p>A cool, spec-first storefront for at-home devices. Kit pricing that never stacks discounts, honest delivery windows, a spec sheet on every product, and a bag that explains its own maths.</p>
+          <p class="work__links"><a href="presura/">Open the concept <span aria-hidden="true">&rarr;</span></a></p>
+        </div>
+      </article>
+
+      <article class="work__card w-12 work__card--wide" data-scene="assets/img/scene/presura-ghana.webp">
+        <a class="work__link" href="presura-ghana/" aria-label="Open the Presura Ghana case study">
+          <div class="work__media"><img class="work__shot" src="assets/img/work/presura-ghana-d.webp" alt="The Presura Ghana store audit: a large red and black masthead" width="1200" height="750" loading="lazy"><img class="work__phone" src="assets/img/work/presura-ghana-m.webp" alt="" width="360" height="780" loading="lazy"></div>
+        </a>
+        <div class="work__meta">
+          <p class="mono">Ghana market &middot; Case study &middot; Audit</p>
+          <h3>Presura Ghana</h3>
+          <p>A GHS-priced Shopify store built for Paystack and MTN Mobile Money. The case study holds a 20-point audit run on the store's own data, a shoppable video feed concept and two product page directions.</p>
+          <p class="work__links"><a href="presura-ghana/">Read the case study <span aria-hidden="true">&rarr;</span></a><a href="presura-ghana/audit/">The 20-point audit</a></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="svc" id="services">
+  <div class="wrap">
+    <header class="sech">
+      <h2>What I do</h2>
+      <p>Small fixes and full builds. Send the store link and what you want changed.</p>
+    </header>
+    <ol class="svc__list">
+      <li class="svc__row"><span class="mono">01</span><h3>Arabic and English stores</h3><p>Right-to-left layouts built properly, with Arabic numerals, logical CSS, currency switching and a language toggle that keeps the shopper's place.</p></li>
+      <li class="svc__row"><span class="mono">02</span><h3>Theme customization</h3><p>Edits to your existing theme that survive the next update. I duplicate the theme first, so nothing is lost.</p></li>
+      <li class="svc__row"><span class="mono">03</span><h3>Fixes that unblock sales</h3><p>Variant pickers that can't be used, wrong prices, checkout and currency mismatches, pixels that report nothing.</p></li>
+      <li class="svc__row"><span class="mono">04</span><h3>Quizzes and funnels</h3><p>Product finders and landing funnels with the rules in one data file, so you can change them without touching code.</p></li>
+      <li class="svc__row"><span class="mono">05</span><h3>Store audits</h3><p>A 20-point audit run on your real data: the funnel, a test payment, variants, markets and shipping, policies. Findings ranked, each with a fix.</p></li>
+      <li class="svc__row"><span class="mono">06</span><h3>Paystack and Mobile Money</h3><p>Checkout setups for Ghana and other African markets, in local currency, with delivery windows stated honestly.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about__grid">
+    <div>
+      <h2>Based in Accra. Arabic is my first language.</h2>
+    </div>
+    <div class="about__copy">
+      <p>I build and fix Shopify stores, and the Arabic ones are where I'm most useful: the layout is designed right to left from the start, not an English page flipped over.</p>
+      <ul class="about__points">
+        <li><b>Theme first, always.</b> I duplicate your theme before I touch it.</li>
+        <li><b>Replies within a few hours.</b> I'm on Accra time, GMT.</li>
+        <li><b>Small jobs are welcome.</b> A single fix is a fine place to start.</li>
+        <li><b>Languages.</b> Arabic, English, Russian and French.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="mono">Contact</p>
+    <h2>Send me your store link and what you want changed.</h2>
+    <a class="contact__mail" href="mailto:ivanabboudios@gmail.com">ivanabboudios@gmail.com</a>
+    <p class="contact__sub">I reply within a few hours. You can also find me on <a href="https://www.upwork.com/freelancers/~012909be92032bae15" rel="noopener">Upwork</a>.</p>
+  </div>
+</section>
 </main>
 
-<footer class="wrap">
-  Built and hosted on GitHub Pages · <a href="mailto:ivanabboudios@gmail.com">Get in touch</a>
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <span>&copy; 2026 Ivan Abboud &middot; Accra, Ghana (GMT)</span>
+    <span>Demo stores use sample brands, products and prices.</span>
+  </div>
 </footer>
+
+<script type="module" src="assets/js/main.js?v=1"></script>
 </body>
 </html>

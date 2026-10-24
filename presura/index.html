@@ -3,24 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Presura — at-home devices, honestly specified</title>
-<meta property="og:title" content="Presura — storefront design concept">
+<title>Presura | At-home devices, honestly specified</title>
+<meta property="og:title" content="Presura | Storefront design concept">
 <meta property="og:description" content="At-home devices, honestly specified. Storefront design concept with sample data.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://ivanabboud-dev.github.io/ivan-portfolio/presura/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="description" content="Red-light masks, spray brushes and fabric shavers. Numbers on the label, honest delivery windows, 60-night trial.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23D2372B%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%23fff%27/%3E%3C/svg%3E">
 <meta name="theme-color" content="#FBF8F4">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/Geist-latin-0.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts.css">
+<script>document.documentElement.className+=" js-reveal"</script>
 <style>
-/* Presura — v1 design system. Tokens mirror the system sheet exactly. */
+/* Presura design system. v2 layer at the end. */
 :root{
   /* base */
   --bg:#FBF8F4; --surface:#F5EFE7; --surface-2:#EFE7DC; --line:#E0D5C6; --line-soft:#EDE5D9;
-  /* accent — rose clay */
+  /* accent */
   --accent:#8E4636; --accent-press:#77382B; --accent-soft:#B9705A; --accent-tint:#F2E2DC;
   /* ink */
   --ink:#1C1917; --ink-70:#443E38; --ink-50:#6B635A; --ink-40:#8A8075; --on-dark:#C9C1B8; --on-dark-dim:#A9A096;
@@ -454,6 +455,220 @@ button{font-family:inherit}
 .hdr__logo{cursor:pointer}
 .sect--tight{padding-top:22px;padding-bottom:0}
 
+
+/* ===== Presura v2 =====
+   Cool studio grey, the 633 nm red as the one accent, Geist for everything.
+   One shape rule: pills for actions, 20px for photos, 24px for panels. */
+:root{
+  --bg:#F5F5F3; --surface:#EDEDEA; --surface-2:#E3E3DF; --line:#D6D6D1; --line-soft:#E4E4E0;
+  --accent:#D2372B; --accent-press:#B02A20; --accent-soft:#E9695D; --accent-tint:#FCE8E5;
+  --ink:#0F0F0E; --ink-70:#3A3A38; --ink-50:#6A6A66; --ink-40:#8C8C87; --on-dark:#C7C7C2; --on-dark-dim:#9C9C97;
+  --sale:#B02A20; --warn:#7A5316; --warn-tint:#F4EEDD; --warn-ink:#5E4210; --ok:#2F6A4F; --ok-tint:#E4EEE8; --ok-ink:#265640;
+  --serif:'Geist',system-ui,sans-serif; --sans:'Geist',system-ui,sans-serif; --mono:'Geist Mono',ui-monospace,monospace;
+  --radius:999px; --radius-media:20px; --radius-panel:24px;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --shadow-card:0 1px 2px rgba(15,15,14,.04);
+  --shadow-float:0 8px 28px rgba(15,15,14,.10);
+  --shadow-sticky:0 -8px 30px rgba(15,15,14,.06);
+  --shadow-drawer:-18px 0 50px rgba(15,15,14,.12);
+}
+body{letter-spacing:-.006em;font-feature-settings:"ss01","cv11"}
+::selection{background:var(--accent);color:#fff}
+
+/* type */
+.d-xl,.d-l,.d-m,.d-s{font-family:var(--sans);font-weight:600;letter-spacing:-.045em;text-wrap:balance}
+.d-xl{font-size:46px;line-height:.98}.d-l{font-size:38px;line-height:1}.d-m{font-size:30px;line-height:1.04}.d-s{font-size:22px;line-height:1.1;letter-spacing:-.03em}
+@media(min-width:990px){.d-xl{font-size:104px;line-height:.92;letter-spacing:-.055em}.d-l{font-size:64px;line-height:.98}.d-m{font-size:52px;line-height:1}.d-s{font-size:30px}}
+.d-xl em,.d-m em,.d-l em{font-style:normal;color:var(--accent)}
+.eyebrow{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.06em;color:var(--ink-50)}
+.eyebrow .rule{width:18px;height:2px;background:var(--accent)}
+.lede{color:var(--ink-70);max-width:34ch}
+@media(min-width:990px){.lede{font-size:19px;max-width:40ch}}
+.stat{font-family:var(--mono);font-weight:500;letter-spacing:-.05em}
+
+/* actions */
+.btn{min-height:54px;padding:0 28px;border-radius:999px;font-weight:600;letter-spacing:-.01em;transition:background 300ms var(--ease),color 300ms var(--ease),border-color 200ms var(--ease),transform 160ms var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn--primary{background:var(--ink);color:#fff}
+.btn--primary:hover{background:var(--accent);color:#fff}
+.btn--secondary{border-color:var(--ink)}
+.btn--tertiary{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn--tertiary:hover{border-color:var(--ink)}
+.btn--ghost:hover{background:var(--accent-tint)}
+.btn[disabled],.btn[aria-disabled=true]{background:var(--surface);border-color:var(--line)}
+.link-u span{border-bottom-color:var(--ink);transition:color 200ms,border-color 200ms}
+.link-u:hover span{color:var(--accent);border-color:var(--accent)}
+.badge{font-family:var(--mono);font-weight:500;letter-spacing:.02em;text-transform:none;font-size:11px;padding:5px 10px}
+.badge--best{background:var(--bg);color:var(--ink)}
+.badge--sale{background:var(--accent);color:#fff}
+.badge--warn{background:var(--warn-tint)}
+
+/* header */
+.ann{background:var(--ink);color:#fff;font-family:var(--mono);font-weight:500;letter-spacing:.04em;text-transform:none;font-size:11.5px}
+.hdr{background:rgba(245,245,243,.82);-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);border-bottom:1px solid var(--line-soft);position:sticky;top:0;z-index:20}
+.hdr__logo{font-family:var(--sans);font-weight:700;font-size:19px;letter-spacing:.34em;padding-left:.34em}
+.hdr__nav a{font-weight:500;transition:color 200ms}
+.hdr__nav a:hover{color:var(--accent)}
+.hdr__nav a.is-promo{color:var(--accent)}
+.hdr__cnt{background:var(--accent)}
+@media(min-width:990px){.hdr__logo{font-size:22px}}
+
+/* hero */
+.hero2{display:grid;gap:28px;padding:22px var(--gutter) 44px}
+.hero2__media{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;background:var(--surface)}
+.hero2__media img{width:100%;height:100%;object-fit:cover}
+.hero__cta{margin-top:26px}
+.hero2__specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:34px 0 0;border-top:1px solid var(--line)}
+.hero2__specs>div{padding:14px 0 0;border-right:1px solid var(--line-soft);padding-left:12px}
+.hero2__specs>div:first-child{padding-left:0}.hero2__specs>div:last-child{border-right:0}
+.hero2__specs dt{font-family:var(--mono);font-size:10.5px;color:var(--ink-50);letter-spacing:.02em}
+.hero2__specs dd{margin:3px 0 0;font-family:var(--mono);font-weight:500;font-size:22px;letter-spacing:-.05em;color:var(--ink)}
+.hero2__specs dd small{font-size:12px;margin-left:2px;color:var(--ink-50);letter-spacing:0}
+@media(min-width:990px){
+  .hero2{grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);gap:64px;padding:32px var(--gutter) 72px;min-height:min(820px,calc(100dvh - 120px));align-items:stretch}
+  .hero2__text{display:flex;flex-direction:column;justify-content:center;padding-block:24px}
+  .hero2__media{aspect-ratio:auto;min-height:600px;border-radius:36px}
+  .hero2__specs dd{font-size:30px}
+}
+
+/* facts row replaces the review counts */
+.factrow{display:grid;grid-template-columns:1fr;gap:0;border-block:1px solid var(--line)}
+.factrow>div{display:flex;gap:14px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line-soft)}
+.factrow>div:last-child{border-bottom:0}
+.factrow b{font-family:var(--mono);font-weight:500;font-size:14px;color:var(--accent);flex:none;min-width:64px}
+.factrow span{font-size:14.5px;color:var(--ink-70)}
+@media(min-width:990px){.factrow{grid-template-columns:repeat(3,1fr)}.factrow>div{border-bottom:0;border-right:1px solid var(--line-soft);padding:22px 28px}.factrow>div:first-child{padding-left:0}.factrow>div:last-child{border-right:0}}
+
+/* sections */
+.sect{padding-top:56px;padding-bottom:56px}
+@media(min-width:990px){.sect{padding-top:120px;padding-bottom:120px}}
+.sect--surface{background:var(--surface);border-color:transparent}
+.sect__head{margin-bottom:28px}
+@media(min-width:990px){.sect__head{margin-bottom:56px}}
+
+/* bento categories */
+.cats{display:grid;grid-template-columns:1fr;gap:14px}
+.cat{background:var(--surface);border-radius:var(--radius-panel);overflow:hidden;min-height:0;flex-direction:column;transition:background 300ms var(--ease)}
+.cat:hover{background:var(--surface-2)}
+.cat__media{width:auto;height:280px;border-radius:var(--radius-panel) var(--radius-panel) 0 0;overflow:hidden;flex:1}
+.cat__media img{transition:transform 1.4s var(--ease)}
+.cat:hover .cat__media img{transform:scale(1.04)}
+.cat__body{padding:20px 22px 24px}
+.cat__body b{font-family:var(--sans);font-weight:600;font-size:26px;letter-spacing:-.04em}
+.cat__body em{color:var(--ink);display:inline-flex;align-items:center;gap:6px;transition:gap 300ms var(--ease),color 200ms}
+.cat:hover .cat__body em{gap:12px;color:var(--accent)}
+@media(min-width:990px){
+  .cats{grid-template-columns:repeat(12,minmax(0,1fr));gap:20px}
+  .cat{display:flex}
+  .cat:nth-child(1){grid-column:span 7;grid-row:span 2}
+  .cat:nth-child(2),.cat:nth-child(3){grid-column:span 5}
+  .cat:nth-child(1) .cat__media{height:auto;min-height:520px}
+  .cat:nth-child(2) .cat__media,.cat:nth-child(3) .cat__media{height:auto;min-height:240px}
+  .cat__body b{font-size:34px}
+}
+
+/* cards */
+.card{gap:12px}
+.card__media{background:var(--surface);border-radius:var(--radius-media)}
+.card__media img{transition:transform 1.2s var(--ease)}
+@media(hover:hover){.card:hover .card__media img{transform:scale(1.045)}}
+.card__badge{top:12px;left:12px}
+.card__title{font-weight:600;letter-spacing:-.02em}
+.price__now{font-family:var(--mono);font-weight:500;letter-spacing:-.04em}
+.quick-add{border-radius:999px;background:rgba(245,245,243,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:background 200ms,color 200ms,opacity 200ms}
+.quick-add:hover{background:var(--ink);color:#fff}
+.rail .card__media{aspect-ratio:4/5}
+@media(min-width:990px){.rail{gap:28px}}
+
+/* kit builder */
+.kitgrid{display:grid;gap:28px}
+.kitvis{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kitvis figure{margin:0;aspect-ratio:4/5;border-radius:var(--radius-media);overflow:hidden;background:var(--surface-2)}
+.kitvis img{width:100%;height:100%;object-fit:cover;animation:kitin .8s var(--ease) both}
+.kitvis figure:nth-child(2){margin-top:28px}
+@keyframes kitin{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
+@media(min-width:990px){.kitgrid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:96px;align-items:center}}
+.tier{background:var(--bg);border-radius:20px;padding:16px 18px;transition:border-color 250ms var(--ease),background 250ms}
+.tier--on{border-color:var(--ink);background:#fff}
+.tier__dot{border-color:var(--ink-40)}
+.tier--on .tier__dot{border-color:var(--ink)}
+.tier--on .tier__dot::after{background:var(--ink)}
+.tier__flag{background:var(--ink)}
+.tier__body b,.tier b{letter-spacing:-.02em}
+
+/* specified, not hyped */
+.specgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.specgrid>div{background:var(--surface);border-radius:var(--radius-panel);padding:22px 20px 24px;display:flex;flex-direction:column;gap:10px;min-height:190px}
+.specgrid .num{font-family:var(--mono);font-weight:500;font-size:40px;letter-spacing:-.06em;line-height:1;color:var(--ink)}
+.specgrid .num small{font-size:16px;letter-spacing:0;color:var(--ink-50);margin-left:3px}
+.specgrid p{margin:auto 0 0;font-size:14px;line-height:1.5;color:var(--ink-70)}
+.specgrid b{font-size:15px;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+@media(min-width:990px){.specgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.specgrid>div{padding:30px 28px 32px;min-height:300px}.specgrid .num{font-size:68px}.specgrid .num small{font-size:22px}}
+
+/* shipping, plainly */
+.ship3{display:grid;gap:0;margin-top:34px}
+.ship3>div{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:22px 0;border-top:1px solid var(--line)}
+.ship3 .days{font-family:var(--mono);font-weight:500;font-size:28px;letter-spacing:-.06em;color:var(--ink);line-height:1}
+.ship3 .days small{display:block;font-size:11px;letter-spacing:.02em;color:var(--ink-50);margin-top:6px}
+.ship3 b{display:block;font-size:17px;font-weight:600;letter-spacing:-.03em;color:var(--ink)}
+.ship3 p{margin:4px 0 0;font-size:14px;line-height:1.55;color:var(--ink-70);max-width:40ch}
+@media(min-width:990px){.ship3{grid-template-columns:repeat(3,1fr);gap:40px}.ship3>div{grid-template-columns:1fr;gap:18px;padding:28px 0 0}.ship3 .days{font-size:64px}}
+.note--ok{border-radius:18px}
+
+/* spec rows, stats, steps, accordions */
+.stats{background:transparent;border:0;gap:10px}
+.stats>div{background:var(--surface);border-radius:20px}
+@media(min-width:990px){.stats{border:0;border-radius:0;gap:12px}.stats>div{padding:22px 20px}}
+.step__n{background:var(--ink);color:#fff;font-family:var(--mono)}
+.acc summary svg{stroke:var(--ink)}
+.spec dd{font-family:var(--mono);font-size:12.5px}
+.assure{border-radius:20px}
+.pdp__panel{background:var(--surface);border-radius:var(--radius-panel);border-color:transparent}
+.pdp__main{border-radius:var(--radius-media);overflow:hidden;background:var(--surface)}
+.pdp__thumbs button{border-radius:14px}
+.pdp__thumbs button[aria-current=true]{outline-color:var(--ink)}
+.swatch[aria-pressed=true]{border-color:var(--ink)}
+.sticky-atc{border-radius:24px 24px 0 0}
+
+/* newsletter + footer */
+.nl{background:var(--ink)}
+.nl h2{font-family:var(--sans);font-weight:600;letter-spacing:-.045em}
+.nl .eyebrow{color:var(--accent-soft)}
+.nl .input{background:#1B1B1A;border-color:#333330;border-radius:999px;padding:0 22px}
+.nl .btn--primary{background:#fff;color:var(--ink)}
+.nl .btn--primary:hover{background:var(--accent);color:#fff}
+.ftr{background:#161615}
+.ftr__logo{font-family:var(--sans);font-weight:700;letter-spacing:.34em}
+.input{border-radius:999px;padding:0 22px}
+.qty{border-radius:999px}
+.chip{border-radius:999px}
+.chip--on{background:var(--ink);border-color:var(--ink)}
+.chip--active{background:var(--accent-tint);color:var(--accent-press);border-color:transparent}
+.sheet__panel,.drawer__panel{border-radius:24px 24px 0 0}
+@media(min-width:990px){.drawer__panel{border-radius:24px 0 0 24px}}
+.upsell{border-radius:20px}
+.line img,.fbt img,.upsell img,.sticky-atc img{background:var(--surface)}
+.line img{border-radius:14px}
+.toast{background:var(--ink)}
+
+/* motion: one calm entrance, one hover, nothing looping */
+@media(prefers-reduced-motion:no-preference){
+  .view.is-on .hero2__text>*{animation:pin 1s var(--ease) both}
+  .view.is-on .hero2__text>:nth-child(2){animation-delay:.06s}.view.is-on .hero2__text>:nth-child(3){animation-delay:.12s}
+  .view.is-on .hero2__text>:nth-child(4){animation-delay:.18s}.view.is-on .hero2__text>:nth-child(5){animation-delay:.24s}
+  .view.is-on .hero2__media img{animation:pimg 1.6s var(--ease) both}
+  .js-reveal [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .js-reveal [data-reveal].is-in{opacity:1;transform:none}
+}
+@keyframes pin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pimg{from{transform:scale(1.07)}to{transform:none}}
+
+.input:focus{box-shadow:0 0 0 3px rgba(210,55,43,.14)}
+@media(min-width:990px){.rail{max-width:1440px;margin-left:auto;margin-right:auto;padding-left:var(--gutter);padding-right:var(--gutter)}}
+.nl .input{flex:none;min-height:52px;height:52px}
+.nl .btn--primary{flex:none}
+.specgrid>div{background:transparent;border-radius:0;border-top:1px solid var(--line);padding:22px 0 0}
+@media(min-width:990px){.specgrid>div{padding:28px 0 0;min-height:260px}}
 </style>
 </head>
 <body>
@@ -468,7 +683,7 @@ button{font-family:inherit}
     <a href="#/collection/hair">Hair &amp; Scalp</a>
     <a href="#/collection/skin">Skin &amp; Light</a>
     <a href="#/collection/home">Home &amp; Pet</a>
-    <a href="#/collection/all" class="is-promo">Kits &mdash; save 15%</a>
+    <a href="#/collection/all" class="is-promo">Kits, save 15%</a>
   </nav>
   <a href="#/" class="hdr__logo">PRESURA</a>
   <div class="hdr__icons" style="display:flex">
@@ -490,81 +705,85 @@ button{font-family:inherit}
 
 <!-- ============ HOME ============ -->
 <section class="view" data-view="home">
-  <section class="hero">
-    <div class="hero__media"><span class="ph">Hero &mdash; portrait wearing RedLume, warm lamp light, cream sheets</span></div>
-    <div class="hero__body">
-      <p class="eyebrow"><span class="rule"></span>633nm red light &middot; 2 intensities</p>
+  <section class="hero2">
+    <div class="hero2__text">
+      <p class="eyebrow"><span class="rule"></span>633 nm red light, two intensities</p>
       <h1 class="d-xl">Nine minutes,<br><em>most nights.</em></h1>
-      <p class="lede">RedLume is a red-light mask you'll actually keep using &mdash; light, cordless, quiet. Skin looks calmer and more even the longer you stick with it.</p>
+      <p class="lede">RedLume is a red-light mask you'll actually keep using: light, cordless, quiet. Skin looks calmer and more even the longer you stick with it.</p>
       <div class="hero__cta">
-        <a class="btn btn--primary" href="#/product/redlume">Shop RedLume &mdash; $120</a>
+        <a class="btn btn--primary" href="#/product/redlume">Shop RedLume &middot; $120</a>
         <a class="link-u" href="#/collection/all"><span>All 8 devices</span></a>
       </div>
-      <p class="caption" style="margin:16px 0 0">Ships in 24h &middot; Returns on us &middot; 4.8 average from 5,412 reviews</p>
+      <dl class="hero2__specs">
+        <div><dt>Wavelength</dt><dd>633<small>nm</small></dd></div>
+        <div><dt>LEDs</dt><dd>132</dd></div>
+        <div><dt>Session</dt><dd>9<small>min</small></dd></div>
+        <div><dt>Weight</dt><dd>198<small>g</small></dd></div>
+      </dl>
+    </div>
+    <div class="hero2__media"><img src="assets/img/hero-1200.webp" srcset="assets/img/hero-700.webp 700w, assets/img/hero-1200.webp 1200w" sizes="(min-width:990px) 46vw, 92vw" width="1200" height="1500" alt="Someone resting on cream linen wearing the RedLume mask, its LEDs glowing a soft red" fetchpriority="high"></div>
+  </section>
+
+  <section class="wrap">
+    <div class="factrow">
+      <div><b>24 h</b><span>From order to packed, shipped out of Shenzhen.</span></div>
+      <div><b>60 nights</b><span>To use it properly, then decide. Returns are free.</span></div>
+      <div><b>FCC, CE</b><span>Tested on every batch, with auto shut-off on the masks.</span></div>
     </div>
   </section>
 
-  <section class="proof">
-    <div class="proof__i"><span class="stars stars--sm" style="height:12px"><svg viewBox="0 0 105 20" aria-hidden="true"><use href="#presura-stars"/></svg><span class="stars__on" style="width:96%"><svg viewBox="0 0 105 20" aria-hidden="true"><use href="#presura-stars"/></svg></span></span><small>4.8 from 5,412</small></div>
-    <div class="proof__i"><span class="stat">9,300+</span><small>orders shipped</small></div>
-    <div class="proof__i"><span class="stat">60</span><small>nights to return</small></div>
-  </section>
-
   <section class="sect wrap">
-    <p class="eyebrow">Start here</p>
-    <h2 class="d-m" style="margin-bottom:20px">Three shelves, eight devices.</h2>
+    <div class="sect__head"><p class="eyebrow">Start here</p><h2 class="d-m">Three shelves, eight devices.</h2></div>
     <div class="cats">
-      <a class="cat" href="#/collection/hair"><div class="cat__media"><span class="ph">Hair</span></div><div class="cat__body"><b>Hair &amp; Scalp</b><small>3 devices &middot; from $17</small><em>Detangle, mist, massage &rarr;</em></div></a>
-      <a class="cat" href="#/collection/skin"><div class="cat__media"><span class="ph">LED</span></div><div class="cat__body"><b>Skin &amp; Light</b><small>2 masks &middot; from $65</small><em>Red and 7-colour LED &rarr;</em></div></a>
-      <a class="cat" href="#/collection/home"><div class="cat__media"><span class="ph">Home &amp; pet</span></div><div class="cat__body"><b>Home &amp; Pet</b><small>3 devices &middot; from $17</small><em>Shave, de-pill, groom &rarr;</em></div></a>
+      <a class="cat" href="#/collection/skin"><div class="cat__media"><img src="assets/img/cat-skin-1000.webp" srcset="assets/img/cat-skin-600.webp 600w, assets/img/cat-skin-1000.webp 1000w" sizes="(min-width:990px) 56vw, 92vw" width="1000" height="1250" alt="Close-up of a face at rest with a soft red glow on the cheek" loading="lazy"></div><div class="cat__body"><b>Skin &amp; Light</b><small>2 masks &middot; from $65</small><em>Red and 7-colour LED <span aria-hidden="true">&rarr;</span></em></div></a>
+      <a class="cat" href="#/collection/hair"><div class="cat__media"><img src="assets/img/cat-hair-1000.webp" srcset="assets/img/cat-hair-600.webp 600w, assets/img/cat-hair-1000.webp 1000w" sizes="(min-width:990px) 40vw, 92vw" width="1000" height="1250" alt="Long dark hair being brushed through a fine mist" loading="lazy"></div><div class="cat__body"><b>Hair &amp; Scalp</b><small>3 devices &middot; from $17</small><em>Detangle, mist, massage <span aria-hidden="true">&rarr;</span></em></div></a>
+      <a class="cat" href="#/collection/home"><div class="cat__media"><img src="assets/img/cat-home-1000.webp" srcset="assets/img/cat-home-600.webp 600w, assets/img/cat-home-1000.webp 1000w" sizes="(min-width:990px) 40vw, 92vw" width="1000" height="1250" alt="A knit jumper sleeve with a small fabric shaver beside it" loading="lazy"></div><div class="cat__body"><b>Home &amp; Pet</b><small>3 devices &middot; from $17</small><em>Shave, de-pill, groom <span aria-hidden="true">&rarr;</span></em></div></a>
     </div>
   </section>
 
   <section class="sect sect--surface">
     <div class="wrap" style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px">
-      <div><p class="eyebrow">Best sellers</p><h2 class="d-m">What she reorders.</h2></div>
+      <div class="sect__head" style="margin:0"><p class="eyebrow">Featured</p><h2 class="d-m">Four to start with.</h2></div>
       <a class="link-u" href="#/collection/all"><span>Shop everything</span></a>
     </div>
-    <div class="rail rail--grid" data-rail></div>
-  </section>
-
-  <section class="sect sect--surface" style="border-top:0">
-    <div class="wrap">
-      <p class="eyebrow">Build a kit</p>
-      <h2 class="d-m">Two devices, 15% off.</h2>
-      <p class="body-s" style="margin:8px 0 18px;max-width:46ch">Most people start with one and come back for the second. Pair them now and the discount applies automatically at checkout.</p>
-      <div style="display:flex;flex-direction:column;gap:10px;max-width:520px" data-kits></div>
-      <button type="button" class="btn btn--primary btn--full" style="margin-top:16px;max-width:520px" data-kit-cta>Add the kit</button>
-      <p class="caption" style="margin:11px 0 0" data-kit-note></p>
-    </div>
+    <div class="rail rail--grid" data-rail style="margin-top:28px"></div>
   </section>
 
   <section class="sect wrap">
-    <div style="text-align:center;margin-bottom:20px">
-      <p class="eyebrow" style="justify-content:center">Why Presura</p>
-      <h2 class="d-m">Specified, not hyped.</h2>
-    </div>
-    <div class="steps">
-      <div class="step"><span style="flex:none;color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><div><b>Numbers on the label</b><p>633nm. 132 LEDs. Nine minutes. If we can't measure it, we don't claim it.</p></div></div>
-      <div class="step"><span style="flex:none;color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8l7.2 3v6.4c0 4.2-3.1 7.3-7.2 9-4.1-1.7-7.2-4.8-7.2-9V5.8z"/><path d="M8.8 12l2.3 2.3 4.3-4.6"/></svg></span><div><b>FCC &amp; CE tested</b><p>Every batch certified. Masks ship with opaque eye shields and auto shut-off.</p></div></div>
-      <div class="step"><span style="flex:none;color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9.5h10.5a5 5 0 010 10H8.5"/><path d="M8.5 5.2L4.2 9.5l4.3 4.3"/></svg></span><div><b>60 nights, then decide</b><p>Use it properly for two months. If it isn't part of your routine, we refund it.</p></div></div>
-      <div class="step"><span style="flex:none;color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h11v9H3z"/><path d="M14 9.5h3.5l3 3v3H14z"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg></span><div><b>Honest delivery windows</b><p>We tell you the real range before you pay &mdash; never a date we can't hit.</p></div></div>
+    <div class="kitgrid">
+      <div>
+        <p class="eyebrow">Build a kit</p>
+        <h2 class="d-m">Two devices, 15% off.</h2>
+        <p class="body-s" style="margin:12px 0 22px;max-width:46ch">Most people start with one and come back for the second. Pair them now and the discount applies automatically at checkout.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;max-width:520px" data-kits></div>
+        <button type="button" class="btn btn--primary btn--full" style="margin-top:18px;max-width:520px" data-kit-cta>Add the kit</button>
+        <p class="caption" style="margin:12px 0 0" data-kit-note></p>
+      </div>
+      <div class="kitvis" data-kitvis aria-hidden="true"></div>
     </div>
   </section>
 
   <section class="sect sect--surface">
-    <div class="wrap" style="display:grid;gap:40px">
-      <div>
-        <p class="eyebrow">Shipping, plainly</p>
-        <h2 class="d-m">We ship from Shenzhen. Here's the real timeline.</h2>
-        <p class="body-s" style="margin:10px 0 0;max-width:48ch">Making our own devices there is why a mask is $120 and not $400. It also means your parcel travels. We'd rather tell you now than have you refresh a tracking page.</p>
-        <div class="note note--ok" style="max-width:420px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg><p>Express option at checkout: 6&ndash;9 days, $14 flat.</p></div>
+    <div class="wrap">
+      <div class="sect__head"><p class="eyebrow">Why Presura</p><h2 class="d-m">Specified, not hyped.</h2></div>
+      <div class="specgrid">
+        <div data-reveal><span class="num">633<small>nm</small></span><p><b>Numbers on the label.</b> If we can't measure it, we don't claim it.</p></div>
+        <div data-reveal><span class="num">132</span><p><b>LEDs in the mask.</b> Two intensities, with auto shut-off at nine minutes.</p></div>
+        <div data-reveal><span class="num">60<small>nights</small></span><p><b>Then decide.</b> Use it properly for two months. If it isn't part of your routine, we refund it.</p></div>
+        <div data-reveal><span class="num">FCC</span><p><b>And CE tested.</b> Every batch certified. Masks ship with opaque eye shields.</p></div>
       </div>
-      <div>
-        <div class="tl__row"><span class="tl__spine"><span class="tl__dot"></span><span class="tl__line"></span></span><div class="tl__body"><b>Days 1&ndash;2 &middot; packed</b><p>Order confirmed, quality-checked, tracking number emailed.</p></div></div>
-        <div class="tl__row"><span class="tl__spine"><span class="tl__dot"></span><span class="tl__line"></span></span><div class="tl__body"><b>Days 3&ndash;12 &middot; in transit</b><p>Air freight to your country's sorting hub. Tracking updates every few days, not hourly.</p></div></div>
-        <div class="tl__row"><span class="tl__spine"><span class="tl__dot"></span></span><div class="tl__body"><b>Days 12&ndash;50 &middot; delivered</b><p>Most US orders land day 14&ndash;21. Remote routes and customs can push it to 50. Past day 50 we refund without asking questions.</p></div></div>
-      </div>
+    </div>
+  </section>
+
+  <section class="sect wrap">
+    <p class="eyebrow">Shipping, plainly</p>
+    <h2 class="d-m" style="max-width:20ch">We ship from Shenzhen. Here's the real timeline.</h2>
+    <p class="body-s" style="margin:14px 0 0;max-width:52ch">Making our own devices there is why a mask is $120 and not $400. It also means your parcel travels. We'd rather tell you now than have you refresh a tracking page.</p>
+    <div class="note note--ok" style="max-width:420px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-5"/></svg><p>Express option at checkout: 6&ndash;9 days, $14 flat.</p></div>
+    <div class="ship3">
+      <div data-reveal><span class="days">1&ndash;2<small>days</small></span><div><b>Packed</b><p>Order confirmed, quality-checked, tracking number emailed.</p></div></div>
+      <div data-reveal><span class="days">3&ndash;12<small>days</small></span><div><b>In transit</b><p>Air freight to your country's sorting hub. Tracking updates every few days, not hourly.</p></div></div>
+      <div data-reveal><span class="days">12&ndash;50<small>days</small></span><div><b>Delivered</b><p>Most US orders land on day 14 to 21. Remote routes and customs can push it to 50. Past day 50 we refund without asking questions.</p></div></div>
     </div>
   </section>
 
@@ -572,7 +791,7 @@ button{font-family:inherit}
     <div>
       <p class="eyebrow">10% off, no popup</p>
       <h2>Get the code, then take your time.</h2>
-      <p>One email when something launches or restocks. That's the whole programme &mdash; no daily sale blasts.</p>
+      <p>One email when something launches or restocks. That's the whole programme: no daily sale blasts.</p>
     </div>
     <div>
       <form onsubmit="return false" style="display:flex;flex-direction:column;gap:9px">
@@ -595,7 +814,7 @@ button{font-family:inherit}
 
   <div class="filters">
     <button type="button" class="chip chip--on" data-sheet-open><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M6 12h12M10 18h4"/></svg> Filter</button>
-    <button type="button" class="chip" data-sort-toggle>Sort: <span data-sort-label>Popular</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+    <button type="button" class="chip" data-sort-toggle>Sort: <span data-sort-label>Featured</span> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
     <button type="button" class="chip" data-filter="under40">Under $40</button>
     <button type="button" class="chip" data-filter="instock">In stock</button>
   </div>
@@ -691,7 +910,7 @@ button{font-family:inherit}
       <a href="#/">Shipping &amp; delivery times</a>
       <a href="#/">Returns &amp; 60-night trial</a>
       <a href="#/">Using your mask safely</a>
-      <a href="#/">Contact &mdash; replies in 1 day</a>
+      <a href="#/">Contact, replies in 1 day</a>
     </div>
     <div>
       <h3>Company</h3>
@@ -729,56 +948,63 @@ button{font-family:inherit}
 <script>
 
 var PRODUCTS = [
-  {h:'redlume',t:'RedLume LED Face Mask',cat:'skin',price:120,was:150,rating:4.8,count:2141,stock:38,tag:'best',
+  {h:'redlume',t:'RedLume LED Face Mask',cat:'skin',price:120,was:150,stock:38,tag:'best',
    benefit:'633nm red light, two intensities, nine minutes a session. Skin looks calmer and more even the longer you keep it up.',
    colours:[['Porcelain','#F5EFE7',1],['Clay','#B9705A',1],['Ink','#262220',1],['Sage','#9FB0A2',0]],
    stats:[['633','nm','red wavelength'],['132','','medical-grade LEDs'],['9','min','auto shut-off'],['198','g','cordless, USB-C']],
    specs:[['Wavelength','633nm \u00b15 red'],['LEDs','132, two intensities'],['Session','9 min, auto shut-off'],['Battery','1,200mAh \u00b7 ~14 sessions \u00b7 USB-C'],['Body','Medical-grade silicone, 198g'],['Certification','FCC, CE, RoHS'],['In the box','Mask, eye shields, USB-C cable, pouch, card']],
-   steps:[['Start on clean, dry skin','No serum underneath \u2014 oils sit between the light and your skin.'],['Clip the eye shields, press once','Low for the first week, high after. It shuts itself off at nine minutes.'],['Moisturise after, four to five nights a week','Consistency matters more than session length. Most people notice a difference around week eight.']],
-   safety:'Always wear the shields. Skip it if you\u2019re on isotretinoin, photosensitising medication, or have a light-triggered condition \u2014 check with your doctor first. Stop if skin becomes irritated. This is a cosmetic device, not a medical one.',
+   steps:[['Start on clean, dry skin','No serum underneath: oils sit between the light and your skin.'],['Clip the eye shields, press once','Low for the first week, high after. It shuts itself off at nine minutes.'],['Moisturise after, four to five nights a week','Consistency matters more than session length. Most people notice a difference around week eight.']],
+   safety:'Always wear the shields. Skip it if you\u2019re on isotretinoin, photosensitising medication, or have a light-triggered condition. Check with your doctor first. Stop if skin becomes irritated. This is a cosmetic device, not a medical one.',
    pairs:'pulsemist'},
-  {h:'auraspectrum',t:'AuraSpectrum 7-Colour LED Mask',cat:'skin',price:65,rating:4.6,count:1377,stock:54,
-   benefit:'Seven light modes in one mask \u2014 red, blue, amber and four blends. Ten minutes per session, auto shut-off.',
+  {h:'auraspectrum',t:'AuraSpectrum 7-Colour LED Mask',cat:'skin',price:65,stock:54,
+   benefit:'Seven light modes in one mask: red, blue, amber and four blends. Ten minutes per session, auto shut-off.',
    colours:[['Porcelain','#F5EFE7',1],['Clay','#B9705A',1]],
    stats:[['7','','light modes'],['10','min','auto shut-off'],['210','g','cordless, USB-C'],['FCC','','& CE tested']],
-   specs:[['Modes','7 \u2014 red, blue, amber + 4 blends'],['Session','10 min, auto shut-off'],['Battery','1,000mAh \u00b7 USB-C'],['Certification','FCC, CE, RoHS']],
+   specs:[['Modes','7: red, blue, amber + 4 blends'],['Session','10 min, auto shut-off'],['Battery','1,000mAh \u00b7 USB-C'],['Certification','FCC, CE, RoHS']],
    steps:[['Pick one mode and stay with it','Rotating nightly is why most people see nothing. Choose the mode for your concern.'],['Ten minutes, shields on','It powers down by itself.'],['Four nights a week, eight weeks','Then judge it.']],
    safety:'Always wear the shields. Skip it if you\u2019re on photosensitising medication or have a light-triggered condition. Cosmetic device, not medical.',
    pairs:'redlume'},
-  {h:'pulsemist',t:'PulseMist Electric Scalp Massage Brush',cat:'hair',price:39,rating:4.9,count:1208,stock:12,
+  {h:'pulsemist',t:'PulseMist Electric Scalp Massage Brush',cat:'hair',price:39,stock:12,
    benefit:'Fill the reservoir with your oil or tonic and it mists as it massages. Silicone tips reach through thick and curly hair without snagging.',
    colours:[['Clay','#B9705A',1],['Sage','#9FB0A2',1],['Ink','#262220',1]],
    stats:[['60','ml','reservoir'],['3','','speeds'],['IPX7','','waterproof'],['10','min','auto shut-off']],
    specs:[['Reservoir','60ml'],['Speeds','3'],['Waterproofing','IPX7'],['Battery','USB-C, ~20 sessions'],['In the box','Brush, USB-C cable, cleaning pick']],
    pairs:'silkmist'},
-  {h:'silkmist',t:'SilkMist Conditioning Spray Hair Brush',cat:'hair',price:24,was:30,rating:4.6,count:1904,stock:46,tag:'best',
+  {h:'silkmist',t:'SilkMist Conditioning Spray Hair Brush',cat:'hair',price:24,was:30,stock:46,tag:'best',
    benefit:'A 150ml reservoir in the handle mists water, leave-in or oil as you brush, so detangling takes one pass instead of four.',
    colours:[['Porcelain','#F5EFE7',1],['Sand','#E0CDB4',1],['Clay','#B9705A',1],['Sage','#9FB0A2',1],['Ink','#262220',1],['Blush','#E7C9C2',1],['Slate','#8D96A0',0]],
-   specs:[['Reservoir','150ml'],['Bristles','Dual-length, fine + thick'],['Power','None \u2014 manual pump'],['In the box','Brush only. No refills to buy.']],
+   specs:[['Reservoir','150ml'],['Bristles','Dual-length, fine + thick'],['Power','None, manual pump'],['In the box','Brush only. No refills to buy.']],
    pairs:'pulsemist'},
-  {h:'mistcomb',t:'MistComb 2-in-1 Spray & Detangle Comb',cat:'hair',price:17,rating:4.5,count:943,stock:63,
+  {h:'mistcomb',t:'MistComb 2-in-1 Spray & Detangle Comb',cat:'hair',price:17,stock:63,
    benefit:'Fill it with water, leave-in or oil. Mists as you comb, so detangling takes one pass.',
    colours:[['Porcelain','#F5EFE7',1],['Sand','#E0CDB4',1],['Sage','#9FB0A2',1]],
-   specs:[['Reservoir','120ml'],['Teeth','Dual-sided \u2014 wide + fine'],['Power','None']],
+   specs:[['Reservoir','120ml'],['Teeth','Dual-sided, wide + fine'],['Power','None']],
    pairs:'silkmist'},
-  {h:'petmist',t:'PetMist Spray Grooming Brush',cat:'home',price:25,rating:4.9,count:512,stock:33,
+  {h:'petmist',t:'PetMist Spray Grooming Brush',cat:'home',price:25,stock:33,
    benefit:'The same misting handle, retuned for coats. Damp brushing lifts loose fur instead of scattering it.',
    colours:[['Sand','#E0CDB4',1],['Sage','#9FB0A2',1]],
    specs:[['Reservoir','100ml'],['Head sizes','Small and large'],['Cleaning','Self-cleaning plate, one push']],
    pairs:'fabricfresh-pro'},
-  {h:'fabricfresh-pro',t:'FabricFresh Pro Fabric Shaver',cat:'home',price:30,rating:4.6,count:2730,stock:57,
-   benefit:'Three blade heights and a 6cm stainless head \u2014 it takes bobbles off a coat sleeve without thinning the weave.',
+  {h:'fabricfresh-pro',t:'FabricFresh Pro Fabric Shaver',cat:'home',price:30,stock:57,
+   benefit:'Three blade heights and a 6cm stainless head. It takes bobbles off a coat sleeve without thinning the weave.',
    colours:[['Porcelain','#F5EFE7',1],['Ink','#262220',1]],
    stats:[['3','','blade heights'],['6','cm','stainless head'],['90','min','per charge'],['USB-C','','rechargeable']],
    specs:[['Blade heights','3'],['Head','6cm stainless'],['Runtime','90 min'],['Chamber','Pops off for emptying']],
    pairs:'petmist'},
-  {h:'fabricfresh-mini',t:'FabricFresh Mini Fabric Shaver',cat:'home',price:17,rating:4.7,count:1166,stock:0,restock:'Back Aug 14',
+  {h:'fabricfresh-mini',t:'FabricFresh Mini Fabric Shaver',cat:'home',price:17,stock:0,restock:'Back Aug 14',
    benefit:'Pocket version of the Pro. One blade height, 4cm head, good for jumpers and travel.',
    colours:[['Porcelain','#F5EFE7',1],['Blush','#E7C9C2',1]],
    specs:[['Head','4cm stainless'],['Runtime','40 min'],['Power','USB-C']]}
 ];
 var BY = {};
 PRODUCTS.forEach(function (p) { BY[p.h] = p; });
+/* photos: one per device, plus a detail shot for the RedLume page */
+var GALLERY = { redlume: ['redlume', 'redlume-detail', 'hero'] };
+function imgSrc(n, w) { return 'assets/img/' + n + '-' + w + '.webp'; }
+function imgTag(n, alt, sizes, eager) {
+  return '<img src="' + imgSrc(n, 1000) + '" srcset="' + imgSrc(n, 600) + ' 600w, ' + imgSrc(n, 1000) + ' 1000w" sizes="' + (sizes || '(min-width:990px) 22vw, 46vw') + '" alt="' + esc(alt) + '" width="1000" height="1250"' + (eager ? '' : ' loading="lazy"') + ' decoding="async">';
+}
+function thumbTag(n, alt) { return '<img src="' + imgSrc(n, 600) + '" alt="' + esc(alt) + '" width="600" height="750" loading="lazy" decoding="async">'; }
 var THRESHOLD = 50;
 
 function money(n) { return '$' + n.toFixed(2).replace(/\.00$/, ''); }
@@ -806,7 +1032,7 @@ function pairActive(list) {
   (list || cart).forEach(function (l) { if (!seen[l.h]) { seen[l.h] = 1; n++; } });
   return n >= 2;
 }
-/* One rule per line, whichever is better for her \u2014 never stacked. */
+/* One rule per line, whichever is better for her, never stacked. */
 function lineRule(l, list) {
   var t = tierPct(BY[l.h], l.qty);
   var pair = pairActive(list) ? PAIR_PCT : 0;
@@ -826,7 +1052,7 @@ function savedBy(kind) {
     return n + (r && r.kind === kind ? lineFull(l) - lineNet(l) : 0);
   }, 0);
 }
-/* What the bag would total if we added one of h \u2014 used so every quote matches the charge. */
+/* What the bag would total if we added one of h, used so every quote matches the charge. */
 function projectAdd(h) {
   var list = cart.concat([{ h: h, colour: '', qty: 1 }]);
   return list.reduce(function (n, l) { return n + lineNet(l, list); }, 0);
@@ -839,7 +1065,7 @@ function addToCart(h, colour, qty) {
   qty = qty || 1;
   var found = cart.filter(function (l) { return l.h === h && l.colour === colour; })[0];
   if (found) found.qty += qty; else cart.push({ h: h, colour: colour, qty: qty });
-  saveCart(); renderCart(); openDrawer(); toast(p.t + ' added');
+  saveCart(); renderCart(); openDrawer();
 }
 function changeLine(i, qty) {
   if (qty <= 0) cart.splice(i, 1); else cart[i].qty = qty;
@@ -862,7 +1088,7 @@ function renderCart() {
   }
 
   var total = cartTotal();
-  /* Threshold is measured on the merchandise subtotal, before discounts \u2014 so a
+  /* Threshold is measured on the merchandise subtotal, before discounts, so a
      second device always clears it, exactly as the product-page nudge promises. */
   var gross = cartFull();
   var remaining = THRESHOLD - gross;
@@ -879,7 +1105,7 @@ function renderCart() {
   cart.forEach(function (l, i) {
     var p = BY[l.h];
     var rule = lineRule(l);
-    html += '<div class="line"><span style="position:relative;width:70px;height:84px;flex:none;border-radius:var(--radius-media);overflow:hidden"><span class="ph" style="font-size:8px">' + esc(p.t.split(' ')[0]) + '</span></span>' +
+    html += '<div class="line">' + thumbTag(p.h, p.t).replace('width="600" height="750"', 'width="70" height="88"') +
       '<div style="flex:1"><div class="line__top"><b>' + esc(p.t) + '</b>' +
       '<span style="font-size:13px;font-weight:600;color:var(--ink)">' + money(lineNet(l)) +
       (rule ? ' <s style="font-weight:400;color:var(--ink-50)">' + money(lineFull(l)) + '</s>' : '') + '</span></div>' +
@@ -902,8 +1128,8 @@ function renderCart() {
       var recNet = Math.round(rec.price * (100 - PAIR_PCT) / 100);
       var bagSaving = (cartFull() + rec.price) - projected;
       var clears = (cartFull() + rec.price) >= THRESHOLD;
-      html += '<div class="upsell"><h3>Pairs with this &mdash; save ' + PAIR_PCT + '%</h3><div class="upsell__row">' +
-        '<span style="position:relative;width:48px;height:48px;flex:none;border-radius:var(--radius-media);overflow:hidden"><span class="ph" style="font-size:8px">' + esc(rec.t.split(' ')[0]) + '</span></span>' +
+      html += '<div class="upsell"><h3>Pairs with this: save ' + PAIR_PCT + '%</h3><div class="upsell__row">' +
+        thumbTag(rec.h, rec.t).replace('width="600" height="750"', 'width="48" height="60"') +
         '<div style="flex:1"><b>' + esc(rec.t) + '</b><small>' + money(rec.price) + ' &rarr; ' + money(recNet) + ' in this bag</small></div>' +
         '<button type="button" class="btn btn--primary btn--sm" data-add="' + rec.h + '">Add</button></div>' +
         '<p style="margin:10px 0 0;font-size:11.5px;line-height:1.5;color:var(--accent)">' +
@@ -918,7 +1144,7 @@ function renderCart() {
   var savedMulti = savedBy('multi');
   foot.innerHTML = '<div class="totals">' +
     '<div><span>Subtotal</span><b>' + money(cartFull()) + '</b></div>' +
-    (savedPair > 0 ? '<div style="color:var(--ok)"><span>Kit discount (' + PAIR_PCT + '% \u2014 two or more devices)</span><b style="color:var(--ok)">\u2212' + money(savedPair) + '</b></div>' : '') +
+    (savedPair > 0 ? '<div style="color:var(--ok)"><span>Kit discount (' + PAIR_PCT + '%, two or more devices)</span><b style="color:var(--ok)">\u2212' + money(savedPair) + '</b></div>' : '') +
     (savedMulti > 0 ? '<div style="color:var(--ok)"><span>Multi-buy discount</span><b style="color:var(--ok)">\u2212' + money(savedMulti) + '</b></div>' : '') +
     '<div><span>Shipping</span><span>' + (ship ? money(ship) : 'Free') + '</span></div>' +
     '<div><span>Arrives</span><b>12&ndash;21 days</b></div></div>' +
@@ -963,9 +1189,9 @@ function toast(msg) {
 /* ---------- cards ---------- */
 function card(p, lazyLabel) {
   var out = '<article class="card' + (p.stock === 0 ? ' card--soldout' : '') + '">' +
-    '<div class="card__media"><a href="#/product/' + p.h + '" aria-label="' + esc(p.t) + '"><span class="ph">' + esc(lazyLabel || p.t) + '</span></a>';
+    '<div class="card__media"><a href="#/product/' + p.h + '" aria-label="' + esc(p.t) + '">' + imgTag(p.h, p.t) + '</a>';
   if (p.stock === 0) out += '<span class="badge badge--soon card__badge">' + esc(p.restock || 'Sold out') + '</span>';
-  else if (p.tag === 'best') out += '<span class="badge badge--best card__badge">Best seller</span>';
+  else if (p.tag === 'best') out += '<span class="badge badge--best card__badge">Featured</span>';
   else if (p.was) out += '<span class="badge badge--sale card__badge">Save ' + money(p.was - p.price) + '</span>';
   else if (p.stock <= 15) out += '<span class="badge badge--warn card__badge">Only ' + p.stock + ' left</span>';
   if (p.stock > 0) {
@@ -976,7 +1202,7 @@ function card(p, lazyLabel) {
       '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>';
   }
   out += '</div><div><h3 class="card__title"><a href="#/product/' + p.h + '" style="color:inherit">' + esc(p.t) + '</a></h3>' +
-    '<span class="rating">' + stars(p.rating) + '<span class="rating__count">' + p.rating + ' (' + p.count.toLocaleString() + ')</span></span>';
+    ''+'';
   if (p.colours && p.colours.length > 1) {
     out += '<div class="swatch-mini">';
     p.colours.slice(0, 5).forEach(function (c) { out += '<i style="background:' + c[1] + '"></i>'; });
@@ -990,7 +1216,7 @@ function card(p, lazyLabel) {
 }
 
 /* ---------- collection ---------- */
-var state = { cat: [], price: [], instock: false, sort: 'Popular', coll: 'all' };
+var state = { cat: [], price: [], instock: false, sort: 'Featured', coll: 'all' };
 var COLL = {
   all: ['All devices', 'Eight tools, each doing one thing properly. Nothing here needs a refill, a subscription or an app.'],
   hair: ['Hair &amp; Scalp', 'Three brushes that mist as they work, so detangling and oiling take one pass.'],
@@ -1019,8 +1245,7 @@ function renderCollection() {
 
   if (state.sort === 'Price: low') list.sort(function (a, b) { return a.price - b.price; });
   else if (state.sort === 'Price: high') list.sort(function (a, b) { return b.price - a.price; });
-  else if (state.sort === 'Rating') list.sort(function (a, b) { return b.rating - a.rating; });
-  else list.sort(function (a, b) { return b.count - a.count; });
+  /* Featured keeps the order of the catalogue */
 
   document.querySelectorAll('[data-coll-count]').forEach(function (el) { el.textContent = list.length; });
   var grid = document.querySelector('[data-grid]');
@@ -1065,14 +1290,12 @@ function renderPDP(h) {
   /* gallery column */
   out += '<div class="pdp__gal"><nav class="crumb wrap" style="padding:0;margin-bottom:12px"><a href="#/">Home</a> / ' +
     '<a href="#/collection/' + p.cat + '">' + COLL[p.cat][0] + '</a> / <span style="color:var(--ink-70)">' + esc(p.t) + '</span></nav>';
-  out += '<div class="pdp__main"><span class="ph">' + esc(p.t) + ' &mdash; lifestyle, worn, warm light</span></div>';
-  if (!lean) {
-    out += '<div class="pdp__thumbs">' +
-      '<button type="button" aria-current="true" aria-label="Lifestyle"><span class="ph" style="font-size:8px">Worn</span></button>' +
-      '<button type="button" aria-label="Product"><span class="ph" style="font-size:8px">Flat</span></button>' +
-      '<button type="button" aria-label="Detail"><span class="ph" style="font-size:8px">Detail</span></button>' +
-      '<button type="button" aria-label="In hand"><span class="ph" style="font-size:8px">Scale</span></button>' +
-      '</div>';
+  var gal = GALLERY[p.h] || [p.h];
+  out += '<div class="pdp__main" data-gal-main>' + imgTag(gal[0], p.t, '(min-width:990px) 52vw, 100vw', true) + '</div>';
+  if (gal.length > 1) {
+    out += '<div class="pdp__thumbs">';
+    gal.forEach(function (g, i) { out += '<button type="button" data-gal="' + g + '" aria-label="Photo ' + (i + 1) + '"' + (i === 0 ? ' aria-current="true"' : '') + '>' + thumbTag(g, p.t) + '</button>'; });
+    out += '</div>';
   }
 
   if (p.stats && !lean) {
@@ -1109,7 +1332,7 @@ function renderPDP(h) {
   out += '<aside class="pdp__aside"><div class="pdp__info"><p class="eyebrow">' + COLL[p.cat][0];
   if (p.stock > 0 && p.stock <= 15) out += '<span class="rule"></span><span style="color:var(--warn)">Only ' + p.stock + ' left</span>';
   out += '</p><h1 class="d-l">' + esc(p.t) + '</h1><p class="lede">' + esc(p.benefit) + '</p>' +
-    '<span class="rating">' + stars(p.rating, 'stars--md') + '<span class="rating__count" style="font-size:13px;color:var(--ink-70);font-weight:500">' + p.rating + ' &middot; ' + p.count.toLocaleString() + ' reviews</span></span>' +
+    
     '<div class="price price--pdp"><span class="price__now">' + money(p.price) + '</span>' +
     (p.was ? '<s class="price__was">' + money(p.was) + '</s><span class="badge badge--sale">Save ' + money(p.was - p.price) + '</span>' : '') +
     '</div></div>';
@@ -1134,10 +1357,10 @@ function renderPDP(h) {
       var q = t[0], d = t[1];
       var full = p.price * q, net = Math.round(full * (100 - d) / 100);
       out += '<label class="tier' + (q === tq ? ' tier--on' : '') + '">' +
-        (q === 2 ? '<span class="tier__flag">Most chosen</span>' : '') +
+        (q === 2 ? '<span class="tier__flag">Suggested</span>' : '') +
         '<input type="radio" name="tier" class="visually-hidden" data-tier="' + q + '"' + (q === tq ? ' checked' : '') + '>' +
         '<span class="tier__dot"></span><span class="tier__body"><b>' +
-        (q === 1 ? 'One' : q + ' &mdash; save ' + d + '%') + '</b><small>' +
+        (q === 1 ? 'One' : q + ', save ' + d + '%') + '</b><small>' +
         (q === 1 ? 'For you' : q === 2 ? 'One to gift, or one per bathroom' : 'Best per-unit price') + '</small></span>' +
         '<span style="text-align:right;flex:none"><b style="display:block;font-size:15px;font-weight:600;color:var(--ink)">' + money(net) + '</b>' +
         (d ? '<s style="display:block;font-size:11px;color:var(--ink-50)">' + money(full) + '</s>' : '') + '</span></label>';
@@ -1150,7 +1373,7 @@ function renderPDP(h) {
     '<input type="number" value="' + tq + '" min="1" aria-label="Quantity" data-main-qty readonly>' +
     '<button type="button" data-qty="up" aria-label="Increase quantity"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></div>' +
     '<button type="button" class="btn btn--primary" data-pdp-add="' + p.h + '"' + (p.stock === 0 ? ' disabled' : '') + '>' +
-    (p.stock === 0 ? 'Sold out' : 'Add to bag &mdash; ' + money(lineTotal)) + '</button></div>';
+    (p.stock === 0 ? 'Sold out' : 'Add to bag &middot; ' + money(lineTotal)) + '</button></div>';
 
   out += '<div style="padding:0 var(--gutter)"><div class="assure">' +
     '<div class="assure__row"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h11v9H3z"/><path d="M14 9.5h3.5l3 3v3H14z"/><circle cx="7" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></svg>' +
@@ -1162,13 +1385,13 @@ function renderPDP(h) {
 
   if (lean && p.price < THRESHOLD) {
     out += '<div class="note note--ok" style="background:var(--surface)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>' +
-      '<p style="color:var(--ink-70);font-weight:400"><b style="color:var(--ink)">' + money(THRESHOLD - p.price) + ' to free shipping.</b> Add a second device and you clear it &mdash; and save 15%.</p></div>';
+      '<p style="color:var(--ink-70);font-weight:400"><b style="color:var(--ink)">' + money(THRESHOLD - p.price) + ' to free shipping.</b> Add a second device and you clear it, and save 15%.</p></div>';
   }
 
   if (p.pairs && BY[p.pairs]) {
     var rec = BY[p.pairs];
     out += '<div style="margin-top:20px"><h3 style="font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50);margin:0 0 12px">Goes with it</h3>' +
-      '<div class="fbt"><span style="position:relative;width:60px;height:60px;flex:none;border-radius:var(--radius-media);overflow:hidden"><span class="ph" style="font-size:8px">' + esc(rec.t.split(' ')[0]) + '</span></span>' +
+      '<div class="fbt">' + thumbTag(rec.h, rec.t).replace('width="600" height="750"', 'width="60" height="75"') +
       '<div style="flex:1"><b>' + esc(rec.t) + '</b><small>' + money(rec.price) + '</small></div>' +
       '<button type="button" class="btn btn--tertiary btn--sm" data-add="' + rec.h + '">Add</button></div></div>';
   }
@@ -1182,7 +1405,7 @@ function renderPDP(h) {
 
   /* sticky atc */
   if (p.stock > 0) {
-    out += '<div class="sticky-atc" data-sticky-atc><span style="position:relative;width:46px;height:46px;flex:none;border-radius:6px;overflow:hidden"><span class="ph" style="font-size:8px">' + esc(p.t.split(' ')[0]) + '</span></span>' +
+    out += '<div class="sticky-atc" data-sticky-atc>' + thumbTag(p.h, p.t).replace('width="600" height="750"', 'width="46" height="58"') +
       '<span class="sticky-atc__meta"><small>' + tq + ' \u00d7 ' + esc(pdpState.colour) + '</small><b>' + money(lineTotal) + '</b></span>' +
       '<button type="button" class="btn btn--primary" data-pdp-add="' + p.h + '">Add to bag</button></div>';
   }
@@ -1258,7 +1481,8 @@ function syncKits() {
   form.querySelectorAll('.tier').forEach(function (t) { t.classList.toggle('tier--on', t.contains(on)); });
   var k = KITS[+on.dataset.kit];
   var pr = kitPrice(k);
-  document.querySelector('[data-kit-cta]').innerHTML = 'Add the ' + esc(k.label.replace(/^The /, '')) + ' &mdash; ' + money(pr.net);
+  document.querySelector('[data-kit-cta]').innerHTML = 'Add the ' + esc(k.label.replace(/^The /, '')) + ' &middot; ' + money(pr.net);
+  document.querySelector('[data-kitvis]').innerHTML = '<figure>' + imgTag(k.a, BY[k.a].t, '(min-width:990px) 28vw, 44vw') + '</figure><figure>' + imgTag(k.b, BY[k.b].t, '(min-width:990px) 28vw, 44vw') + '</figure>';
   document.querySelector('[data-kit-note]').innerHTML = 'You save ' + money(pr.full - pr.net) +
     (pr.full >= THRESHOLD ? ' &middot; qualifies for free shipping' : '');
 }
@@ -1291,14 +1515,14 @@ function paintVSheet() {
     '<div class="sheet__hd"><span style="font-size:17px;font-weight:600;color:var(--ink)">' + esc(p.t) + '</span>' +
     '<button type="button" class="icon-btn" data-vsheet-close aria-label="Close">' +
     '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>' +
-    '<div class="facet"><h3>Colour &mdash; ' + esc(vsheetPick) + '</h3><div class="swatches">';
+    '<div class="facet"><h3>Colour: ' + esc(vsheetPick) + '</h3><div class="swatches">';
   p.colours.forEach(function (c) {
     html += '<button type="button" class="swatch' + (c[2] ? '' : ' swatch--out') + '" data-vcolour="' + esc(c[0]) + '"' +
       ' aria-pressed="' + (c[0] === vsheetPick) + '" aria-label="' + esc(c[0]) + (c[2] ? '' : ', sold out') + '">' +
       '<i style="background:' + c[1] + '"></i></button>';
   });
   html += '</div></div><div style="padding:20px var(--gutter) 0">' +
-    '<button type="button" class="btn btn--primary btn--full" data-vsheet-add>Add to bag &mdash; ' + money(p.price) + '</button></div>';
+    '<button type="button" class="btn btn--primary btn--full" data-vsheet-add>Add to bag &middot; ' + money(p.price) + '</button></div>';
   document.querySelector('[data-vsheet-panel]').innerHTML = html;
 }
 
@@ -1316,6 +1540,15 @@ document.addEventListener('click', function (e) {
     var nav = document.querySelector('[data-mob-nav]');
     var open = nav.classList.toggle('is-open');
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    return;
+  }
+
+  var gb = t.closest('[data-gal]');
+  if (gb) {
+    var main = document.querySelector('[data-gal-main]');
+    main.innerHTML = imgTag(gb.dataset.gal, 'Photo', '(min-width:990px) 52vw, 100vw', true);
+    document.querySelectorAll('[data-gal]').forEach(function (x) { x.removeAttribute('aria-current'); });
+    gb.setAttribute('aria-current', 'true');
     return;
   }
 
@@ -1372,7 +1605,7 @@ document.addEventListener('click', function (e) {
 
   var sort = t.closest('[data-sort-toggle]');
   if (sort) {
-    var opts = ['Popular', 'Price: low', 'Price: high', 'Rating'];
+    var opts = ['Featured', 'Price: low', 'Price: high'];
     state.sort = opts[(opts.indexOf(state.sort) + 1) % opts.length];
     renderCollection();
     return;
@@ -1418,6 +1651,12 @@ document.addEventListener('keydown', function (e) {
 syncKits();
 renderCart();
 route();
+(function () {
+  var els = document.querySelectorAll('[data-reveal]');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('is-in'); }); return; }
+  var io = new IntersectionObserver(function (es) { es.forEach(function (en, i) { if (en.isIntersecting) { en.target.style.transitionDelay = (i * 70) + 'ms'; en.target.classList.add('is-in'); io.unobserve(en.target); } }); }, { threshold: 0.2 });
+  els.forEach(function (e) { io.observe(e); });
+})();
 
 </script>
 </body>

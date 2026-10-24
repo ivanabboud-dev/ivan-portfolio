@@ -35,7 +35,7 @@
     shopNow: ['تسوّق الآن', 'Shop now'], findScent: ['اكتشف عطرك', 'Find your scent'],
     svcDelivery: ['توصيل ٢-٤ أيام', '2-4 day delivery'], svcCod: ['الدفع عند الاستلام', 'Cash on delivery'], svcBnpl: ['تابي وتمارا', 'Tabby & Tamara'],
     catTab: ['يتوفر لدينا', 'We carry'], catTitle: ['جميع أنواع البخور والعطور والمخمريات والمسكيات', 'Bakhoor, perfume, mukhamariya and musk'],
-    best: ['الأكثر مبيعاً', 'Best sellers'], viewAll: ['عرض الكل', 'View all'], add: ['أضف', 'Add'],
+    best: ['العطور المختارة', 'The perfumes'], scents: [['عود', 'Oud'], ['مسك', 'Musk'], ['عنبر', 'Amber'], ['ورد الطائف', 'Taif rose'], ['زعفران', 'Saffron'], ['صندل', 'Sandalwood'], ['بخور', 'Bakhoor']], viewAll: ['عرض الكل', 'View all'], add: ['أضف', 'Add'],
     idx: { bakhoor: ['معمول وكسر عود', 'Maamoul and oud chips'], perfume: ['خمسة منها على قاعدة عود', 'Five of them built on oud'], mukh: ['ورد الطائف للشعر والملابس', 'Taif rose, for hair and clothes'], musk: ['مسك عنبر معتّق', 'Aged amber musk'] },
     storyT: ['عود من المصدر، ويُخلط في الرياض', 'Oud from the source, mixed in Riyadh'],
     storyAlt: ['زجاجة عود رويال على حجر أسود بجانب خشب العود وراتنج العنبر', 'An Oud Royal bottle on black stone beside oud wood and amber resin'],
@@ -51,10 +51,10 @@
       ['rosette', ['تشكيلة متنوعة', 'Wide range'], ['بخور للمجلس اليومي، ودهن عود للأعراس.', 'Bakhoor for the daily majlis, oud oil for weddings.']]
     ],
     eid: ['عيد', 'Eid'], ramadan: ['رمضان', 'Ramadan'], wedding: ['زفاف', 'Wedding'],
-    best1: ['الأكثر مبيعاً', 'Best seller'], new1: ['جديد', 'New'], save: ['المفضلة', 'Save'], addToCart: ['أضف إلى السلة', 'Add to cart'], added: ['أُضيف', 'Added'],
+    best1: ['مختار', 'Featured'], new1: ['جديد', 'New'], save: ['المفضلة', 'Save'], addToCart: ['أضف إلى السلة', 'Add to cart'], added: ['أُضيف', 'Added'],
     allProducts: ['جميع المنتجات', 'All products'], all: ['الكل', 'All'], family: ['العائلة العطرية', 'Scent family'], type: ['النوع', 'Type'], price: ['السعر', 'Price'],
     swipe: ['اسحب ←', 'Swipe →'], products: ['منتجات', 'products'], filters: ['تصفية', 'Filters'], clearAll: ['مسح الكل', 'Clear all'], apply: ['تطبيق', 'Apply'],
-    sort: ['الترتيب', 'Sort'], sortBest: ['الأكثر مبيعاً', 'Best selling'], sortLow: ['السعر: من الأقل', 'Price: low to high'], sortHigh: ['السعر: من الأعلى', 'Price: high to low'], sortNew: ['الأحدث', 'Newest'],
+    sort: ['الترتيب', 'Sort'], sortBest: ['المختارة أولاً', 'Featured first'], sortLow: ['السعر: من الأقل', 'Price: low to high'], sortHigh: ['السعر: من الأعلى', 'Price: high to low'], sortNew: ['الأحدث', 'Newest'],
     noResults: ['لا توجد منتجات بهذه الفلاتر.', 'No products match these filters.'],
     vat: ['شامل الضريبة', 'VAT included'], bnpl4: ['أو ٤ دفعات بقيمة {x} بدون فوائد', 'Or 4 interest-free payments of {x}'], tabby: ['تابي', 'Tabby'], tamara: ['تمارا', 'Tamara'],
     size: ['الحجم', 'Size'], tolaNote: ['التولة ≈ ١٢ مل من دهن العود المركّز', 'A tola is about 12 ml of concentrated oud oil'],
@@ -184,28 +184,27 @@
   /* ---------- pages ---------- */
   function pageHome() {
     const rows = ['bakhoor', 'perfume', 'mukh', 'musk'].map(c => `<a class="idx__row" href="#/shop?cat=${c}"><span class="idx__name">${L(D.cats[c])}</span><span class="idx__desc">${L(W.idx[c])}</span><span class="idx__go">${countLabel(D.products.filter(p => p.cat === c).length)}${ic('chev', 'flip')}</span></a>`).join('');
-    const bs = ['oud-royal', 'black-oud', 'white-musk', 'amber-noir'].map(D.byId);
+    const perf = D.products.filter(p => p.cat === 'perfume');
     const trio = ['oud-royal', 'white-musk', 'amber-noir'].map(D.byId).map(p => `<figure>${pic(p.img, pname(p), '(min-width:1024px) 280px, 30vw')}</figure>`).join('');
     return `
-    <section class="hero"><div class="wrap">
-      <div class="hero__grid">
-        <div class="hero__text">
-          <p class="t-over" data-in style="--i:0">${t('over')}</p>
-          <h1 class="hero__h"><span class="line"><span class="t-dxl">${t('h1')}</span></span><span class="line"><span class="t-dxl gold">${t('h2')}</span></span></h1>
-          <p class="t-body hero__lead" data-in style="--i:1">${t('heroSub')}</p>
-          <div class="hero__ctas" data-in style="--i:2"><a class="btn btn--primary" href="#/shop">${t('shopNow')}${ic('chev', 'flip')}</a><a class="btn btn--link" href="#/quiz">${t('findScent')}</a></div>
-        </div>
-        <div class="arch" aria-hidden="true">
-          <svg class="arch__line arch__line--out" viewBox="0 0 200 280" preserveAspectRatio="none"><path pathLength="1" d="M2 280V122C2 64 50 32 100 3c50 29 98 61 98 119v158"/></svg>
-          <div class="arch__img"><img src="assets/img/hero-720.webp" srcset="assets/img/hero-360.webp 360w, assets/img/hero-720.webp 720w" sizes="(min-width:1024px) 535px, 80vw" alt="" fetchpriority="high" width="720" height="1008"></div>
-          <svg class="arch__line arch__line--in" viewBox="0 0 200 280"><path pathLength="1" d="M2 280V122C2 64 50 32 100 3c50 29 98 61 98 119v158"/></svg>
-          <svg class="smoke" viewBox="0 0 120 260" preserveAspectRatio="none"><use href="#o-smoke"/></svg>
-        </div>
+    <section class="hero2" data-hero>
+      <canvas class="hero2__fx" data-smoke aria-hidden="true"></canvas>
+      <div class="hero2__img" aria-hidden="true"><img src="assets/img/hero-720.webp" srcset="assets/img/hero-360.webp 360w, assets/img/hero-720.webp 720w" sizes="(min-width:1024px) 40vw, 90vw" alt="" fetchpriority="high" width="720" height="1008"></div>
+      <div class="hero2__top wrap"><p class="t-over">${t('over')}</p><p class="hero2__est">${t('svcDelivery')}</p></div>
+      <div class="hero2__bot wrap">
+        <h1 class="hero2__h"><span class="ln"><span>${t('h1')}</span></span><span class="ln"><span class="gold">${t('h2')}</span></span></h1>
+        <div class="hero2__foot"><p class="t-body hero2__lead">${t('heroSub')}</p><div class="hero2__ctas"><a class="btn btn--primary" href="#/shop">${t('shopNow')}${ic('chev', 'flip')}</a><a class="btn btn--link" href="#/quiz">${t('findScent')}</a></div></div>
       </div>
-      <div class="svcstrip"><span class="svc">${ic('truck')}${t('svcDelivery')}</span><span class="svc">${ic('cash')}${t('svcCod')}</span><span class="svc">${ic('card')}${t('svcBnpl')}</span></div>
-    </div></section>
+    </section>
+    <section class="marq" aria-hidden="true"><div class="marq__track">${[0, 1].map(() => `<span>${W.scents.map(n => L(n)).join(' <i></i> ')} <i></i> </span>`).join('')}</div></section>
+    <section class="col2" data-col>
+      <div class="col2__pin">
+        <div class="col2__head wrap"><h2 class="t-h1">${t('best')}</h2><a class="btn btn--ghost" href="#/shop">${t('viewAll')}${ic('chev', 'flip')}</a></div>
+        <div class="col2__view"><div class="col2__track" data-track>${perf.map(p => `<div class="col2__item">${card(p)}</div>`).join('')}</div></div>
+        <div class="col2__bar" aria-hidden="true"><span data-bar></span></div>
+      </div>
+    </section>
     <section class="wrap sec sec--idx"><div class="idx" data-draw>${rows}</div></section>
-    <section class="wrap sec sec--best">${secHead(t('best'), [t('viewAll'), '#/shop'], true)}<div class="grid grid--stagger">${bs.map(card).join('')}</div></section>
     <section class="wrap sec sec--story"><div class="story">
       <div class="story__img">${pic('oud-royal-3', L(W.storyAlt), '(min-width:1024px) 520px, 90vw')}</div>
       <div><h2 class="t-h1">${t('storyT')}</h2><div class="facts" data-draw>${W.trust.map(([, a, b]) => `<div class="fact"><p class="fact__k">${L(a)}</p><p class="fact__t">${L(b)}</p></div>`).join('')}</div></div>
@@ -440,6 +439,7 @@
     if (!keepScroll) window.scrollTo(0, 0);
     if (document.body.classList.contains('cart-open')) $('#drawer').innerHTML = drawer();
     watchDraw();
+    if (window.DAOFX) window.DAOFX.mount(r);
   }
 
   /* ---------- menu, header state, hairline draw ---------- */
